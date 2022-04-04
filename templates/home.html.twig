@@ -1,0 +1,15 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hem{% endblock %}
+
+{% block content %}
+    <div class="home-me-container">
+        <div class="home-me-img">
+            <img src="{{ absolute_url("img/me.jpg") }}" alt="Bild på mig">
+        </div>
+        <div class="home-me-text">
+            {{ include('me/me.markdown.twig')|markdown_to_html }}
+        </div>
+    </div>
+{% endblock %}

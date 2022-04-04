@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}Report-sida{% endblock %}</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="icon" href="{{ absolute_url("img/me.jpg") }}">
+    </head>
+    <body>
+        <header class="header" role="banner">
+            <div class="site-header">
+                <h1>Emil Abrahamsson<span>Report-sida</span></h1>
+            </div>
+            <div class="nav">
+                <nav class="navMenu">
+                    <a href="{{ path('home') }}">Hem</a>
+                    <a href="{{ path('report') }}">Report</a>
+                    <a href="{{ path('about') }}">Om</a>
+                    <div class="dot"></div>
+                </nav>
+            </div>
+        </header>
+
+        {% block content %}
+
+        {% endblock %}
+
+        <footer>
+            <p>©Emil Abrahamsson 2022</p>
+        </footer>
+    </body>
+</html>

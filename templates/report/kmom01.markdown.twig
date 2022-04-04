@@ -1,0 +1,23 @@
+Kmom01
+-------
+**Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.**
+
+**Berätta kort om PHPs modell för klasser och objekt. Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?**
+
+**Reflektera kort över den kodbas, koden, strukturen som användes till uppgiften me/report, hur uppfattar du den?**
+
+**Med tanke på artikeln “PHP The Right Way”, vilka delar in den finner du extra intressanta och värdefulla? Är det några särskilda områden som du känner att du vill veta mer om? Lyft fram några delar av artikeln som du känner mer värdefulla.**
+
+**Vilken är din TIL för detta kmom?**
+
+Mina tidigare erfarenheter kring objektorientering är från kursen oopython. Det finns många likheter i PHP av det jag har lärt mig än så länge. Grundprincipen är densamma när man skapar en instans av en klass och tillför den till en variabel som man sedan kan manipulera. Det som skiljer mest, förutom att syntaxen är olika, tycker jag är att i python används oftare konstruktor när man instansierar ett objekt.
+
+Man skapar en klass som är själva mallen till de objekten som skapas. Exempelvis från verkliga livet är fordon en klass över många objekt. Bilar, båtar och flygplan är objekt som har liknande egenskaper under klassen fordon. Alla tre har någon typ av styrmekanism, hastighet och så vidare. Det kan liknas vid klassens medlemsvariabler. Alla fordon har på olika sätt gemensam funktionalitet - klassens metoder. I programmeringens värld används objektorientering för att samla kod som har liknande egenskaper och har gemensamma metoder för att tillföra funktionalitet.
+
+Det är viktigt att förstå att klassens medlemsvariabler och metoder deklareras med en inkapsling. Det gör man för att begränsa tillgången för utomstående att kunna ändra på värdena i koden. "public" används för att ge full tillgång till att anropa metoden eller att ändra och hämta värdet i en medlemsvariabel. I regel används dock "private" och "public" sätts endast på de variabler och metoder där användaren ska kunna ändra på ett värde. Det finns även "protected" som endast används vid arv mellan klasser. För att användaren ska kunna ändra på privata värden finns "set"-metod och att läsa av privata värden finns "get"-metod.
+
+Jag tycker att det var intressant i artikeln "PHP The Right Way" att läsa om säkerhet, något jag inte har lärt mig så mycket om på utbildningen än så länge. Det finns många säkerhetsaspekter att ta hänsyn till när det gäller användarens förmåga att påverka koden. Om användaren ges möjlighet att skicka kod direkt in i applikationen måste det valideras och rensas från skadlig kod. Det beskrivs även om hur man hanterar lösenord genom hashning och PHP:s inbyggda funktioner för det. Något jag inte visste innan var att även felmeddelande kan vara en särhetsrisk och det gäller att begränsa vad som visas för användaren när man är i produktionsmiljön. Detta kan ställas in i konfigurations-filen php.ini.
+
+Alla sidor på webbsidan report samlas i en klass genom metoder och så kallade "routes". Routen skriver man i dock-block-kommentarer över metoden och står för vad användaren skriver in i url-fältet. Går användaren exempelvis in på routen "/" startas metoden som är skriven under. Metoden renderar en vy från "templates"-mappen, i detta fallet sidan "home", som gör att sidan visas upp. Det går även genom inbyggda funktioner i ramverket Symfoni att skicka med data i form av en array till den vy som skall renderas. Datan kan sedan hämtas från arrayen och skrivas in i html-koden genom att använda Symfonis särskilda syntax med måsvingar.
+
+Jag tycker att själva konceptet i Symfony med att lägga alla routes i en klass och att i kommentarerna ovanför metoderna bestämma respektive routes, på ett smidigt sätt strukturerar upp koden och gör det enkelt att tyda vad den gör. Det är för mig ett helt nytt sätt att bygga upp sin webbsida och det får vara min TIL för detta kmom.

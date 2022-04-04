@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Om{% endblock %}
+
+{% block content %}
+    <div class="about-main">
+        {{ include('about/about.markdown.twig')|markdown_to_html }}
+        <img src="{{ absolute_url("img/php.jpg") }}" alt="Bild på dator och elefant med logga php">
+    </div>
+
+{% endblock %}

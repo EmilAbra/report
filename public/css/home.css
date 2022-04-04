@@ -1,0 +1,24 @@
+.home-me-container {
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.home-me-img img {
+    border-radius: 50%;
+    filter: grayscale(100%);
+    padding: 50px;
+}
+
+.home-me-img img:hover {
+    filter: grayscale(0%);
+    filter: #808080;
+    filter: none;
+    transition: 1s ease;
+}
+
+.home-me-text {
+    max-width: 50%;
+    padding: 1.4rem 0.6rem;
+}
