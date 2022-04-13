@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}Report-sida{% endblock %}</title>
-        <link rel="stylesheet" href="css/style.css"/>
-        <link rel="icon" href="{{ absolute_url("img/me.jpg") }}">
+        <link rel="stylesheet" href="{{ asset("css/style.css") }}"/>
+        <link rel="icon" href="{{ asset("img/me.jpg") }}">
     </head>
     <body>
         <header class="header" role="banner">
@@ -16,6 +16,7 @@
                 <nav class="navMenu">
                     <a href="{{ path('home') }}">Hem</a>
                     <a href="{{ path('report') }}">Report</a>
+                    <a href="{{ path('card_game') }}">Kortspel</a>
                     <a href="{{ path('about') }}">Om</a>
                     <div class="dot"></div>
                 </nav>

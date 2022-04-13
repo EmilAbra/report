@@ -3,8 +3,8 @@ footer {
     background-color: #d9f5ff;
     border-top: 1px solid #222;
     text-align: center;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
     width: 100%;
 }
 

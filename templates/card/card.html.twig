@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kortspel{% endblock %}
+
+{% block content %}
+    <div class="card-main">
+        <h1>Kortspel</h1>
+        <div class="nav">
+            <nav class="navMenu">
+                <a href="{{ path('deck') }}">Kortlek</a>
+                <a href="{{ path('shuffle') }}">Blandad Kortlek</a>
+                <a href="{{ path('draw') }}">Dra ett kort</a>
+                <a href="{{ path('draw_many') }}">Dra flera kort</a>
+                <a href="{{ path('draw_with_players') }}">Dra med spelare</a>
+                <a href="{{ path('deck_with_jokers') }}">Kortlek med Jokrar</a>
+                <div class="dot"></div>
+            </nav>
+        </div>
+
+    </div>
+
+{% endblock %}

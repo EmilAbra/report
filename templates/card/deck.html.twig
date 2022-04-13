@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Kortlek {% endblock %}
+
+{% block content %}
+    <div class="cards-main">
+        <h1>Kortlek</h1>
+        <div class="playingCards faceImages">
+            {% for suits in card_suits %}
+                <ul class="table">
+                    {% for ranks in card_ranks %}
+                        <li>
+                            <div class="card rank-{{ ranks }} {{ suits }}">
+                                <span class="rank">{{ ranks }}</span>
+                                <span class="suit">&{{ suits }};</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
