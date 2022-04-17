@@ -3,9 +3,29 @@
 {% block title %}Dra med spelare{% endblock %}
 
 {% block content %}
-    <div class="card-main">
-        <h1>Dra med spelare</h1>
+    <div class="cards-main">
+        {{ include('/card/card_nav.html.twig') }}
 
+        <h1>Dra kort med spelare</h1>
+        <h2>Antal kort i kortleken: {{ cardsLeft }}</h2>
+
+        <div class="playingCards faceImages">
+            {{ include('/card/card_stack.html.twig') }}
+
+            {% for player, value in players %}
+                <ul class="table">
+                        <div class="player"><h3>Spelare {{ player + 1 }}:</h3></div>
+                    {% for card in value.playerCards.cardHand %}
+                    <li>
+                        <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                            <span class="rank">{{ card.rank }}</span>
+                            <span class="suit">&{{ card.suit }};</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

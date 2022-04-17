@@ -4,8 +4,24 @@
 
 {% block content %}
     <div class="card-main">
-        <h1>Dra flera kort</h1>
+        {{ include('/card/card_nav.html.twig') }}
 
+        <h1>Dra flera kort</h1>
+        <h2>Antal kort i kortleken: {{ cardsLeft }}</h2>
+        <div class="playingCards faceImages">
+            {{ include('/card/card_stack.html.twig') }}
+
+            <ul class="table">
+                {% for card in cards %}
+                    <li>
+                        <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                            <span class="rank">{{ card.rank }}</span>
+                            <span class="suit">&{{ card.suit }};</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dra med spelare{% endblock %}
+
+{% block content %}
+    <div class="cards-main">
+        {{ include('/card/card_nav.html.twig') }}
+
+        <h1>Dra kort med spelare</h1>
+
+        <div class="form">
+            <form method="post">
+                <fieldset>
+                <p>
+                    <label>Antal spelare:
+                        <input type="number" name="players" value="">
+                    </label>
+                </p>
+                <p>
+                    <label>Antal kort per spelare:
+                        <input type="number" name="cards" value="">
+                    </label>
+                </p>
+                <p>
+                    <input type="submit" value="Välj">
+                </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,11 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kortspel{% endblock %}
+{% block title %} Kortlek med 2 Jokrar {% endblock %}
 
 {% block content %}
-    <div class="card-main">
-        <h1>Kortlek med Jokrar</h1>
+    <div class="cards-main">
+        {{ include('/card/card_nav.html.twig') }}
 
+        <h1> Kortlek med 2 Jokrar </h1>
+        <div class="playingCards faceImages">
+            {% for suits in card_suits %}
+                <ul class="table">
+                    {% for ranks in card_ranks %}
+                        <li>
+                            <div class="card rank-{{ ranks }} {{ suits }}">
+                                <span class="rank">{{ ranks }}</span>
+                                <span class="suit">&{{ suits }};</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+
+            {% endfor %}
+            {% for suit, rank in jranks %}
+                    <li>
+                        <div class="card {{ suit }}"><span class="rank">{{ rank }}</span><span class="suit">{{ jsuit }}</span></div>
+                    </li>
+            {% endfor %}
+                </ul>
+        </div>
     </div>
 
 {% endblock %}

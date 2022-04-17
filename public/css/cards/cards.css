@@ -40,6 +40,8 @@
     display: flex;
     flex-direction: column;
     width: 1200px;
+    margin: auto;
+    margin-bottom: 500px;
 }
 /* selected and hover state */
 .playingCards a.card:hover, .playingCards a.card:active, .playingCards a.card:focus,
@@ -467,9 +469,23 @@
     list-style-type: none;
     padding: 0;
     margin: auto;
+    /* margin-bottom: 50px; */
     position: relative;
     clear: both;
 }
+
+.playingCards ul.deck {
+    margin-bottom: 50px;
+}
+/* .playingCards ul.table-players {
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    margin-bottom: 50px;
+    position: relative;
+    clear: both;
+} */
+
 .playingCards ul.hand {
     margin-bottom: 3.5em;
 }

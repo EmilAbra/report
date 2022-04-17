@@ -19,3 +19,11 @@ body {
 .cards-main {
     text-align: center;
 }
+
+.cards-main h2 {
+    margin-bottom: 50px;
+}
+
+.cards-main h3 {
+    margin-bottom: 10px;
+}

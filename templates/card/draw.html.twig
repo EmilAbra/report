@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Dra ett kort {% endblock %}
+
+{% block content %}
+    <div class="cards-main">
+        {{ include('/card/card_nav.html.twig') }}
+
+        <h1>Dra kort</h1>
+        <h2>Kort kvar i kortleken: {{ cardsLeft }}</h2>
+        <div class="playingCards faceImages">
+            {{ include('/card/card_stack.html.twig') }}
+
+            <ul class="table">
+                <li>
+                    <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                        <span class="rank">{{ card.rank }}</span>
+                        <span class="suit">&{{ card.suit }};</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

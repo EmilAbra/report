@@ -6,7 +6,7 @@ use App\Card\Card;
 
 class Deck
 {
-    private $ranks = [
+    const RANKS = [
         '2',
         '3',
         '4',
@@ -21,15 +21,20 @@ class Deck
         'K',
         'A'
     ];
-    private $suits = [
+    const SUITS = [
         'diams',
         'hearts',
         'spades',
         'clubs'
     ];
-    private $deck = [];
+    private array $deck;
 
-    public function addCard(Card $card): void
+    public function __construct(array $deck = [])
+    {
+        $this->deck = $deck;
+    }
+
+    public function setDeck(Card $card): void
     {
         $this->deck[] = $card;
     }
@@ -44,29 +49,25 @@ class Deck
         shuffle($this->deck);
     }
 
-    public function test() {
-        $arr = [];
-        foreach ($this->getDeck() as $object)
-        {
-            $arr[$object->getSuit()] = $object->getRank();
-        }
-        print_r($arr);
-
-    }
-
     public function drawCard(): object
     {
         return array_pop($this->deck);
     }
 
+    public function drawMany(int $number): array
+    {
+        $cards = array_splice($this->deck, -$number);
+        return $cards;
+    }
+
     public function getRanks(): array
     {
-        return $this->ranks;
+        return self::RANKS;
     }
 
     public function getSuits(): array
     {
-        return $this->suits;
+        return self::SUITS;
     }
 
     public function getNumberOfCards(): int

@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Kortlek {% endblock %}
+{% block title %} Kortlek som JSON {% endblock %}
 
 {% block content %}
     <div class="cards-main">
         {{ include('/card/card_nav.html.twig') }}
 
-        <h1>Kortlek</h1>
+        <h1>Kortlek som JSON</h1>
         <div class="playingCards faceImages">
             {% for suits in card_suits %}
                 <ul class="table">

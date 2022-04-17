@@ -1,0 +1,28 @@
+.nav {
+    text-transform: uppercase;
+    font-family:"Raleway", sans-serif; font-weight:500;
+}
+
+.navMenuCards {
+  margin-bottom: 50px;
+}
+
+.navMenuCards a {
+  color: #080808;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 10px;
+  width: 80px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.navMenuCards a:hover {
+  text-decoration: underline;
+}
+
+/* .navMenuCards a:active {
+    text-decoration: underline;
+} */
