@@ -125,8 +125,7 @@ class CardController extends AbstractController
             $player = new \App\Card\Player($hand);
             $gamePlayers[] = $player;
         }
-        // echo gettype($gamePlayers[0]);
-        // echo <pre>; var_dump($gamePlayers); echo </pre>;
+
         $cardsLeft = $deck->getNumberOfCards();
         $data = [
             "players" => $gamePlayers,

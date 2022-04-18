@@ -4,13 +4,13 @@
 
 {% block content %}
     <div class="cards-main">
-        {{ include('/card/card_nav.html.twig') }}
+        {{ include('/card/_card_nav.html.twig') }}
 
         <h1>Dra kort med spelare</h1>
         <h2>Antal kort i kortleken: {{ cardsLeft }}</h2>
 
         <div class="playingCards faceImages">
-            {{ include('/card/card_stack.html.twig') }}
+            {{ include('/card/_card_stack.html.twig') }}
 
             {% for player, value in players %}
                 <ul class="table">

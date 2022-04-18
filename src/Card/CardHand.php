@@ -12,11 +12,6 @@ class CardHand
         $this->cardHand = $cards;
     }
 
-    // public function addCards($cards): void
-    // {
-    //     $this->cardHand = $cards;
-    // }
-
     public function getCardHand(): array
     {
         return $this->cardHand;

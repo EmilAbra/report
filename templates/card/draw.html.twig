@@ -4,12 +4,12 @@
 
 {% block content %}
     <div class="cards-main">
-        {{ include('/card/card_nav.html.twig') }}
+        {{ include('/card/_card_nav.html.twig') }}
 
         <h1>Dra kort</h1>
         <h2>Kort kvar i kortleken: {{ cardsLeft }}</h2>
         <div class="playingCards faceImages">
-            {{ include('/card/card_stack.html.twig') }}
+            {{ include('/card/_card_stack.html.twig') }}
 
             <ul class="table">
                 <li>

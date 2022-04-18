@@ -13,11 +13,6 @@ class Player
         $this->playerCards = $cardHand;
     }
 
-    // public function addHand($cardHand): void
-    // {
-    //     $this->playerCards = $cardHand;
-    // }
-
     public function getPlayerCards(): object
     {
         return $this->playerCards;
