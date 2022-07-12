@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Card\Card;
+use App\Card\Deck;
+use App\Card\CardHand;
+use App\Card\Player;
+use App\Card\DeckWith2Jokers;
 
 class CardController extends AbstractController
 {
@@ -24,7 +29,7 @@ class CardController extends AbstractController
      */
     public function deck(): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $data = [
             'card_ranks' => $deck->getRanks(),
             'card_suits' => $deck->getSuits()
@@ -37,11 +42,11 @@ class CardController extends AbstractController
      */
     public function shuffle(SessionInterface $session): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
 
         foreach ($deck->getSuits() as $suit) {
             foreach ($deck->getRanks() as $rank) {
-                $card = new \App\Card\Card($suit, $rank);
+                $card = new Card($suit, $rank);
                 $deck->setDeck($card);
             }
         }
@@ -115,10 +120,10 @@ class CardController extends AbstractController
      */
     public function drawWithPlayers(int $players, int $cards): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         foreach ($deck->getSuits() as $suit) {
             foreach ($deck->getRanks() as $rank) {
-                $card = new \App\Card\Card($suit, $rank);
+                $card = new Card($suit, $rank);
                 $deck->setDeck($card);
             }
         }
@@ -126,8 +131,8 @@ class CardController extends AbstractController
 
         $gamePlayers = [];
         for ($i = 1; $i <= $players; $i++) {
-            $hand = new \App\Card\CardHand($deck->drawMany($cards));
-            $player = new \App\Card\Player($hand);
+            $hand = new CardHand($deck->drawMany($cards));
+            $player = new Player($hand);
             $gamePlayers[] = $player;
         }
 
@@ -144,7 +149,7 @@ class CardController extends AbstractController
      */
     public function deckWithJokers(): Response
     {
-        $deck = new \App\Card\DeckWith2Jokers();
+        $deck = new DeckWith2Jokers();
 
         $data = [
             'card_ranks' => $deck->getRanks(),
