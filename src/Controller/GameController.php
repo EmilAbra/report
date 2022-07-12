@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Card\Deck;
-use App\Card\Dealer;
-use App\Card\Player;
-use App\Card\Game21;
+use App\Game\Deck;
+use App\Game\Dealer;
+use App\Game\Player;
+use App\Game\Game21;
 
 class GameController extends AbstractController
 {
