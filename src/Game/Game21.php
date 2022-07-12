@@ -62,8 +62,9 @@ class Game21
         $card = 0;
         $playerScore = $player->getScore();
         $playerHand = $player->getCardHand();
+        $nrOfCardsInHand = count($playerHand);
 
-        while ($playerScore > 21 and $card < count($playerHand)) {
+        while ($playerScore > 21 and $card < $nrOfCardsInHand) {
             if ($this->getValue($playerHand[$card]) === 14 && !$playerHand[$card]->isConvertedAce()) {
                 $playerHand[$card]->setConvertedAce();
                 $player->setScore(-13);
