@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Card\Deck;
+use App\Card\Dealer;
+use App\Card\Player;
+use App\Card\Game21;
 
 class GameController extends AbstractController
 {
@@ -32,12 +36,12 @@ class GameController extends AbstractController
      */
     public function play(SessionInterface $session): Response
     {
-        $deck = new \App\Game\Deck();
+        $deck = new Deck();
         $deck->setupDeck();
         $deck->shuffle();
-        $dealer = new \App\Game\Dealer();
-        $player = new \App\Game\Player();
-        $game = new \App\Game\Game21($dealer, $player);
+        $dealer = new Dealer();
+        $player = new Player();
+        $game = new Game21($dealer, $player);
 
         $session->set("deck", $deck);
         $session->set("dealer", $dealer);
