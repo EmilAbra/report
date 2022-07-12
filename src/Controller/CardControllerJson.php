@@ -8,6 +8,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Card\Deck;
+use App\Card\Card;
 
 class CardControllerJson extends AbstractController
 {
@@ -16,11 +18,11 @@ class CardControllerJson extends AbstractController
      */
     public function jsonDeck(SerializerInterface $serializer): JsonResponse
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
 
         foreach ($deck->getSuits() as $suit) {
             foreach ($deck->getRanks() as $rank) {
-                $card = new \App\Card\Card($suit, $rank);
+                $card = new Card($suit, $rank);
                 $deck->setDeck($card);
             }
         }
