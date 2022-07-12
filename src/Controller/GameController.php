@@ -68,9 +68,9 @@ class GameController extends AbstractController
         if ($request->query->get('moneyAmount')) {
             $moneyAmount = $request->query->get('moneyAmount');
             $session->set("moneyAmount", $moneyAmount);
-        } else {
-            $moneyAmount = $session->get("moneyAmount");
         }
+        $moneyAmount = $session->get("moneyAmount");
+
 
         $dealCard = $game->dealPlayer($deck, $moneyAmount);
         $checkSaldo = $game->checkPlayerSaldo();
