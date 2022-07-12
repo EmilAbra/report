@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kortspel 21 info{% endblock %}
+
+{% block content %}
+    <div class="report-main">
+        <h1>Kortspel 21</h1>
+        {{ include('game/doc/info.markdown.twig')|markdown_to_html }}
+        <a href="{{ path('doc') }}">Dokumentation</a>
+
+        <div class="game-buttons">
+            <form action="{{ path('play') }}">
+                <input type="submit" value="Till Spelplanen" />
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

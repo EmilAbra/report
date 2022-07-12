@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CardController extends AbstractController
 {
     /**
-     * @Route("/card", name="card_game")
+     * @Route("/card", name="playing_cards")
      */
     public function card(): Response
     {
@@ -39,7 +39,7 @@ class CardController extends AbstractController
     {
         $deck = new \App\Card\Deck();
 
-        foreach($deck->getSuits() as $suit) {
+        foreach ($deck->getSuits() as $suit) {
             foreach ($deck->getRanks() as $rank) {
                 $card = new \App\Card\Card($suit, $rank);
                 $deck->setDeck($card);
@@ -73,7 +73,7 @@ class CardController extends AbstractController
     /**
      * @Route("/card/deck/draw/{number}", name="draw_many", methods={"GET","HEAD"})
      */
-    public function draw_many(int $number, SessionInterface $session): Response
+    public function drawManyCards(int $number, SessionInterface $session): Response
     {
         $deck = $session->get("deck") ?? 0;
         $cards = $deck->drawMany($number);
@@ -102,16 +102,21 @@ class CardController extends AbstractController
         $players = $request->request->get('players');
         $cards  = $request->request->get('cards');
 
-        return $this->redirectToRoute('draw_with_players', array('players' => $players, 'cards' => $cards));
+        $data = [
+            'players' => $players,
+            'cards' => $cards
+        ];
+
+        return $this->redirectToRoute('draw_with_players', $data);
     }
 
     /**
      * @Route("/card/deck/deal/{players}/{cards}", name="draw_with_players")
      */
-    public function draw_with_players(int $players, int $cards): Response
+    public function drawWithPlayers(int $players, int $cards): Response
     {
         $deck = new \App\Card\Deck();
-        foreach($deck->getSuits() as $suit) {
+        foreach ($deck->getSuits() as $suit) {
             foreach ($deck->getRanks() as $rank) {
                 $card = new \App\Card\Card($suit, $rank);
                 $deck->setDeck($card);
@@ -137,7 +142,7 @@ class CardController extends AbstractController
     /**
      * @Route("/card/deck2", name="deck_with_jokers")
      */
-    public function deck_with_jokers(): Response
+    public function deckWithJokers(): Response
     {
         $deck = new \App\Card\DeckWith2Jokers();
 

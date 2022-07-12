@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Card;
-use App\Card\CardHand;
 
+use App\Card\CardHand;
 
 class Player
 {
     private object $playerCards;
 
-    public function __construct($cardHand)
+    public function __construct(object $cardHand)
     {
         $this->playerCards = $cardHand;
     }

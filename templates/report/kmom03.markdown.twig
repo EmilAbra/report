@@ -1,2 +1,38 @@
 Kmom03
 -------
+**Berätta hur det kändes att modellera ett kortspel med flödesdiagram och psuedokod. Var det något som du tror stödjer dig i din problemlösning och tankearbete för att strukturera koden kring en applikation?**
+
+**Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din koden, dina klasser och applikationen som helhet?**
+
+**Vilken är din känsla för att koda i ett ramverk som Symfony, så här långt in i kursen?**
+
+**Vilken är din TIL för detta kmom?**
+
+Jag tycker att man genom ett flödesdiagram får en tydligare bild över kodens väg från en viss punkt till en annan i koden. Det gav mig en känsla över om var vissa if-satser kan användas istället för frågorna i diagramet och loopar där man ser att samma fråga bör ställas efter varandra. I huvudet har man oftast inte samma tydliga bild strukturerad som när man har en bild på det.
+
+Pseudokoden hjälpte mig genom att jag förstod att jag behövde två separata metoder för spelaren och banken, eftersom de har olika förutsättningar för att vinna. Jag kunde tydligare se vilka villkor som behövs i if-satserna. Även fast slutresultatet inte blev som pseudokoden kände jag att jag kom igång med hjärnverksamheten och det blev tydligare på pränt än att hålla det i tankarna. Jag kunde gå tillbaka till mina anteckningar om jag tappade bort mig.
+
+Jag hade redan från början en tanke om att jag kunde använda mina tidigare klasser från kortleken för kortspelet 21. Dice, Player, och Card var en grund att stå på. Sedan tänkte jag att ett spel som 21 behöver en dealer samt en klass som styr över spelets logik. Klasserna Dealer och Game21 skapades därmed. Dealer kunde ärva från klassen Player eftersom de båda är spelare och har en "is-a" relation, med samma metoder. Dealer-klassen valde jag att "injecta" med kortleks-klassen Deck, genom en metod för att dela ut korten - "deal".
+
+Objekten för Player och Dealer injectas in i Game21 genom komposition då de har en "has-a"-relation. I Metoderna för Game21 anropas Players och Dealers metoder.
+
+I Kontrollerna valde jag att först visa info om spelet i en egen route - "game". Klickar man på knappen för att komma till spelplanen, skapas instanser av spelklasserna, sessionen sätts för de olika variablerna, och man kan välja att dra kort i routen "play". Här fyller spelaren även i hur mycket pengar hen vill satsa. Det görs i ett formulär med "GET"-metoden.
+
+Efter att spelaren klickar på knappen för att dra ett kort slussas spelaren vidare till kontrollern för "deal_player" som står för spelarens tur. Här hämtas "query"-strängen för värdet på insatsen genom "request"-objektet och skickas med som argument till anropet till metoden i Game21-klassen för att dra spelarens första kort, tillsammans med kortleken "Deck". Metoderna i Game21-klassen sammarbetar för att hämta poäng och uppdatera saldot beroende på resultatet, samt skickar med ett meddelande om spelaren får 21 eller mer.
+
+Direkt efter anropet kontrolleras om saldot för spelaren eller banken är mindre än 1. I så fall sparas det nya meddelandet i variabeln för att dra ett kort och vyn för slutresultatet renderas. Är resultatet för spelaren 21 eller över är omgången slut och då renderas vyn för slutet på omgången. Om inget av de båda är fallet upprepas vyn för "deal_player" och spelaren får välja att dra eller visa bankens kort.
+
+Vid klick på knappen för att visa bankens kort kommer man till kontrollern "deal_bank" som är liknande strukturerad som "deal_player". Skillnaden är att banken har egna metoder i Game21-klassen som hämtar alla korten på en gång tills dess att det totala värdet är 17 eller mer. Det innebär att kontrollern inte behöver upprepas och vyn för omgångens resultat kan visas direkt med all information från omgången.
+
+Jag behövde därefter en till kontroller när man trycker på "nästa omgång?", för att göra om kortleken med alla korten och blanda den, samt återställa spelhänderna och kort-poängen. Det görs i "deal_next" som även visar samma formulär som innan för att satsa pengar. Tillbaka till "deal_player" och cirkeln är sluten. Det blir då som en loop som endast avbryts om villkoret för att spelaren eller bankens saldo är 0 eller mindre.
+
+Det svåra var att hitta en struktur i kontrollerna för att få ihop spelet från början till slut och sedan tillbaka till början. Vart man ska skapa objekten för och sätta dem i sessionen för att inte återskapa nya objekt när man kommer till nästa omgång. Men jag lärde mig under uppgiften att om man har en route som är utanför spelets routers kan man använda den som startposition och bestämma spelets innehållande objekt, samt sätta sessionens variabler. Sedan fungerar spelet progressivt mellan varje route genom att man klickar på en knapp.
+
+Jag tänkte mycket på att strukturera koden så att det var lite kod i kontrollerns "routes". Men jag tycker det var svårt och här känner jag att det finns förbättringspotential. I slutändan blev vissa av mina routes fyllda med mycket kod. Jag kände att koden i kontrollerna var nödvändig för att få ut all information genom "$data" men undrar om jag hade kunnat gjort det på ett annat sätt för att förminska det?
+
+Sedan var jag fundersam över hur mycket metoderna i exempelvis Game21 ska samarbeta för att undvika att få så mycket sidoeffekter när man sedan testar koden. Är det bättre att göra ett anrop i taget från routen istället för att metoderna anropar varandra? Det leder ju till att man får mycket mer kod i routen, och jag valde att inte göra så.
+Det fungerade bra på det sättet jag gjorde men det känns som det går att göra det bättre med "renare" kod.
+
+Jag tycker att det har blivit lättare med tiden att jobba i ramverket Symfony. I början var det svårt att få en överskådlig bild av helheten när det är många mappar och filer att hålla reda på. Flera processer ska sammanfogas. Jag tycker att jag lärde mig mycket om PHP, kontrollers och vyer i Webtec-kursen och det finns stora likheter här. Stora skillnaden är att man i Symfony jobbar objektorienterat och att alla "routes" samlas i en och samma fil. Vilket är en av fördelarna med Symfony, känner jag.
+
+Jag tycker att jag i detta kmom tänkte mer på hur jag fördelade koden. I kontrollerna använde jag endast kod som skapade nya objekt och anropade instansernas metoder, för att tillsättas i arrayen "$data". Med undantag för några if-satser. I klassernas metoder placerade jag kod som stod för spelets funktionalitet. Jag tycker att jag lyckades bättre än förra kmom med att skilja dem åt. Det får vara min TIL.

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spelplan{% endblock %}
+
+{% block content %}
+    <div class="cards-main">
+
+        <h1>Kortspel 21</h1>
+        <h2>Bankens pengar: {{ dealerMoney }}</h2>
+
+        <div class="playingCards faceImages game21">
+            {{ include('/game/_card_stack.html.twig') }}
+        </div>
+
+        <h2>Pengar kvar att satsa: {{ playerMoney }}</h2>
+
+        <form class="game-buttons" action="{{ path('deal_player') }}">
+            <fieldset>
+                <p>
+                    <label for="input_money">Satsa Pengar:
+                        <input type="number" name="moneyAmount" id="input_money" value="1" min="1" max="{{ playerMoney }}">
+                    </label>
+                </p>
+                <p>
+                    <input type="submit" value="Dra kort">
+                </p>
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}

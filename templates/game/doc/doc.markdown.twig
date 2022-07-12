@@ -1,0 +1,40 @@
+Pseudokod
+-------
+**GameControllers Metod play för en omgång av 21:**
+
+    Call player_play method when play-button is clicked.
+
+    player_play()
+        Player hand append card
+        INCREMENT value
+        IF sum value is 21:
+            PRINT player wins
+            EXIT
+        IF sum value is over 21:
+            PRINT player looses
+            EXIT
+
+    IF STOP button clicked:
+        Call bank_play method
+
+    bank_play()
+        Bank hand append card
+        INCREMENT value
+        IF sum value is 21:
+            PRINT bank wins
+            EXIT
+        IF sum value is over 21:
+            PRINT player wins
+            EXIT
+        IF sum value is equal or better than player:
+            PRINT Bank wins
+            EXIT
+        IF sum value is less than player:
+            PRINT player wins
+            EXIT
+<p>&nbsp;</p>
+
+
+Klasser
+------
+Jag tänker här att det är bäst att återanvända klasserna Card, Deck, och player, som jag redan har skapat i förra kursmomentet. Där har jag redan en grund att stå på. Visserligen kan vissa av klasserna behövas modifieras, särskilt Player som behöver mer handlingskraft. En klass för att sköta banken(Dealer) känner jag behövs, samt en klass som står för spelets logik(Game21) bör också läggas till. Kanske bör Dealer-klassen ärva från Player-klassen eftersom att de båda är spelare och har en "is-a" relation. Det känns som på förhand att både Player- och Dealer-objektet kan injectas in i Game21-objektet("has-a" relation) och från de metoderna anropa Player och Dealers olika metoder.

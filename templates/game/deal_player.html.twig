@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spelaren drar{% endblock %}
+
+{% block content %}
+    <div class="cards-main">
+
+        <h1>Kortspel 21</h1>
+        <div class="playingCards faceImages game21">
+            {{ include('/game/_card_stack.html.twig') }}
+        </div>
+
+
+        <div class="playingCards faceImages game21">
+        </div>
+
+        <div class="playingCards faceImages game21">
+            <ul class="table">
+                <div class="player"><h3>Spelare poäng: {{ playerScore }}</h3></div>
+                {% for card in playerHand %}
+                    <li>
+                        <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                            <span class="rank">{{ card.rank }}</span>
+                            <span class="suit">&{{ card.suit }};</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <form class="game-buttons" >
+            <fieldset>
+                <p>
+                    <input type="submit" action="{{ path('deal_player') }}" value="Dra kort">
+                </p>
+            </fieldset>
+        </form>
+        <form class="game-buttons" action="{{ path('deal_bank') }}">
+            <fieldset>
+                <p>
+                    <input type="submit"  value="Dra Bankens kort">
+                </p>
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}

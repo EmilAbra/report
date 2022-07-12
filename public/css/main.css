@@ -13,6 +13,7 @@ body {
 .about-main, .report-main {
     max-width: 840px;
     margin: 0 auto;
+    margin-bottom: 150px;
     padding: 20px;
 }
 
@@ -31,4 +32,9 @@ body {
 
 .cards-main h3 {
     margin-bottom: 10px;
+}
+
+.clear {
+    clear: both;
+    height: 100px;
 }

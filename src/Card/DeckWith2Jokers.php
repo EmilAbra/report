@@ -7,12 +7,12 @@ use App\Card\Card;
 
 class DeckWith2Jokers extends Deck
 {
-    const JRANKS = [
+    public const JRANKS = [
         "big joker" => "+",
         "little joker" => "-"
     ];
 
-    const JSUIT = "Joker";
+    public const JSUIT = "Joker";
 
     public function __construct()
     {

@@ -11,8 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CardControllerJson extends AbstractController
 {
-
-
     /**
      * @Route("/card/api/deck", name="json_deck")
      */
@@ -20,7 +18,7 @@ class CardControllerJson extends AbstractController
     {
         $deck = new \App\Card\Deck();
 
-        foreach($deck->getSuits() as $suit) {
+        foreach ($deck->getSuits() as $suit) {
             foreach ($deck->getRanks() as $rank) {
                 $card = new \App\Card\Card($suit, $rank);
                 $deck->setDeck($card);
@@ -28,7 +26,7 @@ class CardControllerJson extends AbstractController
         }
         $data = $serializer->serialize($deck, JsonEncoder::FORMAT);
         $response = new JsonResponse($data, Response::HTTP_OK, [], true);
-        $response->setEncodingOptions( $response->getEncodingOptions() | JSON_PRETTY_PRINT );
+        $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
         return $response;
     }
 }

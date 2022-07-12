@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resultat{% endblock %}
+
+{% block content %}
+    <div class="cards-main">
+
+        <h1>Kortspel 21</h1>
+
+        <div class="playingCards faceImages game21">
+            {{ include('/game/_card_stack.html.twig') }}
+        </div>
+
+        {% if dealerScore %}
+            <div class="playingCards faceImages game21">
+                <ul class="table">
+                        <div class="player"><h3>Banken poäng: {{ dealerScore }}</h3></div>
+                    {% for card in dealerHand %}
+                    <li>
+                        <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                            <span class="rank">{{ card.rank }}</span>
+                            <span class="suit">&{{ card.suit }};</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if message %}
+            <h2>{{ message }}</h2>
+        {% endif %}
+
+        <div class="playingCards faceImages game21">
+            <ul class="table">
+                    <div class="player"><h3>Spelare poäng: {{ playerScore }}</h3></div>
+                {% for card in playerHand %}
+                <li>
+                    <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                        <span class="rank">{{ card.rank }}</span>
+                        <span class="suit">&{{ card.suit }};</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="game-buttons">
+            <form action="{{ path('deal_next') }}">
+                <input type="submit" value="Nästa omgång" />
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

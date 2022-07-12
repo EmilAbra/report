@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dokumentation{% endblock %}
+
+{% block content %}
+    <div class="report-main">
+        <h2>Flödesdiagram</h2>
+        <figure style="margin-bottom: 50px;=">
+            <img src="{{ asset("/img/game21.png") }}" alt="Flödesdiagram över kortspelet 21">
+            <figcaption>Flödesdiagram över kortspelet 21.</figcaption>
+        </figure>
+        {{ include('game/doc/doc.markdown.twig')|markdown_to_html }}
+    </div>
+
+{% endblock %}
