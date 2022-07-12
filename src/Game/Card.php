@@ -46,7 +46,7 @@ class Card
      * @return bool - True or False if variable $convertedAce its an Ace and
      * is converted from 14 points to 1.
      */
-    public function getConvertedAce(): bool
+    public function isConvertedAce(): bool
     {
         return $this->convertedAce;
     }
