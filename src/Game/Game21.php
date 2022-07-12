@@ -69,9 +69,9 @@ class Game21
                 $playerHand[$card]->setConvertedAce();
                 $player->setScore(-13);
                 $card += 1;
-            } else {
-                $card += 1;
+                continue;
             }
+            $card += 1;
         }
         return $player->getScore();
     }
