@@ -129,7 +129,7 @@ class GameController extends AbstractController
     /**
      * @Route("/game/deal_next", name="deal_next")
      */
-    public function deal_next(SessionInterface $session): Response
+    public function dealNext(SessionInterface $session): Response
     {
         $deck = $session->get("deck");
         $dealer = $session->get("dealer");
