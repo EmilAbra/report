@@ -96,6 +96,7 @@
         "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -l 6 src || true",
         "phpcpd": "tools/phpcpd/vendor/bin/phpcpd src || true",
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
+        "phpdoc": "tools/phpdoc/phpdoc",
         "lint": [
             "@phpcpd",
             "@phpmd",
