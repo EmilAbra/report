@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1657752201">
-  <project timestamp="1657752201">
+<coverage generated="1657765885">
+  <project timestamp="1657765885">
     <file name="/Users/emilabrahamsson/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="7" coveredelements="0"/>
@@ -270,10 +270,10 @@
       <class name="App\Game\Card" namespace="global">
         <metrics complexity="5" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="12" coveredelements="12"/>
       </class>
-      <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="28" type="stmt" count="3"/>
-      <line num="29" type="stmt" count="3"/>
-      <line num="30" type="stmt" count="3"/>
+      <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="28" type="stmt" count="8"/>
+      <line num="29" type="stmt" count="8"/>
+      <line num="30" type="stmt" count="8"/>
       <line num="39" type="method" name="setConvertedAce" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="41" type="stmt" count="1"/>
       <line num="49" type="method" name="isConvertedAce" visibility="public" complexity="1" crap="1" count="2"/>
@@ -294,32 +294,32 @@
     </file>
     <file name="/Users/emilabrahamsson/dbwebb-kurser/mvc/me/report/src/Game/Deck.php">
       <class name="App\Game\Deck" namespace="global">
-        <metrics complexity="12" methods="10" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="9" elements="23" coveredelements="15"/>
+        <metrics complexity="12" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="23" coveredelements="23"/>
       </class>
-      <line num="51" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="53" type="stmt" count="1"/>
-      <line num="62" type="method" name="setDeck" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="64" type="stmt" count="1"/>
-      <line num="73" type="method" name="setupDeck" visibility="public" complexity="3" crap="3" count="1"/>
-      <line num="75" type="stmt" count="1"/>
-      <line num="76" type="stmt" count="1"/>
-      <line num="77" type="stmt" count="1"/>
-      <line num="78" type="stmt" count="1"/>
-      <line num="88" type="method" name="resetDeck" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="90" type="stmt" count="0"/>
-      <line num="98" type="method" name="getDeck" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="100" type="stmt" count="0"/>
-      <line num="108" type="method" name="shuffle" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="110" type="stmt" count="0"/>
-      <line num="118" type="method" name="drawCard" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="120" type="stmt" count="1"/>
-      <line num="128" type="method" name="getRanks" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="130" type="stmt" count="1"/>
-      <line num="138" type="method" name="getSuits" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="140" type="stmt" count="1"/>
-      <line num="148" type="method" name="getNumberOfCards" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="150" type="stmt" count="0"/>
-      <metrics loc="153" ncloc="89" classes="1" methods="10" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="9" elements="23" coveredelements="15"/>
+      <line num="51" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="53" type="stmt" count="11"/>
+      <line num="62" type="method" name="setDeck" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="64" type="stmt" count="6"/>
+      <line num="73" type="method" name="setupDeck" visibility="public" complexity="3" crap="3" count="5"/>
+      <line num="75" type="stmt" count="5"/>
+      <line num="76" type="stmt" count="5"/>
+      <line num="77" type="stmt" count="5"/>
+      <line num="78" type="stmt" count="5"/>
+      <line num="88" type="method" name="resetDeck" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="98" type="method" name="getDeck" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="100" type="stmt" count="6"/>
+      <line num="108" type="method" name="shuffle" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="110" type="stmt" count="1"/>
+      <line num="118" type="method" name="drawCard" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="120" type="stmt" count="2"/>
+      <line num="128" type="method" name="getRanks" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="130" type="stmt" count="6"/>
+      <line num="138" type="method" name="getSuits" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="140" type="stmt" count="6"/>
+      <line num="148" type="method" name="getNumberOfCards" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="150" type="stmt" count="1"/>
+      <metrics loc="153" ncloc="89" classes="1" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="23" coveredelements="23"/>
     </file>
     <file name="/Users/emilabrahamsson/dbwebb-kurser/mvc/me/report/src/Game/Game21.php">
       <class name="App\Game\Game21" namespace="global">
@@ -426,6 +426,6 @@
       </class>
       <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="16" loc="1209" ncloc="887" classes="15" methods="73" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="256" coveredstatements="22" elements="329" coveredelements="37"/>
+    <metrics files="16" loc="1209" ncloc="887" classes="15" methods="73" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="256" coveredstatements="26" elements="329" coveredelements="45"/>
   </project>
 </coverage>
