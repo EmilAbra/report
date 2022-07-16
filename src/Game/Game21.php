@@ -51,6 +51,26 @@ class Game21
     }
 
     /**
+     * @return Dealer - Dealer object.
+     *
+     * Get the dealer.
+     */
+    public function getDealer(): object
+    {
+        return $this->dealer;
+    }
+
+    /**
+     * @return Player - Player object.
+     *
+     * Get the player.
+     */
+    public function getPlayer(): object
+    {
+        return $this->player;
+    }
+
+    /**
      * @param $player - Player or Dealer object.
      * @return int - the players score.
      *
@@ -114,7 +134,7 @@ class Game21
     public function dealPlayer(Deck $deck, int $betAmount): mixed
     {
         $card = $this->dealer->deal($deck);
-        $this->player->addToCardHand($card);
+        $this->player->setCardHand($card);
         $points = $this->getValue($card);
         $this->player->setScore($points);
         $score = $this->player->getScore();
@@ -147,7 +167,7 @@ class Game21
             $this->updateSaldo($betAmount, -$betAmount);
             return "Bra, Du hade bättre kort än Banken!!!";
         }
-        return null;
+        // return null;
     }
 
     /**
@@ -165,7 +185,7 @@ class Game21
     {
         while ($this->dealer->getScore() < 17) {
             $card = $this->dealer->deal($deck);
-            $this->dealer->addToCardHand($card);
+            $this->dealer->setCardHand($card);
             $points = $this->getValue($card);
             $this->dealer->setScore($points);
             if ($this->dealer->getScore() > 21) {

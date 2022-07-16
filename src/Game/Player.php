@@ -35,7 +35,7 @@ class Player
      *
      * Add Card object to card hand.
      */
-    public function addToCardHand(Card $card): void
+    public function setCardHand(Card $card): void
     {
         $this->cardHand[] = $card;
     }
