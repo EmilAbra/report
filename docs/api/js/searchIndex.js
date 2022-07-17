@@ -406,6 +406,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game21.html#method___construct"
         },                {
+            "fqsen": "\\App\\Game\\Game21\u003A\u003AgetDealer\u0028\u0029",
+            "name": "getDealer",
+            "summary": "",
+            "url": "classes/App-Game-Game21.html#method_getDealer"
+        },                {
+            "fqsen": "\\App\\Game\\Game21\u003A\u003AgetPlayer\u0028\u0029",
+            "name": "getPlayer",
+            "summary": "",
+            "url": "classes/App-Game-Game21.html#method_getPlayer"
+        },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AfixIfAcesInHand\u0028\u0029",
             "name": "fixIfAcesInHand",
             "summary": "",
@@ -471,10 +481,10 @@ Search.appendIndex(
             "summary": "Constructor\u0020for\u0020the\u0020Player\u0020class.",
             "url": "classes/App-Game-Player.html#method___construct"
         },                {
-            "fqsen": "\\App\\Game\\Player\u003A\u003AaddToCardHand\u0028\u0029",
-            "name": "addToCardHand",
+            "fqsen": "\\App\\Game\\Player\u003A\u003AsetCardHand\u0028\u0029",
+            "name": "setCardHand",
             "summary": "",
-            "url": "classes/App-Game-Player.html#method_addToCardHand"
+            "url": "classes/App-Game-Player.html#method_setCardHand"
         },                {
             "fqsen": "\\App\\Game\\Player\u003A\u003AgetCardHand\u0028\u0029",
             "name": "getCardHand",

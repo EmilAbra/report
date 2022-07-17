@@ -37,5 +37,4 @@ class DealerTest extends TestCase
 
         $this->assertInstanceOf("\App\Game\Card", $this->dealer->deal($deck));
     }
-
 }

@@ -255,5 +255,4 @@ class Game21Test extends TestCase
         $card = new Card('spades', 'A');
         $this->assertEquals($this->game21->getValue($card), 14);
     }
-
 }

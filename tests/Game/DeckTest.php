@@ -139,5 +139,4 @@ class DeckTest extends TestCase
         $this->deck->setupDeck();
         $this->assertEquals($this->deck->getNumberOfCards(), 52);
     }
-
 }

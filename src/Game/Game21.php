@@ -111,9 +111,7 @@ class Game21
         if ($score === 21) {
             $this->updateSaldo($betAmount, -$betAmount);
             return "Du fick 21!!! Grattis du vann denna omgången!";
-        }
-
-        if ($score > 21) {
+        } elseif ($score > 21) {
             if ($this->fixIfAcesInHand($this->player) > 21) {
                 $this->updateSaldo(-$betAmount, $betAmount);
                 return "Ajdå, Du fick över 21!";
@@ -145,29 +143,22 @@ class Game21
     /**
      * @param int $score - The banks score from the card values.
      * @param int $betAmount - Money the player has placed in the bet.
-     * @return mixed - returns string with message if score is 21, over 21, or
+     * @return string - returns string with message if score is 21, over 21, or
      * the player has better score than the bank. Else null.
      *
      * Method to handle banks score with a return message, and updates the
      * money saldos by calling method updateSaldo.
      */
-    public function handleBankScore(int $score, int $betAmount): mixed
+    public function handleBankScore(int $score, int $betAmount): string
     {
         if ($score === 21) {
             $this->updateSaldo(-$betAmount, $betAmount);
             return "Aj, Banken fick 21!";
-        }
-
-        if ($score >= $this->player->getScore()) {
+        } elseif ($score >= $this->player->getScore()) {
             $this->updateSaldo(-$betAmount, $betAmount);
             return "Ajdå, Banken hade bättre kort!";
         }
-
-        if ($score < $this->player->getScore()) {
-            $this->updateSaldo($betAmount, -$betAmount);
-            return "Bra, Du hade bättre kort än Banken!!!";
-        }
-        // return null;
+        return "Bra, Du hade bättre kort än Banken!!!";
     }
 
     /**
