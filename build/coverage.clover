@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1658063508">
-  <project timestamp="1658063508">
+<coverage generated="1658076685">
+  <project timestamp="1658076685">
     <file name="/Users/emilabrahamsson/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="7" coveredelements="0"/>
@@ -349,51 +349,51 @@
       <line num="111" type="stmt" count="5"/>
       <line num="112" type="stmt" count="2"/>
       <line num="113" type="stmt" count="2"/>
-      <line num="116" type="stmt" count="3"/>
+      <line num="114" type="stmt" count="3"/>
+      <line num="115" type="stmt" count="1"/>
+      <line num="116" type="stmt" count="1"/>
       <line num="117" type="stmt" count="1"/>
-      <line num="118" type="stmt" count="1"/>
-      <line num="119" type="stmt" count="1"/>
-      <line num="122" type="stmt" count="2"/>
-      <line num="134" type="method" name="dealPlayer" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="120" type="stmt" count="2"/>
+      <line num="132" type="method" name="dealPlayer" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="134" type="stmt" count="2"/>
+      <line num="135" type="stmt" count="2"/>
       <line num="136" type="stmt" count="2"/>
       <line num="137" type="stmt" count="2"/>
       <line num="138" type="stmt" count="2"/>
-      <line num="139" type="stmt" count="2"/>
       <line num="140" type="stmt" count="2"/>
-      <line num="142" type="stmt" count="2"/>
-      <line num="154" type="method" name="handleBankScore" visibility="public" complexity="3" crap="3" count="4"/>
-      <line num="156" type="stmt" count="4"/>
+      <line num="152" type="method" name="handleBankScore" visibility="public" complexity="3" crap="3" count="4"/>
+      <line num="154" type="stmt" count="4"/>
+      <line num="155" type="stmt" count="2"/>
+      <line num="156" type="stmt" count="2"/>
       <line num="157" type="stmt" count="2"/>
-      <line num="158" type="stmt" count="2"/>
-      <line num="159" type="stmt" count="2"/>
-      <line num="160" type="stmt" count="1"/>
+      <line num="158" type="stmt" count="1"/>
+      <line num="159" type="stmt" count="1"/>
       <line num="161" type="stmt" count="1"/>
-      <line num="163" type="stmt" count="1"/>
-      <line num="179" type="method" name="dealBank" visibility="public" complexity="4" crap="4" count="2"/>
+      <line num="175" type="method" name="dealBank" visibility="public" complexity="4" crap="4" count="2"/>
+      <line num="177" type="stmt" count="2"/>
+      <line num="178" type="stmt" count="2"/>
+      <line num="179" type="stmt" count="2"/>
+      <line num="180" type="stmt" count="2"/>
       <line num="181" type="stmt" count="2"/>
       <line num="182" type="stmt" count="2"/>
-      <line num="183" type="stmt" count="2"/>
-      <line num="184" type="stmt" count="2"/>
-      <line num="185" type="stmt" count="2"/>
-      <line num="186" type="stmt" count="2"/>
-      <line num="187" type="stmt" count="1"/>
-      <line num="188" type="stmt" count="1"/>
+      <line num="183" type="stmt" count="1"/>
+      <line num="184" type="stmt" count="1"/>
+      <line num="185" type="stmt" count="1"/>
       <line num="189" type="stmt" count="1"/>
-      <line num="193" type="stmt" count="1"/>
-      <line num="194" type="stmt" count="1"/>
-      <line num="203" type="method" name="checkPlayerSaldo" visibility="public" complexity="3" crap="3" count="3"/>
-      <line num="205" type="stmt" count="3"/>
-      <line num="206" type="stmt" count="1"/>
-      <line num="208" type="stmt" count="2"/>
-      <line num="209" type="stmt" count="1"/>
-      <line num="211" type="stmt" count="1"/>
-      <line num="221" type="method" name="updateSaldo" visibility="public" complexity="1" crap="1" count="8"/>
-      <line num="223" type="stmt" count="8"/>
-      <line num="224" type="stmt" count="8"/>
-      <line num="234" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="8"/>
-      <line num="236" type="stmt" count="8"/>
-      <line num="237" type="stmt" count="8"/>
-      <metrics loc="240" ncloc="147" classes="1" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="57" coveredstatements="57" elements="68" coveredelements="68"/>
+      <line num="190" type="stmt" count="1"/>
+      <line num="199" type="method" name="checkPlayerSaldo" visibility="public" complexity="3" crap="3" count="3"/>
+      <line num="201" type="stmt" count="3"/>
+      <line num="202" type="stmt" count="1"/>
+      <line num="204" type="stmt" count="2"/>
+      <line num="205" type="stmt" count="1"/>
+      <line num="207" type="stmt" count="1"/>
+      <line num="217" type="method" name="updateSaldo" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="219" type="stmt" count="8"/>
+      <line num="220" type="stmt" count="8"/>
+      <line num="230" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="232" type="stmt" count="8"/>
+      <line num="233" type="stmt" count="8"/>
+      <metrics loc="236" ncloc="144" classes="1" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="57" coveredstatements="57" elements="68" coveredelements="68"/>
     </file>
     <file name="/Users/emilabrahamsson/dbwebb-kurser/mvc/me/report/src/Game/Player.php">
       <class name="App\Game\Player" namespace="global">
@@ -427,6 +427,6 @@
       </class>
       <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="16" loc="1224" ncloc="891" classes="15" methods="75" coveredmethods="38" conditionals="0" coveredconditionals="0" statements="255" coveredstatements="91" elements="330" coveredelements="129"/>
+    <metrics files="16" loc="1220" ncloc="888" classes="15" methods="75" coveredmethods="38" conditionals="0" coveredconditionals="0" statements="255" coveredstatements="91" elements="330" coveredelements="129"/>
   </project>
 </coverage>

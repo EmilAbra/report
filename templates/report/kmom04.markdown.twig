@@ -4,16 +4,24 @@ Kmom04
 
 **Hur väl lyckades du med kodtäckningen av din kod, lyckades du nå mer än 90% kodtäckning?**
 
-Jag lyckades nå 100% av kodtäckningen.
-
 **Upplever du din egen kod som “testbar kod” eller finns det delar i koden som är mer eller mindre testbar och finns det saker som kan göras för att förbättra kodens testbarhet?**
 
 **Valde du att skriva om delar av din kod för att förbättra den eller göra den mer testbar, om så berätta lite hur du tänkte.**
 
 **Fundera över om du anser att testbar kod är något som kan identifiera “snygg och ren kod”.**
 
-Har man en kod som är lätt att testa innebär ju det att man har få sidoeffekter i klassen man testar. Det är därmed lättare att förstå koden då den inte inbegriper andra metoder eller variabler.  Om en metod behöver många tester innebär det per automatik att man har mycket kod och bör dela upp den i flera metoder som var och en har en uppgift.
-
 **Vilken är din TIL för detta kmom?**
 
-Jag tycker att 
+Jag tycker att det fungerade bra att använda phpunit för att testa koden. Det är ett tydligt interface i terminalen för att se om testningen gick igenom eller inte. Det var även lätt att se när testningen krashade när man har missat exempelvis ett semikolon. Jag gillar starkt att man kan titta på kodtäckningen i webbläsaren och kan i detalj se koden som täcks.
+
+Jag lyckades nå 100% av kodtäckningen. Jag märkte dock att Game21-klassen var betydligt svårare att rätta än resten av klasserna. Det säger ju visserligen säg själv då jag har mycket mer kod i Game21-klassen, men det är här jag hade kunnat ändra på strukturen.
+
+Det enda jag ändrade på i Game21-klassen var att lägga till två get-metoder för att hämta dealer och player-objekten. Det underlättade i mina tester att ha dem då de är "injectade" in i Game21-klassen och är privata.
+
+Jag hade kunnat flytta över vissa metoder till andra klasser och även använda mig av fler anrop från GameControllern istället för att metoderna samarbetar genom att anropa varandra. Det hade dock lett till mer kod i kontrollern och det ville jag undvika då det var en del av uppgiften i förra kmom:et.
+
+Jag tycker att det gick bra att rätta ändå.
+
+Har man en kod som är lätt att testa innebär ju det att man har få sidoeffekter i klassen man testar. Det är därmed lättare att förstå koden då den inte inbegriper andra metoder eller variabler.  Om en metod behöver många tester innebär det per automatik att man har mycket kod och bör dela upp den i flera metoder som var och en har en uppgift.
+
+Att man kan använda sig av phpunit för att avläsa kodtäckningen var nytt för mig och var ett smidigt verktyg att använda sig av. Det får vara min TIL.
