@@ -131,35 +131,35 @@ class BooksController extends AbstractController
     /**
      * @Route("/books/create", name="books_create_form", methods={"GET","HEAD"})
      */
-    // public function createBook(): Response
-    // {
-    //     return $this->render('books/book_create_form.html.twig');
-    // }
+    public function createBook(): Response
+    {
+        return $this->render('books/book_create_form.html.twig');
+    }
 
     /**
      * @Route("/books/create", name="books_create_process", methods={"POST"})
      */
-    // public function createBookProcess(
-    //     ManagerRegistry $doctrine, Request $request
-    // ): Response
-    // {
-    //     $author = $request->request->get('author');
-    //     $title  = $request->request->get('title');
-    //     $isbn  = $request->request->get('isbn');
-    //     $imgpath  = $request->request->get('imgpath');
-    //
-    //     $entityManager = $doctrine->getManager();
-    //
-    //     $book = new Books();
-    //     $book->setAuthor($author);
-    //     $book->setTitel($title);
-    //     $book->setIsbn($isbn);
-    //     $book->setImgpath($imgpath);
-    //
-    //     $entityManager->persist($book);
-    //
-    //     $entityManager->flush();
-    //
-    //     return $this->redirectToRoute('books/show_all.html.twig');
-    // }
+    public function createBookProcess(
+        ManagerRegistry $doctrine, Request $request
+    ): Response
+    {
+        $author = $request->request->get('author');
+        $title  = $request->request->get('title');
+        $isbn  = $request->request->get('isbn');
+        $imgpath  = $request->request->get('imgpath');
+
+        $entityManager = $doctrine->getManager();
+
+        $book = new Books();
+        $book->setAuthor($author);
+        $book->setTitel($title);
+        $book->setIsbn($isbn);
+        $book->setImgpath($imgpath);
+
+        $entityManager->persist($book);
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('books_show_all');
+    }
 }
