@@ -14,9 +14,20 @@ use App\Repository\BooksRepository;
 class BooksController extends AbstractController
 {
     #[Route('/books', name: 'app_books')]
-    public function index(): Response
-    {
-        return $this->render('books/index.html.twig');
+    public function index(
+        BooksRepository $booksRepository
+    ): Response {
+        $books = $booksRepository
+            ->findAll();
+
+        if (!$books) {
+                throw $this->createNotFoundException(
+                    'No books found in database'
+                );
+            }
+        return $this->render('books/index.html.twig', [
+            'books' => $books
+        ]);
     }
 
     /**

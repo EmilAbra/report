@@ -7,6 +7,26 @@
         <h1>Alternativ för böcker</h1>
         {{ include('/books/_books_nav.html.twig') }}
 
+        <div class="all-books">
+            <table>
+                <tr>
+                    <th>Författare</th>
+                    <th>Titel</th>
+                    <th>ISBN</th>
+                    <th>Omslag</th>
+                </tr>
+                {% for book in books %}
+
+                    <tr>
+                        <th>{{ book.author }}</th>
+                        <th><a href="/books/show/{{ book.id }}">{{ book.titel }}</a></th>
+                        <th>{{ book.isbn }}</th>
+                        <th><img src="{{ asset(book.imgpath) }}" alt="Omslag på boken {{ book.titel }}"></th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
     </div>
 
 {% endblock %}
