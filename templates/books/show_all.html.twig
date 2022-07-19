@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alla böcker{% endblock %}
+
+{% block content %}
+    <div class="all-books">
+        <h1>Alla Böcker</h1>
+
+        <table>
+            <tr>
+                <th>Författare</th>
+                <th>Titel</th>
+                <th>ISBN</th>
+                <th>Omslag</th>
+            </tr>
+            {% for book in books %}
+
+                <tr>
+                    <th>{{ book.author }}</th>
+                    <th><a href="/books/show/{{ book.id }}">{{ book.titel }}</a></th>
+                    <th>{{ book.isbn }}</th>
+                    <th><img src="{{ asset(book.imgpath) }}" alt="Omslag på boken {{ book.titel }}"></th>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

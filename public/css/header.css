@@ -69,7 +69,15 @@
 
 .navMenu a:nth-child(5):hover ~ .dot {
   -webkit-transform: translateX(310px);
-  transform: translateX(440px);
+  transform: translateX(470px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(6):hover ~ .dot {
+  -webkit-transform: translateX(310px);
+  transform: translateX(560px);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   opacity: 1;

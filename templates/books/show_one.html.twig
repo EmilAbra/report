@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}En bok{% endblock %}
+
+{% block content %}
+    <div class="all-books">
+        <h1>En bok</h1>
+
+        <table>
+            <tr>
+                <th>Författare</th>
+                <th>Titel</th>
+                <th>ISBN</th>
+                <th>Omslag</th>
+            </tr>
+                <tr>
+                    <th>{{ book.author }}</th>
+                    <th>{{ book.titel }}</th>
+                    <th>{{ book.isbn }}</th>
+                    <th><img src="{{ asset(book.imgpath) }}" alt="Omslag på boken {{ book.titel }}"></th>
+                </tr>
+        </table>
+    </div>
+
+{% endblock %}
