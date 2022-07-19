@@ -129,7 +129,7 @@ class BooksController extends AbstractController
     }
 
     /**
-     * @Route("/books/create", name="books_create_form", methods={"GET","HEAD"})
+     * @Route("/books/create", name="books_create_form", methods={"GET"})
      */
     public function createBook(): Response
     {
@@ -161,5 +161,65 @@ class BooksController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('books_show_all');
+    }
+
+    /**
+     * @Route("/books/delete", name="delete_book", methods={"GET"})
+     */
+     public function deleteBook(
+         BooksRepository $booksRepository
+     ): Response {
+         $books = $booksRepository
+             ->findAll();
+
+         if (!$books) {
+                 throw $this->createNotFoundException(
+                     'No books found in database'
+                 );
+             }
+
+         return $this->render('books/delete_book.html.twig', [
+             'books' => $books
+         ]);
+    }
+
+    /**
+    * @Route("/books/delete/{id}", name="delete_book_form", methods={"GET"})
+    */
+    public function deleteBookForm(
+      BooksRepository $booksRepository, int $id
+    ): Response {
+        $book = $booksRepository
+            ->find($id);
+
+        if (!$book) {
+                throw $this->createNotFoundException(
+                    'No book found for id '.$id
+                );
+        }
+
+    return $this->render('books/delete_book_form.html.twig', ['book' => $book]);
+    }
+
+  /**
+   * @Route("/books/delete/{id}", name="delete_book_process", methods={"GET", "POST"})
+   */
+    public function deleteBookProcess(
+        ManagerRegistry $doctrine,
+        int $id
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $book = $entityManager->getRepository(Books::class)->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+              'No book found for id '.$id
+            );
+        }
+
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('delete_book');
     }
 }

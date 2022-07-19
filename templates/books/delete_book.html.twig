@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Uppdatera detaljer om en bok{% endblock %}
+{% block title %}Alla böcker{% endblock %}
 
 {% block content %}
     <div class="all-books">
-        <h1>Välj titel för att uppdatera detaljer</h1>
+        <h1>Välj bok att ta bort</h1>
 
         <table>
             <tr>
@@ -17,7 +17,7 @@
 
                 <tr>
                     <th>{{ book.author }}</th>
-                    <th><a href="/books/update/{{ book.id }}">{{ book.titel }}</a></th>
+                    <th><a href="/books/delete/{{ book.id }}">{{ book.titel }}</a></th>
                     <th>{{ book.isbn }}</th>
                     <th><img src="{{ asset(book.imgpath) }}" alt="Omslag på boken {{ book.titel }}"></th>
                 </tr>
