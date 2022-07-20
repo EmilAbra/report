@@ -115,7 +115,7 @@ class BooksController extends AbstractController
     /**
      * @Route("/books/update/{id}", name="books_update_process", methods={"GET", "POST"})
      */
-    public function updateProcess(ManagerRegistry $doctrine, Request $request, int $id): Response
+    private function updateProcess(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
         $author = $request->request->get('author');
         $title  = $request->request->get('title');
@@ -152,7 +152,7 @@ class BooksController extends AbstractController
     /**
      * @Route("/books/create", name="books_create_process", methods={"POST"})
      */
-    public function createBookProcess(
+    private function createBookProcess(
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
@@ -218,7 +218,7 @@ class BooksController extends AbstractController
   /**
    * @Route("/books/delete/{id}", name="delete_book_process", methods={"GET", "POST"})
    */
-    public function deleteBookProcess(
+    private function deleteBookProcess(
         ManagerRegistry $doctrine,
         int $id
     ): Response {
