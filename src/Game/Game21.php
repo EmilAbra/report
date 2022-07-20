@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Module for class Game21 - cardgame.
  */
@@ -13,7 +14,7 @@ use App\Game\Player;
 class Game21
 {
     /**
-     * @var array<string|int> CARD_VALUES - Scores for each suit in cardgame 21.
+     * @var array<string|int> CARD_VALUES - Scores for each card rank in cardgame 21.
      */
     public const CARD_VALUES = [
         '2' => 2,
@@ -77,7 +78,7 @@ class Game21
      * Check if hand includes Ace and lowers its points to 1 if the total
      * is over 21. Returns the updated score.
      */
-    public function fixIfAcesInHand(Object $player): int
+    public function fixIfAcesInHand(object $player): int
     {
         $card = 0;
         $playerScore = $player->getScore();
@@ -102,7 +103,8 @@ class Game21
      * @return mixed - returns string with message if score is 21 or over 21,
      * else null.
      *
-     * Method to handle players score with a return message if score is 21 or over 21, and updates the * money saldos by calling method updateSaldo.
+     * Method to handle players score with a return message if score is 21 or
+     * over 21, and updates the * money saldos by calling method updateSaldo.
      * If score is over 21: calls method fixIfAcesInHand to lower score of Ace to 1.
      * Else returns null so the player can choose again.
      */

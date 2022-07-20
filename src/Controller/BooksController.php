@@ -24,7 +24,7 @@ class BooksController extends AbstractController
                 throw $this->createNotFoundException(
                     'No books found in database'
                 );
-            }
+        }
         return $this->render('books/index.html.twig', [
             'books' => $books
         ]);
@@ -43,7 +43,7 @@ class BooksController extends AbstractController
                 throw $this->createNotFoundException(
                     'No books found in database'
                 );
-            }
+        }
 
         return $this->render('books/show_all.html.twig', [
             'books' => $books
@@ -54,16 +54,17 @@ class BooksController extends AbstractController
     * @Route("/books/show/{id}", name="books_show_one")
     */
     public function showOneBook(
-        BooksRepository $booksRepository, int $id
+        BooksRepository $booksRepository,
+        int $id
     ): Response {
         $book = $booksRepository
             ->find($id);
 
         if (!$book) {
                 throw $this->createNotFoundException(
-                    'No book found for id '.$id
+                    'No book found for id ' . $id
                 );
-            }
+        }
 
         return $this->render('books/show_one.html.twig', [
             'book' => $book
@@ -83,7 +84,7 @@ class BooksController extends AbstractController
                 throw $this->createNotFoundException(
                     'No books found in database'
                 );
-            }
+        }
 
         return $this->render('books/update_book.html.twig', [
             'books' => $books
@@ -94,18 +95,19 @@ class BooksController extends AbstractController
     * @Route("/books/update/{id}", name="books_update_form", methods={"GET"})
     */
     public function updateOneBook(
-        BooksRepository $booksRepository, int $id
+        BooksRepository $booksRepository,
+        int $id
     ): Response {
         $book = $booksRepository
             ->find($id);
 
         if (!$book) {
                 throw $this->createNotFoundException(
-                    'No book found for id '.$id
+                    'No book found for id ' . $id
                 );
-            }
+        }
 
-        return $this->render('books/book_edit_form.html.twig', [
+        return $this->render('books/edit_book_form.html.twig', [
             'book' => $book
         ]);
     }
@@ -125,7 +127,7 @@ class BooksController extends AbstractController
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$id
+                'No book found for id ' . $id
             );
         }
 
@@ -144,16 +146,16 @@ class BooksController extends AbstractController
      */
     public function createBook(): Response
     {
-        return $this->render('books/book_create_form.html.twig');
+        return $this->render('books/create_book_form.html.twig');
     }
 
     /**
      * @Route("/books/create", name="books_create_process", methods={"POST"})
      */
     public function createBookProcess(
-        ManagerRegistry $doctrine, Request $request
-    ): Response
-    {
+        ManagerRegistry $doctrine,
+        Request $request
+    ): Response {
         $author = $request->request->get('author');
         $title  = $request->request->get('title');
         $isbn  = $request->request->get('isbn');
@@ -177,39 +179,40 @@ class BooksController extends AbstractController
     /**
      * @Route("/books/delete", name="delete_book", methods={"GET"})
      */
-     public function deleteBook(
-         BooksRepository $booksRepository
-     ): Response {
-         $books = $booksRepository
-             ->findAll();
+    public function deleteBook(
+        BooksRepository $booksRepository
+    ): Response {
+        $books = $booksRepository
+            ->findAll();
 
-         if (!$books) {
-                 throw $this->createNotFoundException(
-                     'No books found in database'
-                 );
-             }
+        if (!$books) {
+                throw $this->createNotFoundException(
+                    'No books found in database'
+                );
+        }
 
-         return $this->render('books/delete_book.html.twig', [
-             'books' => $books
-         ]);
+        return $this->render('books/delete_book.html.twig', [
+            'books' => $books
+        ]);
     }
 
     /**
     * @Route("/books/delete/{id}", name="delete_book_form", methods={"GET"})
     */
     public function deleteBookForm(
-      BooksRepository $booksRepository, int $id
+        BooksRepository $booksRepository,
+        int $id
     ): Response {
         $book = $booksRepository
             ->find($id);
 
         if (!$book) {
                 throw $this->createNotFoundException(
-                    'No book found for id '.$id
+                    'No book found for id ' . $id
                 );
         }
 
-    return $this->render('books/delete_book_form.html.twig', ['book' => $book]);
+        return $this->render('books/delete_book_form.html.twig', ['book' => $book]);
     }
 
   /**
@@ -224,7 +227,7 @@ class BooksController extends AbstractController
 
         if (!$book) {
             throw $this->createNotFoundException(
-              'No book found for id '.$id
+                'No book found for id ' . $id
             );
         }
 

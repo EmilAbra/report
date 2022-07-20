@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Module for class Player in cardgame 21.
  */

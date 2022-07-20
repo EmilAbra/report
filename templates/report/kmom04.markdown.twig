@@ -12,16 +12,14 @@ Kmom04
 
 **Vilken är din TIL för detta kmom?**
 
-Jag tycker att det fungerade bra att använda phpunit för att testa koden. Det är ett tydligt interface i terminalen för att se om testningen gick igenom eller inte. Det var även lätt att se när testningen krashade när man har missat exempelvis ett semikolon. Jag gillar starkt att man kan titta på kodtäckningen i webbläsaren och kan i detalj se koden som täcks.
+Jag tycker att det fungerade bra att använda phpunit för att testa koden. Det är ett tydligt interface i terminalen för att se om testningen gick igenom eller inte. Det var även lätt att se när testningen krashade vid exempelvis ett missat semikolon. Jag gillar starkt att man kan titta på kodtäckningen i webbläsaren och kan i detalj se koden som täcks. Visst kan det vara en fälla att ha som mall över hur mycket man har testat, utan att tänka på kvaliteten på testningen, men det var ändå användbart att lättare få en överblick var man är i testningen. Det var använbart att ha kursen oopython i ryggen där testningen av koden inte skiljer sig så mycket och har liknande struktur.
 
-Jag lyckades nå 100% av kodtäckningen. Jag märkte dock att Game21-klassen var betydligt svårare att rätta än resten av klasserna. Det säger ju visserligen säg själv då jag har mycket mer kod i Game21-klassen, men det är här jag hade kunnat ändra på strukturen.
+Jag lyckades nå 100% av kodtäckningen. Jag märkte dock att Game21-klassen var betydligt svårare att rätta än resten av klasserna. Det säger ju visserligen säg själv då jag har mycket mer kod i Game21-klassen och som använder sig av flera andra klasser. Det enda jag dock ändrade på i Game21-klassen var att lägga till två get-metoder för att hämta dealer och player-objekten. Det underlättade i mina tester att ha dem då de är "injectade" in i Game21-klassen och är privata.
 
-Det enda jag ändrade på i Game21-klassen var att lägga till två get-metoder för att hämta dealer och player-objekten. Det underlättade i mina tester att ha dem då de är "injectade" in i Game21-klassen och är privata.
+Jag hade kunnat använda mig av fler anrop från GameControllern istället för att metoderna samarbetar genom att anropa varandra. Det hade gjort att jag fått mindre kod i klassen. Men det hade lett till mer kod i kontrollern och det ville jag undvika då det var en del av uppgiften i förra kmom:et. Jag hade även kunnat ta bort metoden "updateSaldo" och istället anropat "Dealers" och "Players" set-metoder för saldot, men kände att den behövdes för att hålla koden DRY, eftersom uppdateringen av saldot användes i flera av metoderna.
 
-Jag hade kunnat flytta över vissa metoder till andra klasser och även använda mig av fler anrop från GameControllern istället för att metoderna samarbetar genom att anropa varandra. Det hade dock lett till mer kod i kontrollern och det ville jag undvika då det var en del av uppgiften i förra kmom:et.
+Jag tycker ändå att det gick bra att rätta Game21-klassen. Frågan är bara om testningen är tillräckligt bra och täcker alla utgångar av koden. Där känner jag lite osäkerhet och vad som är ett mått på bra testmetoder? Finns det bra verktyg som rättar själva testningen? Jag antar och hoppas att man blir bättre och bättre på det med tiden och nöjer mig med det så länge.
 
-Jag tycker att det gick bra att rätta ändå.
-
-Har man en kod som är lätt att testa innebär ju det att man har få sidoeffekter i klassen man testar. Det är därmed lättare att förstå koden då den inte inbegriper andra metoder eller variabler.  Om en metod behöver många tester innebär det per automatik att man har mycket kod och bör dela upp den i flera metoder som var och en har en uppgift.
+När det gäller testbar kod tycker jag att om man har en kod som är lätt att testa innebär ju det att man har få sidoeffekter i klassen man testar. Det är därmed lättare att förstå koden då den inte inbegriper andra metoder eller variabler. Om en metod behöver många tester innebär ju det per automatik att man har mycket kod och bör dela upp den i flera metoder som var och en har en uppgift. Det blir då lättare att avläsa en metod när det är färre rader och mindre komplexitet.
 
 Att man kan använda sig av phpunit för att avläsa kodtäckningen var nytt för mig och var ett smidigt verktyg att använda sig av. Det får vara min TIL.

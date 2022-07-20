@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Module for Card class - playing cards.
  */
