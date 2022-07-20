@@ -55,14 +55,14 @@ class BooksController extends AbstractController
     */
     public function showOneBook(
         BooksRepository $booksRepository,
-        int $id
+        int $idOfBook
     ): Response {
         $book = $booksRepository
-            ->find($id);
+            ->find($idOfBook);
 
         if (!$book) {
                 throw $this->createNotFoundException(
-                    'No book found for id ' . $id
+                    'No book found for id ' . $idOfBook
                 );
         }
 
@@ -92,18 +92,18 @@ class BooksController extends AbstractController
     }
 
     /**
-    * @Route("/books/update/{id}", name="books_update_form", methods={"GET"})
+    * @Route("/books/update/{idOfBook}", name="books_update_form", methods={"GET"})
     */
     public function updateOneBook(
         BooksRepository $booksRepository,
-        int $id
+        int $idOfBook
     ): Response {
         $book = $booksRepository
-            ->find($id);
+            ->find($idOfBook);
 
         if (!$book) {
                 throw $this->createNotFoundException(
-                    'No book found for id ' . $id
+                    'No book found for id ' . $idOfBook
                 );
         }
 
@@ -113,9 +113,9 @@ class BooksController extends AbstractController
     }
 
     /**
-     * @Route("/books/update/{id}", name="books_update_process", methods={"GET", "POST"})
+     * @Route("/books/update/{idOfBook}", name="books_update_process", methods={"GET", "POST"})
      */
-    private function updateProcess(ManagerRegistry $doctrine, Request $request, int $id): Response
+    public function updateProcess(ManagerRegistry $doctrine, Request $request, int $idOfBook): Response
     {
         $author = $request->request->get('author');
         $title  = $request->request->get('title');
@@ -123,11 +123,11 @@ class BooksController extends AbstractController
         $imgpath  = $request->request->get('imgpath');
 
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Books::class)->find($id);
+        $book = $entityManager->getRepository(Books::class)->find($idOfBook);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id ' . $id
+                'No book found for id ' . $idOfBook
             );
         }
 
@@ -152,7 +152,7 @@ class BooksController extends AbstractController
     /**
      * @Route("/books/create", name="books_create_process", methods={"POST"})
      */
-    private function createBookProcess(
+    public function createBookProcess(
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
@@ -197,18 +197,18 @@ class BooksController extends AbstractController
     }
 
     /**
-    * @Route("/books/delete/{id}", name="delete_book_form", methods={"GET"})
+    * @Route("/books/delete/{idOfBook}", name="delete_book_form", methods={"GET"})
     */
     public function deleteBookForm(
         BooksRepository $booksRepository,
-        int $id
+        int $idOfBook
     ): Response {
         $book = $booksRepository
-            ->find($id);
+            ->find($idOfBook);
 
         if (!$book) {
                 throw $this->createNotFoundException(
-                    'No book found for id ' . $id
+                    'No book found for id ' . $idOfBook
                 );
         }
 
@@ -216,18 +216,18 @@ class BooksController extends AbstractController
     }
 
   /**
-   * @Route("/books/delete/{id}", name="delete_book_process", methods={"GET", "POST"})
+   * @Route("/books/delete/{idOfBook}", name="delete_book_process", methods={"GET", "POST"})
    */
-    private function deleteBookProcess(
+    public function deleteBookProcess(
         ManagerRegistry $doctrine,
-        int $id
+        int $idOfBook
     ): Response {
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Books::class)->find($id);
+        $book = $entityManager->getRepository(Books::class)->find($idOfBook);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id ' . $id
+                'No book found for id ' . $idOfBook
             );
         }
 
