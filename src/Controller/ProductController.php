@@ -9,6 +9,9 @@ use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\ProductRepository;
 
+/**
+* @SuppressWarnings(PHPMD)
+*/
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'app_product')]

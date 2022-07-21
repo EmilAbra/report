@@ -11,6 +11,9 @@ use App\Entity\Books;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\BooksRepository;
 
+/**
+* @SuppressWarnings(PHPMD)
+*/
 class BooksController extends AbstractController
 {
     #[Route('/books', name: 'app_books')]
