@@ -54,7 +54,7 @@ class BooksController extends AbstractController
     }
 
     /**
-    * @Route("/books/show/{id}", name="books_show_one")
+    * @Route("/books/show/{idOfBook}", name="books_show_one")
     */
     public function showOneBook(
         BooksRepository $booksRepository,

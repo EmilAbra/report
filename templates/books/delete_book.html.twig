@@ -17,7 +17,7 @@
 
                 <tr>
                     <th>{{ book.author }}</th>
-                    <th><a href="/books/delete/{{ book.id }}">{{ book.titel }}</a></th>
+                    <th><a href="{{ path('delete_book_form', {idOfBook: book.id}) }}">{{ book.titel }}</a></th>
                     <th>{{ book.isbn }}</th>
                     <th><img src="{{ asset(book.imgpath) }}" alt="Omslag på boken {{ book.titel }}"></th>
                 </tr>
