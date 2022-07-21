@@ -23,7 +23,7 @@ class BooksController extends AbstractController
         $books = $booksRepository
             ->findAll();
 
-        if (!$books) {
+        if (empty($books)) {
                 throw $this->createNotFoundException(
                     'No books found in database'
                 );
@@ -42,7 +42,7 @@ class BooksController extends AbstractController
         $books = $booksRepository
             ->findAll();
 
-        if (!$books) {
+        if (empty($books)) {
                 throw $this->createNotFoundException(
                     'No books found in database'
                 );
@@ -83,7 +83,7 @@ class BooksController extends AbstractController
         $books = $booksRepository
             ->findAll();
 
-        if (!$books) {
+        if (empty($books)) {
                 throw $this->createNotFoundException(
                     'No books found in database'
                 );
@@ -188,7 +188,7 @@ class BooksController extends AbstractController
         $books = $booksRepository
             ->findAll();
 
-        if (!$books) {
+        if (empty($books)) {
                 throw $this->createNotFoundException(
                     'No books found in database'
                 );
