@@ -29,7 +29,7 @@ class DealerHand
 
     /**
      * @param Dealer $dealer - Dealer object.
-     * @return object<Card> - returns card object.
+     * @return Card - returns card object.
      *
      * Method to deal player a Card object from the Deck object and return it.
      */
