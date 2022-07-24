@@ -14,7 +14,7 @@ class Game21CardValuesTest extends TestCase
      */
     public function setUp(): void
     {
-        $cardValues = new Game21CardValues();
+        $this->cardValues = new Game21CardValues();
     }
 
     /**
