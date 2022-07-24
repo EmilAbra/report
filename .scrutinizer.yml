@@ -5,6 +5,9 @@ filter:
     paths:
         - src/
 
+    excluded_paths:
+        - src/Kernel
+
 build:
     nodes:
         my-tests:
