@@ -24,6 +24,7 @@ class Game21
     private object $dealer;
     private object $player;
     private object $cardValues;
+    private object $dealerHand;
 
     /**
      * @param $dealer - Dealer object.

@@ -80,8 +80,11 @@ Efter skapandet av klassen Game21CardValues ändrades mycket riktigt värdet fö
 
 2. Jag tycker forfarande att går att minska komplexiteten genom att bryta ut "deal"-metoderna till en egen klass(DealerHand). De hör egentligen inte hemma i klassen, känner jag. Metoden dealBank har i Game21 störst komplexitet med 4. Får jag bort Deck objektet som argument till metoderna för deal tror jag att det minskar komplexiteten. Istället "injectas" Deck in i DealerHand genom konstruktorn. Jag byter även namn på metoderna till playerTurn och bankTurn för att bättre representera en spelomgång.
 
+Jag insåg också att "getter"-metoderna jag använde i klassen kunde jag ta bort. De användes endast för att underlätta testerna. Istället skapade jag ny objekt i "setUp"-metoden som jag kunde hämta med "$this" istället. Det tog bort en del kodmängd.
+
 Förhoppningsvis sänker detta Cyclomatic complexity ännu mer som nu är 11 i PhpMetrics. Maintanability index är 79.47.
 
+Den nya klassen förändrade inte Cyclomatic complexity men ändrade värdet på Maintanability index till 83.79, vilket ändå kan ses som positivt.
 
 3. Ytterliggare en sak jag gör är att ta bort de två metoderna i Game-21 som uppdaterar saldot för banken och spelaren. Det hör inte heller till i den klassen. Det gör jag istället om till en egen klass(Saldo) och "injectar" in den i spelar-klassen och bank-klassen. De har ju båda en "has-a" relation till ett saldo, och känns mer rimligt. Detta hoppas jag leder till fler och mindre klasser men med mindre komplexitet i Game21.
 
