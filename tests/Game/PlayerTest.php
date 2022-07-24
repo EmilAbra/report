@@ -91,14 +91,26 @@ class PlayerTest extends TestCase
     }
 
     /**
-     * Test method setMoney and getMoney is integer and get correct value.
+     * Test method setSaldo and getSaldo is integer and get correct value.
      */
-    public function testSetAndGetMoneyIsIntValueAndGetCorrectValue(): void
+    public function testSetAndGetSaldoIsIntValueAndGetCorrectValue(): void
     {
-        $this->player->setMoney(10);
-        $this->player->setMoney(2);
-        $this->player->setMoney(-2);
-        $money = $this->player->getMoney();
+        $this->player->setSaldo(10);
+        $this->player->setSaldo(2);
+        $this->player->setSaldo(-2);
+        $money = $this->player->getSaldo();
         $this->assertEquals($money, 110);
+    }
+
+    /**
+     * Test method isSaldoEmpty on returns correct boolean.
+     */
+    public function testIsSaldoEmpty(): void
+    {
+        $this->player->setSaldo(-100);
+        $this->assertTrue($this->player->isSaldoEmpty());
+
+        $this->player->setSaldo(10);
+        $this->assertFalse($this->player->isSaldoEmpty());
     }
 }

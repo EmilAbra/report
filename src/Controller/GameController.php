@@ -54,8 +54,8 @@ class GameController extends AbstractController
 
         $data = [
             'cardsLeft' => $deck->getNumberOfCards(),
-            'playerMoney' => $player->getMoney(),
-            'dealerMoney' => $dealer->getMoney()
+            'playerMoney' => $player->getSaldo(),
+            'dealerMoney' => $dealer->getSaldo()
         ];
         return $this->render('game/play.html.twig', $data);
     }
@@ -75,22 +75,27 @@ class GameController extends AbstractController
         }
         $moneyAmount = $session->get("moneyAmount");
 
-
         $dealCard = $game->playerTurn($moneyAmount);
-        $checkSaldo = $game->checkPlayerSaldo();
-        if ($checkSaldo) {
-            $dealCard = $checkSaldo;
+
+        $checkPlayerSaldo = $player->isSaldoEmpty();
+        $checkDealerSaldo = $dealer->isSaldoEmpty();
+        if ($checkPlayerSaldo) {
+            $dealCard = "GAME OVER. Dina pengar är slut.";
         }
+        if ($checkDealerSaldo) {
+            $dealCard = "GRATTIS DU VANN!!! Bankens pengar är slut.";
+        }
+
         $data = [
             'message' => $dealCard ?? null,
             'playerScore' => $player->getScore(),
             'dealerScore' => $dealer->getScore(),
-            'playerMoney' => $player->getMoney(),
-            'dealerMoney' => $dealer->getMoney(),
+            'playerMoney' => $player->getSaldo(),
+            'dealerMoney' => $dealer->getSaldo(),
             'playerHand' => $player->getCardHand(),
             'cardsLeft' => $deck->getNumberOfCards()
         ];
-        if ($checkSaldo) {
+        if ($checkPlayerSaldo || $checkDealerSaldo) {
             return $this->render('game/end.html.twig', $data);
         }
         if ($player->getScore() >= 21) {
@@ -110,21 +115,25 @@ class GameController extends AbstractController
         $game = $session->get("game");
         $moneyAmount = $session->get("moneyAmount");
 
-        $dealCards = $game->bankTurn($moneyAmount);
-        $checkSaldo = $game->checkPlayerSaldo();
-        if ($checkSaldo) {
-            $dealCards = $checkSaldo;
+        $dealCard = $game->bankTurn($moneyAmount);
+        $checkPlayerSaldo = $player->isSaldoEmpty();
+        $checkDealerSaldo = $dealer->isSaldoEmpty();
+        if ($checkPlayerSaldo) {
+            $dealCard = "GAME OVER. Dina pengar är slut.";
+        }
+        if ($checkDealerSaldo) {
+            $dealCard = "GRATTIS DU VANN!!! Bankens pengar är slut.";
         }
 
         $data = [
-            'message' => $dealCards ?? null,
+            'message' => $dealCard ?? null,
             'dealerScore' => $dealer->getScore(),
             'playerScore' => $player->getScore(),
             'dealerHand' => $dealer->getCardHand(),
             'playerHand' => $player->getCardHand(),
             'cardsLeft' => $deck->getNumberOfCards()
         ];
-        if ($checkSaldo) {
+        if ($checkPlayerSaldo || $checkDealerSaldo) {
             return $this->render('game/end.html.twig', $data);
         }
         return $this->render('game/result.html.twig', $data);
@@ -150,8 +159,8 @@ class GameController extends AbstractController
         $data = [
             'playerScore' => $player->getScore(),
             'dealerScore' => $dealer->getScore(),
-            'playerMoney' => $player->getMoney(),
-            'dealerMoney' => $dealer->getMoney(),
+            'playerMoney' => $player->getSaldo(),
+            'dealerMoney' => $dealer->getSaldo(),
             'playerHand' => $player->getCardHand(),
             'cardsLeft' => $deck->getNumberOfCards()
         ];

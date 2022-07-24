@@ -14,21 +14,24 @@ class Player
     /**
      * @var array<object> $cardHand - The Players cardhand, defaults to empty.
      * @var int $cardScore - Players total cardscore, defaults to zero.
-     * @var int $money - Players money saldo, defaults to 100.
+     * @var int $saldo - Players money saldo, defaults to 100.
      */
     private array $cardHand = [];
     private int $cardScore = 0;
-    private int $money = 100;
+    private int $saldo = 100;
 
     /**
+     * @param array<object> $cardHand - Players start hand.
+     * @param int $cardScore - start card score.
+     * @param int $saldo - Players money saldo.
      *
      * Constructor for the Player class.
      */
-    public function __construct()
+    public function __construct(array $cardHand = [], int $cardScore = 0, int $saldo = 100)
     {
-        $this->cardHand = [];
-        $this->cardScore = 0;
-        $this->money = 100;
+        $this->cardHand = $cardHand;
+        $this->cardScore = $cardScore;
+        $this->saldo = $saldo;
     }
 
     /**
@@ -91,23 +94,33 @@ class Player
     }
 
     /**
-     * @param int $amount - money to add.
-     * @return void
+     * @return bool - if saldo is under 1
      *
-     * Set the $money for Player.
+     * Check if saldo is empty.
      */
-    public function setMoney(int $amount): void
+    public function isSaldoEmpty(): bool
     {
-        $this->money += $amount;
+        return $this->getSaldo() < 1;
     }
 
     /**
-     * @return int $money - The saldo.
+     * @param $amount - amount to be changed for the saldo.
+     * @return void
      *
-     * Get the $money saldo.
+     * Update saldo.
      */
-    public function getMoney(): int
+    public function setSaldo(int $amount): void
     {
-        return $this->money;
+        $this->saldo += $amount;
+    }
+
+    /**
+     * @return integer - The saldo
+     *
+     * Get saldo.
+     */
+    public function getSaldo(): int
+    {
+        return $this->saldo;
     }
 }
