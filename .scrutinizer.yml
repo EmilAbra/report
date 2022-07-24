@@ -2,7 +2,8 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, tools/*, var/*, migrations/*, assets/*, .phpdoc/*, bin/*, build/*, config/*, docs/*]
+    paths:
+        - src/
 
 build:
     nodes:
