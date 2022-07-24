@@ -10,29 +10,10 @@ use App\Game\Card;
 use App\Game\Deck;
 use App\Game\Dealer;
 use App\Game\Player;
-use App\Game\Game21Rules;
+use App\Game\Game21CardValues;
 
 class Game21
 {
-    /**
-     * @var array<string|int> CARD_VALUES - Scores for each card rank in cardgame 21.
-     */
-    // public const CARD_VALUES = [
-    //     '2' => 2,
-    //     '3' => 3,
-    //     '4' => 4,
-    //     '5' => 5,
-    //     '6' => 6,
-    //     '7' => 7,
-    //     '8' => 8,
-    //     '9' => 9,
-    //     '10' => 10,
-    //     'J' => 11,
-    //     'Q' => 12,
-    //     'K' => 13,
-    //     'A' => 14
-    // ];
-
     /**
      * @var object $dealer - The dealer.
      * @var object $player - The player.
@@ -73,32 +54,6 @@ class Game21
     {
         return $this->player;
     }
-
-    /**
-     * @param $player - Player or Dealer object.
-     * @return int - the players score.
-     *
-     * Check if hand includes Ace and lowers its points to 1 if the total
-     * is over 21. Returns the updated score.
-     */
-    // public function fixIfAcesInHand(object $player): int
-    // {
-    //     $cardCount = 0;
-    //     $playerScore = $player->getScore();
-    //     $playerHand = $player->getCardHand();
-    //     $nrOfCardsInHand = count($playerHand);
-    //
-    //     while ($playerScore > 21 and $cardCount < $nrOfCardsInHand) {
-    //         if ($this->getValue($playerHand[$cardCount]) === 14 && !$playerHand[$cardCount]->isConvertedAce()) {
-    //             $playerHand[$cardCount]->setConvertedAce();
-    //             $player->setScore(-13);
-    //             $cardCount += 1;
-    //             continue;
-    //         }
-    //         $cardCount += 1;
-    //     }
-    //     return $player->getScore();
-    // }
 
     /**
      * @param int $score - The players score from the card values.
@@ -224,17 +179,4 @@ class Game21
         $this->player->setMoney($playerAmount);
         $this->dealer->setMoney($dealerAmount);
     }
-
-    /**
-     * @param Card $card - Card object.
-     *
-     * @return int - card value.
-     *
-     * Return point value for the Cards rank in CARD_VALUES variable.
-     */
-    // public function getValue(Card $card): int
-    // {
-    //     $rank = $card->getRank();
-    //     return self::CARD_VALUES[$rank];
-    // }
 }
