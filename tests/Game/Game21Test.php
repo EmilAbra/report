@@ -16,7 +16,8 @@ class Game21Test extends TestCase
     {
         $dealer = new Dealer();
         $player = new Player();
-        $this->game21 = new Game21($dealer, $player);
+        $cardValues = new Game21CardValues();
+        $this->game21 = new Game21($dealer, $player, $cardValues);
     }
 
     /**
@@ -30,54 +31,6 @@ class Game21Test extends TestCase
         $this->assertInstanceOf("\App\Game\Dealer", $this->game21->getDealer());
 
         $this->assertInstanceOf("\App\Game\Player", $this->game21->getPlayer());
-    }
-
-    /**
-     * test fixIfAcesInHand returns right score with one ace in hand.
-     */
-    public function testfixIfAcesInHandReturnsRightScoreForOneAce(): void
-    {
-        $cards = [new Card('spades', 'K'), new Card('spades', '7'), new Card('spades', 'A')];
-        $player = new Player();
-
-        foreach ($cards as $card) {
-            $player->setCardHand($card);
-            $cardValue = $this->game21->getValue($card);
-            $player->setScore($cardValue);
-        }
-        $this->game21->fixIfAcesInHand($player);
-
-        $this->assertEquals($player->getScore(), 21);
-    }
-
-    /**
-     * test fixIfAcesInHand returns right score with two aces in hand.
-     */
-    public function testfixIfAcesInHandReturnsRightScoreForTwoAces(): void
-    {
-        $cards = [new Card('spades', 'K'), new Card('spades', '6'), new Card('spades', 'A'), new Card('hearts', 'A')];
-        $player = new Player();
-
-        foreach ($cards as $card) {
-            $player->setCardHand($card);
-            $cardValue = $this->game21->getValue($card);
-            $player->setScore($cardValue);
-        }
-        $this->game21->fixIfAcesInHand($player);
-
-        $this->assertEquals($player->getScore(), 21);
-    }
-
-    /**
-     * test fixIfAcesInHand with no cards in hand.
-     */
-    public function testfixIfAcesInHandWithNoCards(): void
-    {
-        $player = new Player();
-
-        $this->game21->fixIfAcesInHand($player);
-
-        $this->assertEquals($player->getScore(), 0);
     }
 
     /**
@@ -242,17 +195,5 @@ class Game21Test extends TestCase
 
         $dealer = $this->game21->getDealer();
         $this->assertEquals($dealer->getMoney(), 50);
-    }
-
-    /**
-     * test getValue returns correct int value.
-     */
-    public function testGetValueReurnsCorrectValue(): void
-    {
-        $card = new Card('spades', '5');
-        $this->assertEquals($this->game21->getValue($card), 5);
-
-        $card = new Card('spades', 'A');
-        $this->assertEquals($this->game21->getValue($card), 14);
     }
 }
