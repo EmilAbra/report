@@ -51,7 +51,7 @@ class Game21Test extends TestCase
 
         foreach ($cards as $card) {
             $player->setCardHand($card);
-            $cardValue = $this->game21->getValue($card);
+            $cardValue = $this->cardValues->getValue($card);
             $player->setScore($cardValue);
         }
         $playerScore = $player->getScore();
