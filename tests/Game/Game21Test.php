@@ -16,8 +16,8 @@ class Game21Test extends TestCase
     {
         $dealer = new Dealer();
         $player = new Player();
-        $cardValues = new Game21CardValues();
-        $this->game21 = new Game21($dealer, $player, $cardValues);
+        $this->$cardValues = new Game21CardValues();
+        $this->game21 = new Game21($dealer, $player, $this->$cardValues);
     }
 
     /**
