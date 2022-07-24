@@ -17,6 +17,10 @@ body {
     padding: 20px;
 }
 
+.report-main li {
+    margin-left: 50px;
+}
+
 .cards-main-landing {
     text-align: center;
     margin-bottom: 850px;

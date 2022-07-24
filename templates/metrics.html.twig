@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="report-main">
-        {# include('metrics/kmom01.markdown.twig')|markdown_to_html #}
+        {{ include('metrics/analyse.markdown.twig')|markdown_to_html }}
     </div>
 
 {% endblock %}

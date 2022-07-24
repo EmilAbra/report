@@ -1,0 +1,87 @@
+Introduktion
+------------
+De fyra C:na:
+
+  - Coverage
+  - Complexity
+  - Cohesion
+  - Coupling
+
+<br/>
+
+är mätvärden för att testa kodens kvalité.
+
+Coverage handlar om hur mycket tester man har gjort och hur många rader kod
+som är testad. Man använder procent-enheter för att ange hur stor del som är
+testad. Som exempel har jag kodtäckning på 100% för klasserna i "namespacet" Game.
+
+Complexity används som mätvärde för att mäta hur avancerad koden är,
+ur perspektivet att underhålla eller att utveckla koden.
+Förenklat från en matematisk uträkning innebär det att man markerar koden där det sker en "intabbning" som en
+if-sats eller for-loop. Exempelvis är en komplexitet för en metod som inte har några "intabbningar" betyget 1. Vilket är ultimat.\
+I GAME21-klassen har jag en metod som kollar om spelarens eller bankens pengar är slut:
+
+    public function checkPlayerSaldo(): mixed
+    {
+        if ($this->player->getMoney() < 1) {
+            return "GAME OVER. Dina pengar är slut.";
+        }
+        if ($this->dealer->getMoney() < 1) {
+            return "GRATTIS DU VANN!!! Bankens pengar är slut.";
+        }
+        return null;
+    }
+<br/>
+
+Här har jag två if-satser. Så poängen för metodens komplexitet är 3.
+Som regel ska man helst inte vara över 10 i komplexitet för en metod.
+
+Cohesion handlar om hur mycket koden hänger ihop. I exempelvis en klass betyder
+det hur mycket metoderna i klassen jobbar som en enhet för samma sak.
+Istället för att ha många olika ansvarsområden som inte hör till klassen. Ett betyg
+på 1 står för att klassen är enhetlig och är något man vill uppnå. Högre betyg
+anger att klassen har så många ansvarsområden som talet är lika med och det vill man helst undvika.\
+
+Coupling anger hur stark koppling en klass har till en annan klass. Man delar upp dem i två olka former av coupling. Efferent coupling handlar om hur många klasser den angivna klassen är beroende utav. Afferent coupling handlar om hur många andra klasser som är beroende utav den angivna klassen. Målet är att ha så få beroenden som möjligt. Det blir då lättare att underhålla koden och att lägga till ny kod. Ju högre värde på Coupling desto fler utgående eller inkommande beroenden finns det för klassen.\
+Klassen Game21 i min kod är beroende av flera andra klasser för att kunna fungera och gör att den har hög Efferent coupling.
+
+Phpmetrics
+-----------
+I Phpmetrics visar betygen för klassen Game21 högst värden för komplexitet i de flesta kolumnerna. Till exempel är klassens komplexitet 15, som är 12 mer än modell-klassen Dice som kommer på andra plats.
+
+I min klass för Deck i "namespacet" Card har den ett värde på 3 i LCOM(Lack of cohesion of methods), enligt PhpMetrics. Detta tror jag beror på att jag har två konstanta klass-variabler med "get"-metoder som inte hänger samman med resten av metoderna och kortleks-arrayen. Intressant nog har jag en modifierad klass av Deck i "namespacet" Game där jag har lagt till en metod(setupDeck) som inkluderar klass-variablerna med kortleks-arrayen och lägger till alla 52 korten i kortleken. Det ger då betyget 1 i LCOM.
+
+Av modell-klasserna har Game21 högst värde med 4 i Efferent coupling. Det är logiskt då jag "injectar" in 4 andra klasser.\
+För Afferent coupling har exempelvis Deck, Card och Player i "namespacet" Game 3 i betyg. Det tror jag beror på att jag använder mig av flera beroenden genom "injections" i metoderna mellan klasserna.
+
+Det är också intressant att nämna att Game21-klassen har tydligt mest logiska kodrader bland modell-klasserna när man tittar på "Size & volume". Game21 har 89 jämfört med tvåan Deck som har 61 logiska kodrader.
+
+Scrutinizer
+-----------
+Enligt Scrutinizer är 25% av koden i src-mappen testad när det gäller Coverage. Detta beror på att jag
+endast har testat alla klasser för kortspelet 21 i "namespacet" Game.
+
+Game21-klassen har även här högst i complexity(conditional) med 25 och Deck har 12 som näst högst. Det går att anmärka att Game21 är betydligt större när det gäller kodrader jämfört med Deck. Game21 har 222 kodrader jämfört med Deck som har 141.
+
+Då jag inte får fram någon information om Cohesion eller Coupling i Scrutinizer, kan jag inte göra någon analys av de mätvärdena.
+
+Utöver dessa hittade jag höga betyg i CRAP score på vissa metoder i kontroller-klasserna. Metoden dealPlayer i Gamecontroller har 30 i CRAP score. Det säger mig att metoden har mycket kod och har hög komplexitet och kräver många test-fall. De höga betygen speglar att jag inte har gjort några tester här.
+
+Förbättringar
+-------------
+1. Det är tydligt när jag läst av mätvärdena att det är klassen Game21 som sticker ut. Den stora mängden kod i klassen kombinerat med högt värde i Efferent coupling säger mig att den är onödigt komplex. För att sänka "couplingen" och kodmängden känner jag att det enklaste vore att bryta ut en nya klass som sköter spelet 21:s regler för kortvärdena. Klassvariabeln med alla värdena och metoderna getValue och fixIfAcesInHand. Enligt Scrutinizer har fixIfAcesInHand högst komplexitet i klassen med 5. vilket leder till att sänka den.
+Det är en start för att se hur det påverkar komplexiteten.
+
+"Couplingen" blir nog svårt att få bort från Game21, då klassen är själva navet av spelet. Men genom att bryta ut en klass delar jag istället upp komplexiteten på fler ställen och gör det lättare att underhålla den.
+
+Jag tror att detta leder till att komplexiteten(conditional complexity) i Scrutinizer kommer minska med minst 5 och hoppas och tror att den större orangea cirkeln för klassen i PhpMetrics kommer bli mindre än kontrollklasserna.
+
+1. Modifiera Deck med setupDeck()
+2. Dela upp Game21 i mindre klasser.
+3. Tester
+
+
+
+Diskussion
+----------
+Jag tycker att man med verktygen Scrutinizer PhpMetrics kan få ut de mätvärdena som sticker ut.

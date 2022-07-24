@@ -10,27 +10,28 @@ use App\Game\Card;
 use App\Game\Deck;
 use App\Game\Dealer;
 use App\Game\Player;
+use App\Game\Game21Rules;
 
 class Game21
 {
     /**
      * @var array<string|int> CARD_VALUES - Scores for each card rank in cardgame 21.
      */
-    public const CARD_VALUES = [
-        '2' => 2,
-        '3' => 3,
-        '4' => 4,
-        '5' => 5,
-        '6' => 6,
-        '7' => 7,
-        '8' => 8,
-        '9' => 9,
-        '10' => 10,
-        'J' => 11,
-        'Q' => 12,
-        'K' => 13,
-        'A' => 14
-    ];
+    // public const CARD_VALUES = [
+    //     '2' => 2,
+    //     '3' => 3,
+    //     '4' => 4,
+    //     '5' => 5,
+    //     '6' => 6,
+    //     '7' => 7,
+    //     '8' => 8,
+    //     '9' => 9,
+    //     '10' => 10,
+    //     'J' => 11,
+    //     'Q' => 12,
+    //     'K' => 13,
+    //     'A' => 14
+    // ];
 
     /**
      * @var object $dealer - The dealer.
@@ -38,6 +39,7 @@ class Game21
      */
     private object $dealer;
     private object $player;
+    private object $cardValues;
 
     /**
      * @param $dealer - Dealer object.
@@ -45,10 +47,11 @@ class Game21
      *
      * Constructor for the Game21 class.
      */
-    public function __construct(Dealer $dealer, Player $player)
+    public function __construct(Dealer $dealer, Player $player, Game21CardValues $cardValues)
     {
         $this->dealer = $dealer;
         $this->player = $player;
+        $this->cardValues = $cardValues;
     }
 
     /**
@@ -78,24 +81,24 @@ class Game21
      * Check if hand includes Ace and lowers its points to 1 if the total
      * is over 21. Returns the updated score.
      */
-    public function fixIfAcesInHand(object $player): int
-    {
-        $card = 0;
-        $playerScore = $player->getScore();
-        $playerHand = $player->getCardHand();
-        $nrOfCardsInHand = count($playerHand);
-
-        while ($playerScore > 21 and $card < $nrOfCardsInHand) {
-            if ($this->getValue($playerHand[$card]) === 14 && !$playerHand[$card]->isConvertedAce()) {
-                $playerHand[$card]->setConvertedAce();
-                $player->setScore(-13);
-                $card += 1;
-                continue;
-            }
-            $card += 1;
-        }
-        return $player->getScore();
-    }
+    // public function fixIfAcesInHand(object $player): int
+    // {
+    //     $cardCount = 0;
+    //     $playerScore = $player->getScore();
+    //     $playerHand = $player->getCardHand();
+    //     $nrOfCardsInHand = count($playerHand);
+    //
+    //     while ($playerScore > 21 and $cardCount < $nrOfCardsInHand) {
+    //         if ($this->getValue($playerHand[$cardCount]) === 14 && !$playerHand[$cardCount]->isConvertedAce()) {
+    //             $playerHand[$cardCount]->setConvertedAce();
+    //             $player->setScore(-13);
+    //             $cardCount += 1;
+    //             continue;
+    //         }
+    //         $cardCount += 1;
+    //     }
+    //     return $player->getScore();
+    // }
 
     /**
      * @param int $score - The players score from the card values.
@@ -114,7 +117,7 @@ class Game21
             $this->updateSaldo($betAmount, -$betAmount);
             return "Du fick 21!!! Grattis du vann denna omgången!";
         } elseif ($score > 21) {
-            if ($this->fixIfAcesInHand($this->player) > 21) {
+            if ($this->cardValues->fixIfAcesInHand($this->player) > 21) {
                 $this->updateSaldo(-$betAmount, $betAmount);
                 return "Ajdå, Du fick över 21!";
             }
@@ -135,7 +138,7 @@ class Game21
     {
         $card = $this->dealer->deal($deck);
         $this->player->setCardHand($card);
-        $points = $this->getValue($card);
+        $points = $this->cardValues->getValue($card);
         $this->player->setScore($points);
         $score = $this->player->getScore();
 
@@ -179,10 +182,10 @@ class Game21
         while ($this->dealer->getScore() < 17) {
             $card = $this->dealer->deal($deck);
             $this->dealer->setCardHand($card);
-            $points = $this->getValue($card);
+            $points = $this->cardValues->getValue($card);
             $this->dealer->setScore($points);
             if ($this->dealer->getScore() > 21) {
-                if ($this->fixIfAcesInHand($this->dealer) > 21) {
+                if ($this->cardValues->fixIfAcesInHand($this->dealer) > 21) {
                     $this->updateSaldo($betAmount, -$betAmount);
                     return "Grattis, Banken fick över 21!!!";
                 }
@@ -229,9 +232,9 @@ class Game21
      *
      * Return point value for the Cards rank in CARD_VALUES variable.
      */
-    public function getValue(Card $card): int
-    {
-        $rank = $card->getRank();
-        return self::CARD_VALUES[$rank];
-    }
+    // public function getValue(Card $card): int
+    // {
+    //     $rank = $card->getRank();
+    //     return self::CARD_VALUES[$rank];
+    // }
 }

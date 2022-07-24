@@ -12,6 +12,7 @@ use App\Game\Deck;
 use App\Game\Dealer;
 use App\Game\Player;
 use App\Game\Game21;
+use App\Game\Game21CardValues;
 
 class GameController extends AbstractController
 {
@@ -41,7 +42,8 @@ class GameController extends AbstractController
         $deck->shuffle();
         $dealer = new Dealer();
         $player = new Player();
-        $game = new Game21($dealer, $player);
+        $cardValues = new Game21CardValues();
+        $game = new Game21($dealer, $player, $cardValues);
 
         $session->set("deck", $deck);
         $session->set("dealer", $dealer);
