@@ -11,12 +11,15 @@ use App\Game\Deck;
 use App\Game\Dealer;
 use App\Game\Player;
 use App\Game\Game21CardValues;
+use App\Game\DealerHand;
+
 
 class Game21
 {
     /**
      * @var object $dealer - The dealer.
      * @var object $player - The player.
+     * @var object $cardValues - The card values.
      */
     private object $dealer;
     private object $player;
@@ -25,44 +28,19 @@ class Game21
     /**
      * @param $dealer - Dealer object.
      * @param $player - Player object.
+     * @param $cardValues - Game21CardValues object.
+     * @param $dealerHand - DealerHand object.
      *
      * Constructor for the Game21 class.
      */
-    public function __construct(Dealer $dealer, Player $player, Game21CardValues $cardValues)
+    public function __construct(
+        Dealer $dealer, Player $player, Game21CardValues $cardValues, DealerHand $dealerHand
+    )
     {
         $this->dealer = $dealer;
         $this->player = $player;
         $this->cardValues = $cardValues;
-    }
-
-    /**
-     * @return Dealer - Dealer object.
-     *
-     * Get the dealer.
-     */
-    public function getDealer(): object
-    {
-        return $this->dealer;
-    }
-
-    /**
-     * @return Player - Player object.
-     *
-     * Get the player.
-     */
-    public function getPlayer(): object
-    {
-        return $this->player;
-    }
-
-    /**
-     * @return Game21CardValues - Card values object.
-     *
-     * Get the card values.
-     */
-    public function getCardValues(): object
-    {
-        return $this->cardValues;
+        $this->dealerHand = $dealerHand;
     }
 
     /**
@@ -90,8 +68,27 @@ class Game21
         return null;
     }
 
+    // /**
+    //  * @param Deck $deck - Deck object.
+    //  * @param int $betAmount - Money the player has placed in the bet.
+    //  * @return mixed - returns string with message if score is 21 or over 21,
+    //  * else null, by calling method handlePlayerScore.
+    //  *
+    //  * Method to deal player a card and update players cardpoints. Call methods
+    //  * handlePlayerScore to check if score is over 21 or equal to 21.
+    //  */
+    // public function dealPlayer(Deck $deck, int $betAmount): mixed
+    // {
+    //     $card = $this->dealer->deal($deck);
+    //     $this->player->setCardHand($card);
+    //     $points = $this->cardValues->getValue($card);
+    //     $this->player->setScore($points);
+    //     $score = $this->player->getScore();
+    //
+    //     return $this->handlePlayerScore($score, $betAmount);
+    // }
+
     /**
-     * @param Deck $deck - Deck object.
      * @param int $betAmount - Money the player has placed in the bet.
      * @return mixed - returns string with message if score is 21 or over 21,
      * else null, by calling method handlePlayerScore.
@@ -99,9 +96,9 @@ class Game21
      * Method to deal player a card and update players cardpoints. Call methods
      * handlePlayerScore to check if score is over 21 or equal to 21.
      */
-    public function dealPlayer(Deck $deck, int $betAmount): mixed
+    public function playerTurn(int $betAmount): mixed
     {
-        $card = $this->dealer->deal($deck);
+        $card = $this->dealerHand->dealPlayer($this->dealer);
         $this->player->setCardHand($card);
         $points = $this->cardValues->getValue($card);
         $this->player->setScore($points);
@@ -131,8 +128,36 @@ class Game21
         return "Bra, Du hade bättre kort än Banken!!!";
     }
 
+    // /**
+    //  * @param Deck $deck - Deck object.
+    //  * @param int $betAmount - Money the player has placed in the bet.
+    //  * @return mixed - returns string with message if score is 21 or over 21,
+    //  * else null, by calling method handlePlayerScore.
+    //  *
+    //  * While loop to deal the bank dealer cards until the points is over 16.
+    //  * If score is over 21: calls method fixIfAcesInHand to lower score of Ace to 1.
+    //  * If score still over 21: Calls method updateSaldo and returns a message.
+    //  * After loop calls handleBankScore to get and return a proper message based on the score.
+    //  */
+    // public function dealBank(Deck $deck, int $betAmount): mixed
+    // {
+    //     while ($this->dealer->getScore() < 17) {
+    //         $card = $this->dealer->deal($deck);
+    //         $this->dealer->setCardHand($card);
+    //         $points = $this->cardValues->getValue($card);
+    //         $this->dealer->setScore($points);
+    //         if ($this->dealer->getScore() > 21) {
+    //             if ($this->cardValues->fixIfAcesInHand($this->dealer) > 21) {
+    //                 $this->updateSaldo($betAmount, -$betAmount);
+    //                 return "Grattis, Banken fick över 21!!!";
+    //             }
+    //         }
+    //     }
+    //     $score = $this->dealer->getScore();
+    //     return $this->handleBankScore($score, $betAmount);
+    // }
+
     /**
-     * @param Deck $deck - Deck object.
      * @param int $betAmount - Money the player has placed in the bet.
      * @return mixed - returns string with message if score is 21 or over 21,
      * else null, by calling method handlePlayerScore.
@@ -142,10 +167,10 @@ class Game21
      * If score still over 21: Calls method updateSaldo and returns a message.
      * After loop calls handleBankScore to get and return a proper message based on the score.
      */
-    public function dealBank(Deck $deck, int $betAmount): mixed
+    public function bankTurn(int $betAmount): mixed
     {
         while ($this->dealer->getScore() < 17) {
-            $card = $this->dealer->deal($deck);
+            $card = $this->dealerHand->dealPlayer($this->dealer);
             $this->dealer->setCardHand($card);
             $points = $this->cardValues->getValue($card);
             $this->dealer->setScore($points);

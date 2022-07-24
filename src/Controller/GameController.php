@@ -13,6 +13,7 @@ use App\Game\Dealer;
 use App\Game\Player;
 use App\Game\Game21;
 use App\Game\Game21CardValues;
+use App\Game\DealerHand;
 
 class GameController extends AbstractController
 {
@@ -43,7 +44,8 @@ class GameController extends AbstractController
         $dealer = new Dealer();
         $player = new Player();
         $cardValues = new Game21CardValues();
-        $game = new Game21($dealer, $player, $cardValues);
+        $dealerHand = new DealerHand($deck);
+        $game = new Game21($dealer, $player, $cardValues, $dealerHand);
 
         $session->set("deck", $deck);
         $session->set("dealer", $dealer);
@@ -74,7 +76,7 @@ class GameController extends AbstractController
         $moneyAmount = $session->get("moneyAmount");
 
 
-        $dealCard = $game->dealPlayer($deck, $moneyAmount);
+        $dealCard = $game->playerTurn($moneyAmount);
         $checkSaldo = $game->checkPlayerSaldo();
         if ($checkSaldo) {
             $dealCard = $checkSaldo;
@@ -108,7 +110,7 @@ class GameController extends AbstractController
         $game = $session->get("game");
         $moneyAmount = $session->get("moneyAmount");
 
-        $dealCards = $game->dealBank($deck, $moneyAmount);
+        $dealCards = $game->bankTurn($moneyAmount);
         $checkSaldo = $game->checkPlayerSaldo();
         if ($checkSaldo) {
             $dealCards = $checkSaldo;
