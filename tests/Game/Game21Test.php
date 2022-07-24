@@ -10,14 +10,16 @@ use PHPUnit\Framework\TestCase;
 class Game21Test extends TestCase
 {
     /**
-     * Setup object to be tested in all cases.
+     * Setup objects to be used in the test cases.
      */
     public function setUp(): void
     {
-        $dealer = new Dealer();
-        $player = new Player();
-        $cardValues = new Game21CardValues();
-        $this->game21 = new Game21($dealer, $player, $cardValues);
+        $this->deck = new Deck();
+        $this->dealer = new Dealer();
+        $this->player = new Player();
+        $this->cardValues = new Game21CardValues();
+        $this->dealerHand = new DealerHand($this->deck);
+        $this->game21 = new Game21($this->dealer, $this->player, $this->cardValues, $this->dealerHand);
     }
 
     /**
@@ -28,11 +30,13 @@ class Game21Test extends TestCase
     {
         $this->assertInstanceOf("\App\Game\Game21", $this->game21);
 
-        $this->assertInstanceOf("\App\Game\Dealer", $this->game21->getDealer());
+        $this->assertInstanceOf("\App\Game\Dealer", $this->dealer);
 
-        $this->assertInstanceOf("\App\Game\Player", $this->game21->getPlayer());
+        $this->assertInstanceOf("\App\Game\Player", $this->player);
 
-        $this->assertInstanceOf("\App\Game\Game21CardValues", $this->game21->getCardValues());
+        $this->assertInstanceOf("\App\Game\Game21CardValues", $this->cardValues);
+
+        $this->assertInstanceOf("\App\Game\DealerHand", $this->dealerHand);
     }
 
     /**
@@ -49,11 +53,11 @@ class Game21Test extends TestCase
     public function testHandlePlayerScoreReturnsRightStringHandIsOver21(): void
     {
         $cards = [new Card('spades', 'K'), new Card('spades', '7'), new Card('hearts', 'K')];
-        $player = $this->game21->getPlayer();
+        $player = $this->player;
 
         foreach ($cards as $card) {
             $player->setCardHand($card);
-            $cardValue = $this->game21->getCardValues()->getValue($card);
+            $cardValue = $this->cardValues->getValue($card);
             $player->setScore($cardValue);
         }
         $playerScore = $player->getScore();
@@ -70,31 +74,29 @@ class Game21Test extends TestCase
     }
 
     /**
-     * test DealPlayer returns right string when hand is 21.
+     * test playerTurn returns right string when hand is 21.
      */
-    public function testDealPlayerReturnsRightStringHandIs21(): void
+    public function testPlayerTurnReturnsRightStringHandIs21(): void
     {
-        $player = $this->game21->getPlayer();
+        $player = $this->player;
         $player->setScore(14);
         $card = new Card('spades', '7');
-        $deck = new Deck();
-        $deck->setDeck($card);
+        $this->deck->setDeck($card);
 
-        $this->assertEquals($this->game21->dealPlayer($deck, 100), "Du fick 21!!! Grattis du vann denna omgången!");
+        $this->assertEquals($this->game21->playerTurn(100), "Du fick 21!!! Grattis du vann denna omgången!");
     }
 
     /**
-     * test DealPlayer returns null when hand is under 21.
+     * test playerTurn returns null when hand is under 21.
      */
-    public function testDealPlayerReturnsNullWhenHandIsUnder21(): void
+    public function testPlayerTurnReturnsNullWhenHandIsUnder21(): void
     {
-        $player = $this->game21->getPlayer();
+        $player = $this->player;
         $player->setScore(14);
         $card = new Card('spades', '4');
-        $deck = new Deck();
-        $deck->setDeck($card);
+        $this->deck->setDeck($card);
 
-        $this->assertEquals($this->game21->dealPlayer($deck, 100), null);
+        $this->assertEquals($this->game21->playerTurn(100), null);
     }
 
     /**
@@ -106,11 +108,11 @@ class Game21Test extends TestCase
     }
 
     /**
-     * test handleBankScore returns right message when hand score is better or equal than players hand score.
+     * test handleBankScore returns right message when bank hand score is better or equal than players hand score.
      */
     public function testHandleBankScoreReturnsRightStringHandIsBetterThanPlayer(): void
     {
-        $player = $this->game21->getPlayer();
+        $player = $this->player;
         $player->setScore(14);
         $this->assertEquals($this->game21->handleBankScore(14, 100), "Ajdå, Banken hade bättre kort!");
 
@@ -122,38 +124,38 @@ class Game21Test extends TestCase
      */
     public function testHandleBankScoreReturnsRightStringHandIsWeakerThanPlayer(): void
     {
-        $player = $this->game21->getPlayer();
+        $player = $this->player;
         $player->setScore(14);
 
         $this->assertEquals($this->game21->handleBankScore(13, 100), "Bra, Du hade bättre kort än Banken!!!");
     }
 
     /**
-     * test handleBankScore returns right message when hand score is weaker than players hand score.
+     * test BankTurn returns right message when hand score is weaker than players hand score.
      */
-    public function testDealBankAddCardsWhenScoreIsUnder17(): void
+    public function testBankTurnAddCardsWhenScoreIsUnder17(): void
     {
         $cards = [new Card('spades', '5'), new Card('spades', '4'), new Card('spades', '6'), new Card('hearts', '6')];
-        $deck = new Deck();
+        $deck = $this->deck;
         foreach ($cards as $card) {
             $deck->setDeck($card);
         }
 
-        $this->assertEquals($this->game21->dealBank($deck, 100), "Aj, Banken fick 21!");
+        $this->assertEquals($this->game21->bankTurn(100), "Aj, Banken fick 21!");
     }
 
     /**
-     * test handleBankScore returns right message when card score is over 21.
+     * test BankTurn returns right message when card score is over 21.
      */
-    public function testDealBankReturnsCorrectMessageWhenCardScoreIsOver21(): void
+    public function testBankTurnReturnsCorrectMessageWhenCardScoreIsOver21(): void
     {
         $cards = [new Card('spades', 'K'), new Card('spades', '6'), new Card('hearts', '6')];
-        $deck = new Deck();
+        $deck = $this->deck;
         foreach ($cards as $card) {
             $deck->setDeck($card);
         }
 
-        $this->assertEquals($this->game21->dealBank($deck, 100), "Grattis, Banken fick över 21!!!");
+        $this->assertEquals($this->game21->bankTurn(100), "Grattis, Banken fick över 21!!!");
     }
 
     /**
@@ -161,7 +163,7 @@ class Game21Test extends TestCase
      */
     public function testCheckPlayerSaldoWhenPlayerIsUnder1(): void
     {
-        $player = $this->game21->getPlayer();
+        $player = $this->player;
         $player->setMoney(-100);
 
         $this->assertEquals($this->game21->checkPlayerSaldo(), "GAME OVER. Dina pengar är slut.");
@@ -172,7 +174,7 @@ class Game21Test extends TestCase
      */
     public function testCheckPlayerSaldoWhenDealerIsUnder1(): void
     {
-        $dealer = $this->game21->getDealer();
+        $dealer = $this->dealer;
         $dealer->setMoney(-100);
 
         $this->assertEquals($this->game21->checkPlayerSaldo(), "GRATTIS DU VANN!!! Bankens pengar är slut.");
@@ -192,10 +194,10 @@ class Game21Test extends TestCase
     public function testUpdateSaldoSetsCorrectValues(): void
     {
         $this->game21->updateSaldo(50, -50);
-        $player = $this->game21->getPlayer();
+        $player = $this->player;
         $this->assertEquals($player->getMoney(), 150);
 
-        $dealer = $this->game21->getDealer();
+        $dealer = $this->dealer;
         $this->assertEquals($dealer->getMoney(), 50);
     }
 }
