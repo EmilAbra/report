@@ -157,47 +157,4 @@ class Game21Test extends TestCase
 
         $this->assertEquals($this->game21->bankTurn(100), "Grattis, Banken fick över 21!!!");
     }
-
-    /**
-     * test checkPlayerSaldo returns right message when player saldo is under 1.
-     */
-    public function testCheckPlayerSaldoWhenPlayerIsUnder1(): void
-    {
-        $player = $this->player;
-        $player->setMoney(-100);
-
-        $this->assertEquals($this->game21->checkPlayerSaldo(), "GAME OVER. Dina pengar är slut.");
-    }
-
-    /**
-     * test checkPlayerSaldo returns right message when dealer saldo is under 1.
-     */
-    public function testCheckPlayerSaldoWhenDealerIsUnder1(): void
-    {
-        $dealer = $this->dealer;
-        $dealer->setMoney(-100);
-
-        $this->assertEquals($this->game21->checkPlayerSaldo(), "GRATTIS DU VANN!!! Bankens pengar är slut.");
-    }
-
-    /**
-     * test checkPlayerSaldo returns null when all saldos i over 1.
-     */
-    public function testCheckPlayerSaldoWhenOver1(): void
-    {
-        $this->assertEquals($this->game21->checkPlayerSaldo(), null);
-    }
-
-    /**
-     * test updateSaldo sets correct values.
-     */
-    public function testUpdateSaldoSetsCorrectValues(): void
-    {
-        $this->game21->updateSaldo(50, -50);
-        $player = $this->player;
-        $this->assertEquals($player->getMoney(), 150);
-
-        $dealer = $this->dealer;
-        $this->assertEquals($dealer->getMoney(), 50);
-    }
 }
