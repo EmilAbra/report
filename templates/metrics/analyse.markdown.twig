@@ -69,12 +69,21 @@ Utöver dessa hittade jag höga betyg i CRAP score på vissa metoder i kontrolle
 
 Förbättringar
 -------------
-1. Det är tydligt när jag läst av mätvärdena att det är klassen Game21 som sticker ut. Den stora mängden kod i klassen kombinerat med högt värde i Efferent coupling säger mig att den är onödigt komplex. För att sänka "couplingen" och kodmängden känner jag att det enklaste vore att bryta ut en nya klass som sköter spelet 21:s regler för kortvärdena. Klassvariabeln med alla värdena och metoderna getValue och fixIfAcesInHand. Enligt Scrutinizer har fixIfAcesInHand högst komplexitet i klassen med 5. vilket leder till att sänka den.
+1. Det är tydligt när jag läst av mätvärdena att det är klassen Game21 som sticker ut. Den stora mängden kod i klassen kombinerat med högt värde i Efferent coupling säger mig att den är onödigt komplex. För att sänka "couplingen" och kodmängden känner jag att det enklaste vore att bryta ut en nya klass som sköter spelet 21:s regler för kortvärdena. Klassvariabeln med alla värdena och metoderna getValue och fixIfAcesInHand. Enligt Scrutinizer har fixIfAcesInHand högst komplexitet i klassen med 5.
 Det är en start för att se hur det påverkar komplexiteten.
 
 "Couplingen" blir nog svårt att få bort från Game21, då klassen är själva navet av spelet. Men genom att bryta ut en klass delar jag istället upp komplexiteten på fler ställen och gör det lättare att underhålla den.
 
-Jag tror att detta leder till att komplexiteten(conditional complexity) i Scrutinizer kommer minska med minst 5 och hoppas och tror att den större orangea cirkeln för klassen i PhpMetrics kommer bli mindre än kontrollklasserna.
+Jag tror att detta leder till att komplexiteten(conditional complexity) i Scrutinizer kommer minska med minst 5 och hoppas och tror att den större orangea cirkeln för klassen i PhpMetrics kommer bli mindre än kontrollklasserna, som är aningen mindre.
+
+Efter skapandet av klassen Game21CardValues ändrades mycket riktigt värdet för "conditional complexity" i Scrutinizer till 20 istället för 25. I PhpMetrics har den orangea cirkeln minskat i storlek till att likna kontroll-klasserna.
+
+2. Jag tycker forfarande att går att minska komplexiteten genom att bryta ut "deal"-metoderna till en egen klass(DealerHand). De hör egentligen inte hemma i klassen, känner jag. Metoden dealBank har i Game21 störst komplexitet med 4. Får jag bort Deck objektet som argument till metoderna för deal tror jag att det minskar komplexiteten. Istället "injectas" Deck in i DealerHand genom konstruktorn. Jag byter även namn på metoderna till playerTurn och bankTurn för att bättre representera en spelomgång.
+
+Förhoppningsvis sänker detta Cyclomatic complexity ännu mer som nu är 11 i PhpMetrics. Maintanability index är 79.47.
+
+
+3. Ytterliggare en sak jag gör är att ta bort de två metoderna i Game-21 som uppdaterar saldot för banken och spelaren. Det hör inte heller till i den klassen. Det gör jag istället om till en egen klass(Saldo) och "injectar" in den i spelar-klassen och bank-klassen. De har ju båda en "has-a" relation till ett saldo, och känns mer rimligt. Detta hoppas jag leder till fler och mindre klasser men med mindre komplexitet i Game21.
 
 1. Modifiera Deck med setupDeck()
 2. Dela upp Game21 i mindre klasser.
@@ -84,4 +93,4 @@ Jag tror att detta leder till att komplexiteten(conditional complexity) i Scruti
 
 Diskussion
 ----------
-Jag tycker att man med verktygen Scrutinizer PhpMetrics kan få ut de mätvärdena som sticker ut.
+Jag tycker att man med verktygen Scrutinizer och PhpMetrics kan få ut de mätvärdena som sticker ut.
