@@ -16,8 +16,8 @@ class Game21Test extends TestCase
     {
         $dealer = new Dealer();
         $player = new Player();
-        $this->$cardValues = new Game21CardValues();
-        $this->game21 = new Game21($dealer, $player, $this->$cardValues);
+        $cardValues = new Game21CardValues();
+        $this->game21 = new Game21($dealer, $player, $cardValues);
     }
 
     /**
@@ -31,6 +31,8 @@ class Game21Test extends TestCase
         $this->assertInstanceOf("\App\Game\Dealer", $this->game21->getDealer());
 
         $this->assertInstanceOf("\App\Game\Player", $this->game21->getPlayer());
+
+        $this->assertInstanceOf("\App\Game\Game21CardValues", $this->game21->getCardValues());
     }
 
     /**
@@ -51,7 +53,7 @@ class Game21Test extends TestCase
 
         foreach ($cards as $card) {
             $player->setCardHand($card);
-            $cardValue = $this->cardValues->getValue($card);
+            $cardValue = $this->game21->getCardValues()->getValue($card);
             $player->setScore($cardValue);
         }
         $playerScore = $player->getScore();

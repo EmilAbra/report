@@ -56,6 +56,16 @@ class Game21
     }
 
     /**
+     * @return Game21CardValues - Card values object.
+     *
+     * Get the card values.
+     */
+    public function getCardValues(): object
+    {
+        return $this->cardValues;
+    }
+
+    /**
      * @param int $score - The players score from the card values.
      * @param int $betAmount - Money the player has placed in the bet.
      * @return mixed - returns string with message if score is 21 or over 21,
