@@ -116,6 +116,7 @@ class GameController extends AbstractController
         $moneyAmount = $session->get("moneyAmount");
 
         $dealCard = $game->bankTurn($moneyAmount);
+
         $checkPlayerSaldo = $player->isSaldoEmpty();
         $checkDealerSaldo = $dealer->isSaldoEmpty();
         if ($checkPlayerSaldo) {
