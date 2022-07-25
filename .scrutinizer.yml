@@ -6,9 +6,9 @@ filter:
         - src/
 
     excluded_paths:
-        - src/Controller
-        - src/Entity
-        - src/Repository
+        - src/Controller/
+        - src/Entity/
+        - src/Repository/
         - src/Kernel.php
 
 build:
