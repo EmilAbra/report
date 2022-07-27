@@ -19,7 +19,7 @@
 
                     <tr>
                         <th>{{ book.author }}</th>
-                        <th><a href="/books/show/{{ book.id }}">{{ book.titel }}</a></th>
+                        <th><a href="{{ path('books_show_one', {idOfBook: book.id}) }}">{{ book.titel }}</a></th>
                         <th>{{ book.isbn }}</th>
                         <th><img src="{{ asset(book.imgpath) }}" alt="Omslag på boken {{ book.titel }}"></th>
                     </tr>

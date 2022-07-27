@@ -2,14 +2,18 @@ Kmom06
 -------
 **Hur uppfattade du verktyget phpmetrics och fann du några särskilda bitar mer värdefulla än andra? Var det några särskilda metrics eller bilder du uppskattade?**
 
-Jag tycker att complexity i phpmetrics var luddig och svår att förstå. Det finns inte mycket information om vad de olika kolumnerna betyder i verktyget och på deras hemsida.
-
 **Berätta hur det gick att integrera med Scrutinizer och vilken är din första känsla av verktyget och dess badges? Vilken kodtäckning och kodkvalitet fick du efter första bygget?**
 
 **Hur är din egen syn på kodkvalitet, berätta lite om den? Tror du man kan man påvisa kodkvalitet i någon viss mån med badges eller vad tror du?**
 
-Jag tror att god kod-kvalité bygger på vilja. Att vilja göra bra ifrån sig. Genom att man visar att man har uppnått vissa badges har man visat sin vilja att prestera. Att signalera att jag har testat min kod. Det tror jag är det viktiga. Inte om koden är bra skriven eller inte, utan att man gör en insats. Sen kan man analysera vidare om koden behöver vara bra eller inte. Om den inte kan ändras på så borde det vara. Men huvudsatsen är att man visar för den användaren koden är till för att man gjort sin insats.
-
 **Vilken är din TIL för detta kmom?**
 
-Jag inser nu hur bökigt det blir när man ska ändra i en klass med mycket kod. Inte bara behöver man ändra i kontrollerna och i de andra klasserna, man behöver också göra om alla tester.
+Jag tror att god kod-kvalité bygger på vilja. Att vilja göra bra ifrån sig. Genom att man visar att man har uppnått vissa badges har man visat sin vilja att prestera. Att signalera att jag har testat min kod. Det tror jag är det viktiga. Inte om koden är bra skriven eller inte, utan att man gör en insats. Sen kan man analysera vidare om koden behöver vara bra eller inte. Om den inte kan ändras på så borde det vara. Men huvudsatsen är att man visar för den användaren koden är till för att man gjort sin insats.
+
+Jag gillade framför allt cirklarna med phpmetrics när det gäller att lista ut vilka klasser som behöver förbättras. Det är ett bra koncept som är lätt att förstå.
+Tyvärr tycker jag att complexity i phpmetrics var luddigt och svårt att förstå. Det finns inte mycket information om vad de olika kolumnerna betyder i verktyget och på deras hemsida. Och tyvärr fanns det ingen information om Cohesion och Coupling i Scrutinizer att använda sig utav.
+
+Det gick bra att integrera med Scrutinizer men jag missade från början att jag borde filtrerat de katalogerna som inte är viktiga. Det gjorde att det tog över en timme att validera min kod. Min kodtäcking var 25% när jag inte hade filtrerat riktigt. Och jag var lite konfunderad. Efter filtreringen blev det 75%.
+I det första bygget fick jag 6,26 i kodkvalitet men när jag filtrerade i ".scrutinizer.yaml" fick jag 10.
+
+Jag inser nu hur bökigt det blir när man ska ändra i en klass med mycket kod. Inte bara behöver man ändra i kontrollerna och i de andra klasserna. Man behöver också göra om alla tester. Jag har fått en tankeställere om att hålla mina klasser i en rimlig storlek. I framtiden vet jag att koden borde brytas ut till andra klasser om den blir för stor. Det får vara min TIL.
