@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}Projekt-sida{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset("css/proj/style_proj.css") }}"/>
+        <link rel="icon" href="{{ asset("img/me.jpg") }}">
+    </head>
+    <body>
+        <header class="header" role="banner">
+            <div class="site-header">
+                <h1>Casino<span>MVC</span></h1>
+            </div>
+            <div class="nav">
+                <nav class="navMenu">
+                    <a href="{{ path('home') }}">Hem</a>
+                    <a href="{{ path('report') }}">Report</a>
+                    <a href="{{ path('playing_cards') }}">Kortlek</a>
+                    <a href="{{ path('card_game') }}">Kortspel 21</a>
+                    <a href="{{ path('app_books') }}">Bibliotek</a>
+                    <a href="{{ path('metrics') }}">Metrics</a>
+                    <a href="{{ path('app_project') }}">Projekt</a>
+                    <a href="{{ path('about') }}">Om</a>
+                    <div class="dot"></div>
+                </nav>
+            </div>
+        </header>
+
+        {% block content %}
+
+        {% endblock %}
+    </body>
+</html>

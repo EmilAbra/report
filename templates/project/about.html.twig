@@ -1,0 +1,12 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Om projektet{% endblock %}
+
+{% block content %}
+    <div class="cards-main-landing">
+        <h1>Dokumentation om projektet</h1>
+        {{ include('/project/_about_project_nav.html.twig') }}
+        {{ include('/project/markdown/about_proj.markdown.twig')|markdown_to_html }}
+    </div>
+
+{% endblock %}

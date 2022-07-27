@@ -1,0 +1,14 @@
+
+@media (max-width: 850px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .nav {
+        text-align: center;
+    }
+
+    .navMenu {
+        margin-top: 0;
+    }
+}

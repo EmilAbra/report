@@ -1,0 +1,59 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Texas Holdem{% endblock %}
+
+{% block content %}
+
+<div class="holdem-wrapper">
+    <div class="holdem-title">
+        <div class="texas-holdem">
+            <h1>Texas Hold’em</h1>
+        </div>
+        <div class="about-project">
+            <a href="{{ path('about_project') }}">Om projektet</a>
+        </div>
+    </div>
+    <div class="holdem-ai">
+        <div class="player-img">
+            <img src="{{ asset(aiPlayer.imgPath) }}" alt="Bild på dator-spelaren">
+        </div>
+        <div class="player-name">
+            <h3>{{ aiPlayer.firstName }} {{ aiPlayer.lastName }}</h3>
+        </div>
+        <div class="player-saldo">
+            <h3>$ {{ aiPlayer.saldo }}</h3>
+        </div>
+    </div>
+
+    <div class="holdem-table">
+        <div class="ai-cards">
+
+        </div>
+        <div class="table-cards">
+            <div class="info">
+                {{ include('/project/markdown/info_texas_holdem.markdown.twig')|markdown_to_html }}
+            </div>
+            <div class="game-buttons">
+                <form action="{# path('play') #}">
+                    <input type="submit" value="Starta spelet" />
+                </form>
+            </div>
+        </div>
+        <div class="player-cards">
+
+        </div>
+    </div>
+
+    <div class="holdem-player">
+        <div class="player-img">
+            <img src="{{ asset(player.imgPath) }}" alt="Bild på spelaren">
+        </div>
+        <div class="player-name">
+            <h3>{{ player.firstName }} {{ player.lastName }}</h3>
+        </div>
+        <div class="player-saldo">
+            <h3>$ {{ player.saldo }}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

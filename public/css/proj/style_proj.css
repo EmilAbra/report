@@ -1,0 +1,12 @@
+@import url("header.css");
+@import url("typografi.css");
+@import url("image.css");
+@import url("main.css");
+@import url("../cards/cards.css");
+@import url("cardnav.css");
+@import url("form.css");
+@import url("holdem.css");
+@import url("media-query.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway:wght@500;700&display=swap');
+@import url('http://fonts.cdnfonts.com/css/casino');
