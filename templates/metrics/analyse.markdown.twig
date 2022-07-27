@@ -41,6 +41,8 @@ det hur mycket metoderna i klassen jobbar som en enhet för samma sak.
 Istället för att ha många olika ansvarsområden som inte hör till klassen. Ett betyg
 på 1 står för att klassen är enhetlig och är något man vill uppnå. Högre betyg
 anger att klassen har så många ansvarsområden som talet är lika med och det vill man helst undvika.\
+Jag har som exempel i klassen Card i "namespacet" Game metoder och medlemsvariabler som endast handlar om spelkortet. Färg och värde sätts på kortet i konstruktorn och alla metoderna gör något med variablerna. Det är stark cohesion.\
+Hade jag också haft en metod som gör något helt annat, till exempel skriver ut en sträng utan variablernas inblandning, hade det minskat på cohesion.
 
 Coupling anger hur stark koppling en klass har till en annan klass. Man delar upp dem i två olka former av coupling. Efferent coupling handlar om hur många klasser den angivna klassen är beroende utav. Afferent coupling handlar om hur många andra klasser som är beroende utav den angivna klassen. Målet är att ha så få beroenden som möjligt. Det blir då lättare att underhålla koden och att lägga till ny kod. Ju högre värde på Coupling desto fler utgående eller inkommande beroenden finns det för klassen.\
 Klassen Game21 i min kod är beroende av flera andra klasser för att kunna fungera och gör att den har hög Efferent coupling.
@@ -58,42 +60,40 @@ Det är också intressant att nämna att Game21-klassen har tydligt mest logiska
 
 Scrutinizer
 -----------
-Enligt Scrutinizer är 25% av koden i src-mappen testad när det gäller Coverage. Detta beror på att jag
+Enligt Scrutinizer är 77% av koden i modell-klasserna testad när det gäller Coverage. Detta beror på att jag
 endast har testat alla klasser för kortspelet 21 i "namespacet" Game.
 
 Game21-klassen har även här högst i complexity(conditional) med 25 och Deck har 12 som näst högst. Det går att anmärka att Game21 är betydligt större när det gäller kodrader jämfört med Deck. Game21 har 222 kodrader jämfört med Deck som har 141.
 
 Då jag inte får fram någon information om Cohesion eller Coupling i Scrutinizer, kan jag inte göra någon analys av de mätvärdena.
 
-Utöver dessa hittade jag höga betyg i CRAP score på vissa metoder i kontroller-klasserna. Metoden dealPlayer i Gamecontroller har 30 i CRAP score. Det säger mig att metoden har mycket kod och har hög komplexitet och kräver många test-fall. De höga betygen speglar att jag inte har gjort några tester här.
+Utöver dessa hittade jag höga betyg i CRAP score på vissa metoder i kontroller-klasserna. Metoden dealPlayer i Gamecontroller har 30 i CRAP score. Det säger mig att metoden har mycket kod och har hög komplexitet och kräver många test-fall. De höga betygen speglar att jag inte har gjort några tester här.(Detta var innan jag använde filter i ".scrutinizer.yaml" för att inte testa controller-klasserna)
 
 Förbättringar
 -------------
-1. Det är tydligt när jag läst av mätvärdena att det är klassen Game21 som sticker ut. Den stora mängden kod i klassen kombinerat med högt värde i Efferent coupling säger mig att den är onödigt komplex. För att sänka "couplingen" och kodmängden känner jag att det enklaste vore att bryta ut en nya klass som sköter spelet 21:s regler för kortvärdena. Klassvariabeln med alla värdena och metoderna getValue och fixIfAcesInHand. Enligt Scrutinizer har fixIfAcesInHand högst komplexitet i klassen med 5.
+1. Det är tydligt när jag läst av mätvärdena att det är klassen Game21 som sticker ut. Den stora mängden kod i klassen kombinerat med högt värde i Efferent coupling säger mig att den är onödigt komplex. För att sänka "couplingen" och kodmängden känner jag att det enklaste vore att bryta ut en nya klass som sköter spelet 21:s regler för kortvärdena. Klassvariabeln med alla värdena för spelkorten och metoderna getValue och fixIfAcesInHand. Enligt Scrutinizer har fixIfAcesInHand högst komplexitet i klassen med 5.
 Det är en start för att se hur det påverkar komplexiteten.
 
-"Couplingen" blir nog svårt att få bort från Game21, då klassen är själva navet av spelet. Men genom att bryta ut en klass delar jag istället upp komplexiteten på fler ställen och gör det lättare att underhålla den.
+    "Couplingen" blir nog svårt att få bort från Game21, då klassen är själva navet av spelet. Men genom att bryta ut en klass delar jag istället upp kodens komplexitet på fler ställen och gör det lättare att underhålla den.
 
-Jag tror att detta leder till att komplexiteten(conditional complexity) i Scrutinizer kommer minska med minst 5 och hoppas och tror att den större orangea cirkeln för klassen i PhpMetrics kommer bli mindre än kontrollklasserna, som är aningen mindre.
+    Jag tror att detta leder till att komplexiteten(conditional complexity) i Scrutinizer kommer minska med minst 5 och hoppas och tror att den större orangea cirkeln för klassen i PhpMetrics kommer bli mindre än kontrollklasserna, som är aningen mindre.
 
-Efter skapandet av klassen Game21CardValues ändrades mycket riktigt värdet för "conditional complexity" i Scrutinizer till 20 istället för 25. I PhpMetrics har den orangea cirkeln minskat i storlek till att likna kontroll-klasserna.
+    Efter skapandet av klassen Game21CardValues ändrades mycket riktigt värdet för "conditional complexity" i Scrutinizer till 20 istället för 25. I PhpMetrics har den orangea cirkeln minskat i storlek till att likna kontroll-klasserna.
 
-2. Jag tycker forfarande att går att minska komplexiteten genom att bryta ut "deal"-metoderna till en egen klass(DealerHand). De hör egentligen inte hemma i klassen, känner jag. Metoden dealBank har i Game21 störst komplexitet med 4. Får jag bort Deck objektet som argument till metoderna för deal tror jag att det minskar komplexiteten. Istället "injectas" Deck in i DealerHand genom konstruktorn. Jag byter även namn på metoderna till playerTurn och bankTurn för att bättre representera en spelomgång.
+2. Jag tycker forfarande att går att minska komplexiteten genom att bryta ut "deal"-metoderna till en egen klass(DealerHand). De hör egentligen inte hemma i klassen, känner jag. Metoden dealBank har i Game21 störst komplexitet med 4. Får jag bort Deck objektet som argument till metoderna för deal tror jag att det minskar komplexiteten. Istället "injectas" Deck in i DealerHand genom konstruktorn. Jag byter även namn på metoderna i Game21 till playerTurn och bankTurn för att bättre representera en spelomgång.
 
-Jag insåg också att "getter"-metoderna jag använde i klassen kunde jag ta bort. De användes endast för att underlätta testerna. Istället skapade jag ny objekt i "setUp"-metoden som jag kunde hämta med "$this" istället. Det tog bort en del kodmängd.
+    Jag insåg också att jag kunde ta bort "getter"-metoderna jag använde i klassen. De användes endast för att underlätta testerna. Istället skapade jag nya objekt i "setUp"-metoden i test-suiten för klassen som jag kunde hämta med "$this". Det tog bort en del kodmängd.
 
-Förhoppningsvis sänker detta Cyclomatic complexity ännu mer som nu är 11 i PhpMetrics. Maintanability index är 79.47.
+    Förhoppningsvis sänker detta Cyclomatic complexity ännu mer som nu är 11 i PhpMetrics. Maintanability index är 79,47.
 
-Den nya klassen förändrade inte Cyclomatic complexity men ändrade värdet på Maintanability index till 83.79, vilket ändå kan ses som positivt.
+    Den nya klassen förändrade inte Cyclomatic complexity men ändrade värdet på Maintanability index till 83,79, vilket ändå kan ses som positivt. I Scrutinizer går komplexiteten ner från 20 till 17.
 
-3. Ytterliggare en sak jag gör är att ta bort de två metoderna i Game-21 som uppdaterar saldot för banken och spelaren. Det hör inte heller till i den klassen. Det gör jag istället om till en egen klass(Saldo) och "injectar" in den i spelar-klassen och bank-klassen. De har ju båda en "has-a" relation till ett saldo, och känns mer rimligt. Detta hoppas jag leder till fler och mindre klasser men med mindre komplexitet i Game21.
+3. Ytterliggare en sak jag gör är att ta bort de två metoderna i Game-21 som uppdaterar saldot för banken och spelaren. Det hör inte heller till i den klassen. De har ju båda en "has-a" relation till ett saldo, och känns mer rimligt att implementera det i Player-klassen som sedan delas med Dealer-klassen genom arv. Först tänkte jag på att göra Saldo till en egen klass men känner att det är överdrivet. Dessutom har Player-klassen låg komplexitet i de båda verktygens betyg. Detta hoppas jag och tror att det leder till mindre komplexitet i Game21.
 
-1. Modifiera Deck med setupDeck()
-2. Dela upp Game21 i mindre klasser.
-3. Tester
+    Resultatet blev som jag trodde med en nedgång av komplexiteten i Scrutinizer från 17 till 13. I PhpMetrics går Cyclomatic complexity ner från 11 till 9 och Maintanability index minskar till 81,42. Minskningen av Maintanability index tror jag beror på att jag fick lägga till anrop i Game21 för både Player och Dealer för att sätta saldot. Det sköttes tidigare samtidigt för båda i metoden jag tog bort.
 
-
+    Dock avläser jag att GameController nu har blivit större i sin cirkel. Det tror jag beror på att jag fick lägga till kod för att kolla om saldot är tomt hos de båda spelarna. Jag är ändå nöjd att jag lyckades få ner komplexiteten på alla modell-klasserna till under 10 enligt PhpMetrics cirklar. Dessutom lyckades jag få bort mycket kod i Game21 och fördela det över fler klasser.
 
 Diskussion
 ----------
-Jag tycker att man med verktygen Scrutinizer och PhpMetrics kan få ut de mätvärdena som sticker ut.
+Jag tycker att jag har fått en lärdom av att använda mig av dessa verktyg. Jag får se på pränt vad mina brister är och har kunnat ändra dem och se resultatet. Visst säger detta något om hur koden är strukturerad men kanske inte hur den är skriven. Men jag tycker ändå att det är positivt och jag känner att det är något jag borde använda mig av i framtiden.

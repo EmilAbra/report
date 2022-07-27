@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2022-07-24 19:00:52        , with PHPMetrics v2.8.1 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2022-07-25 17:51:15        , with PHPMetrics v2.8.1 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -247,9 +247,13 @@
 
     var relations = [
     {
-        "name": "\\App\\Repository\\ProductRepository",
+        "name": "\\App\\Repository\\PlayerRepository",
         "size": 3000,
-        "relations": []
+        "relations": [
+            "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
+            "\\Doctrine\\Persistence\\ManagerRegistry",
+            "\\App\\Entity\\Player"
+        ]
     },
     {
         "name": "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
@@ -258,6 +262,16 @@
     },
     {
         "name": "\\Doctrine\\Persistence\\ManagerRegistry",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Entity\\Player",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Repository\\ProductRepository",
         "size": 3000,
         "relations": []
     },
@@ -381,6 +395,14 @@
         "name": "\\Symfony\\Component\\HttpFoundation\\Request",
         "size": 3000,
         "relations": []
+    },
+    {
+        "name": "\\App\\Controller\\ProjectController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response"
+        ]
     },
     {
         "name": "\\App\\Controller\\GameController",
