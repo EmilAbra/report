@@ -1,21 +1,42 @@
 <?php
 
-namespace App\Proj;
+/**
+ * Module for Dealer class - poker game dealer.
+ *
+ * @author Emil Abrahamsson <emilabrahamsson@yahoo.com>
+ */
 
-use App\Proj\Deck;
-use App\Proj\Card;
+namespace App\Proj;
 use App\Proj\Player;
 
-class Dealer extends Player
+class Dealer
 {
     /**
-     * @param Deck $deck - Deck object.
-     * @return Card - A card object from the Deck.
-     *
-     * Method to let the dealer deal a card.
+     * @var object $deck - The Deck of Cards.
      */
-    public function deal(Deck $deck): object
+    private object $deck;
+
+    /**
+     * Constructor for the Dealer class.
+     *
+     * @param object $deck - Card Deck.
+     */
+    public function __construct(Deck $deck)
     {
-        return $deck->drawCard();
+        $this->deck = $deck;
+    }
+
+    /**
+     * Method to deal cards.
+     *
+     * @param Player $player - Player object to deal to.
+     * @return void
+     */
+    public function deal(Player $player, int $amount): void
+    {
+        $cards = $this->deck->drawCards($amount);
+        foreach ($cards as $card) {
+            $player->setCardHand($card);
+        }
     }
 }

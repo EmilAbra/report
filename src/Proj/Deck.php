@@ -5,7 +5,6 @@
  */
 
 namespace App\Proj;
-
 use App\Proj\Card;
 
 class Deck
@@ -40,9 +39,29 @@ class Deck
     ];
 
     /**
+     * @var array<int> Values - card values.
+     */
+    private const VALUES = [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+    ];
+
+
+    /**
      * @var array<object> $deck - defaults to empty.
      */
-    private array $deck;
+    public array $deck;
 
     /**
      * @param array<object> $deck
@@ -52,6 +71,8 @@ class Deck
     public function __construct(array $deck = [])
     {
         $this->deck = $deck;
+        $this->setupDeck();
+        $this->shuffle();
     }
 
     /**
@@ -63,32 +84,6 @@ class Deck
     public function setDeck(Card $card): void
     {
         $this->deck[] = $card;
-    }
-
-    /**
-     * @return void
-     *
-     * Setup deck with new Card object for RANKS and SUITS. 52 Cards.
-     * Calls method setDeck with every inner iteration.
-     */
-    public function setupDeck(): void
-    {
-        foreach ($this->getSuits() as $suit) {
-            foreach ($this->getRanks() as $rank) {
-                $card = new Card($suit, $rank);
-                $this->setDeck($card);
-            }
-        }
-    }
-
-    /**
-     * @return void
-     *
-     * Reset the $deck to empty array.
-     */
-    public function resetDeck(): void
-    {
-        $this->deck = [];
     }
 
     /**
@@ -104,6 +99,37 @@ class Deck
     /**
      * @return void
      *
+     * Setup deck with new Card object for RANKS and SUITS. 52 Cards.
+     * Calls method setDeck with every inner iteration.
+     */
+    private function setupDeck(): void
+    {
+        $suits = $this->getSuits();
+        $ranks = $this->getRanks();
+        $values = $this->getValues();
+        for ($i=0; $i < count($suits); $i++) {
+            for ($j=0; $j < count($ranks); $j++) {
+                $card = new Card($suits[$i], $ranks[$j], $values[$j]);
+                $this->setDeck($card);
+            }
+        }
+    }
+
+    /**
+     * @return void
+     *
+     * Reset the $deck to empty array and set it up followed by a shuffle.
+     */
+    public function resetDeck(): void
+    {
+        $this->deck = [];
+        // $this->setupDeck();
+        // $this->shuffle();
+    }
+
+    /**
+     * @return void
+     *
      * Shuffle the Cards in the $deck array.
      */
     public function shuffle(): void
@@ -112,13 +138,15 @@ class Deck
     }
 
     /**
-     * @return Card - From the $deck array.
+     * Remove and Return cards from top of the deck.
      *
-     * Get and return the last Card object in $deck array.
+     * @param int $amount - How many cards from deck to draw.
+     * @return array<object> - From the $deck array.
      */
-    public function drawCard(): object
+    public function drawCards(int $amount): array
     {
-        return array_pop($this->deck);
+        $cards = array_splice($this->deck, 0, $amount);
+        return $cards;
     }
 
     /**
@@ -139,6 +167,16 @@ class Deck
     public function getSuits(): array
     {
         return self::SUITS;
+    }
+
+    /**
+     * @return array<int> VALUES
+     *
+     * Return VALUES array.
+     */
+    public function getValues(): array
+    {
+        return self::VALUES;
     }
 
     /**

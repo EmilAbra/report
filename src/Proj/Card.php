@@ -2,6 +2,8 @@
 
 /**
  * Module for Card class - playing cards.
+ *
+ * @author Emil Abrahamsson <emilabrahamsson@yahoo.com>
  */
 
 namespace App\Proj;
@@ -11,45 +13,24 @@ class Card
     /**
      * @var string $suit - The suit of the card
      * @var string $rank - The rank of the card
-     * @var bool $convertedAce - If the card is converted from 14 points to 1.
-     * Defaults to False.
+     * @var int $value - value of the card in Casino holdem.
      */
     private string $suit;
     private string $rank;
-    private bool $convertedAce;
+    private int $value;
 
     /**
+     * Constructor for the Card class.
+     *
      * @param string $suit - The suit of the card.
      * @param string $rank - The rank of the card
-     *
-     * Constructor for the Card class.
+     * @param int $value - The value of the card
      */
-    public function __construct(string $suit, string $rank)
+    public function __construct(string $suit, string $rank, int $value)
     {
         $this->suit = $suit;
         $this->rank = $rank;
-        $this->convertedAce = false;
-    }
-
-    /**
-     * @return void
-     *
-     * Set the variable $convertedAce to True if its an Ace and is converted
-     * from 14 points to 1.
-     */
-    public function setConvertedAce(): void
-    {
-        $this->convertedAce = true;
-    }
-
-    /**
-     *
-     * @return bool - True or False if variable $convertedAce its an Ace and
-     * is converted from 14 points to 1.
-     */
-    public function isConvertedAce(): bool
-    {
-        return $this->convertedAce;
+        $this->value = $value;
     }
 
     /**
@@ -68,5 +49,14 @@ class Card
     public function getSuit(): string
     {
         return $this->suit;
+    }
+
+    /**
+     *
+     * @return int - The value of the card.
+     */
+    public function getValue(): int
+    {
+        return $this->value;
     }
 }
