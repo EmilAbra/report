@@ -1,12 +1,30 @@
 .holdem-table {
+    border-radius: 40%;
     background: #2D7551;
-    height: auto;
+    height: 600px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .table-cards {
     margin-left: auto;
     margin-right: auto;
     max-width: 1000px;
+}
+
+.cards-wrapper {
+    flex: 0 1 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hand-odds {
+    flex: 0 1 auto;
+    margin-left: 65%;
+    margin-top: 100px;
 }
 
 .holdem-title {
@@ -18,9 +36,14 @@
     border-radius: 50%;
 }
 
-.holdem-ai, .holdem-player {
+.holdem-ai, .holdem-player-info {
     text-align: center;
     padding: 10px;
+}
+
+.holdem-player {
+    display: flex;
+    justify-content: center;
 }
 
 .holdem-table .info {
@@ -35,3 +58,24 @@
 .holdem-title .texas-holdem {
     text-align: center;
 }
+
+.holdem-buttons {
+    padding-left: 20px;
+}
+
+.holdem-buttons-info {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.player-info {
+    text-align: center;
+}
+
+.result {
+    text-align: center;
+}
+
+/* .ai-table {
+    margin-top: 50px;
+} */

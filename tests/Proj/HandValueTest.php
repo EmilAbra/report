@@ -104,7 +104,7 @@ class HandValueTest extends TestCase
      */
     public function testHandHasFlushReturnsRightValues(): void
     {
-        $FlushCards = [
+        $flushCards = [
             new Card("diams", "2", 2),
             new Card("diams", "3", 3),
             new Card("diams", "4", 4),
@@ -112,7 +112,7 @@ class HandValueTest extends TestCase
             new Card("diams", "6", 6)
         ];
         $cardHand = new Hand();
-        foreach ($FlushCards as $card) {
+        foreach ($flushCards as $card) {
             $cardHand->setDeck($card);
         }
         $flushArray = $this->handValue->handHasFlush($cardHand);

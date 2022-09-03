@@ -478,7 +478,16 @@
     list-style-type: none;
     padding: 0;
     margin: auto;
-    /* margin-bottom: 50px; */
+    /* margin-top: 50px; */
+    position: relative;
+    clear: both;
+}
+
+.playingCards ul.ai-table {
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    margin-top: 30px;
     position: relative;
     clear: both;
 }
@@ -500,6 +509,7 @@
     margin-bottom: 3.5em;
 }
 .playingCards ul.table li,
+.playingCards ul.ai-table li,
 .playingCards ul.hand li,
 .playingCards ul.deck li {
     margin: 0;

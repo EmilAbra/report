@@ -7,6 +7,7 @@
  */
 
 namespace App\Proj;
+
 use App\Proj\Player;
 
 class Dealer

@@ -7,6 +7,7 @@
  */
 
 namespace App\Proj;
+
 use App\Proj\Deck;
 use App\Proj\Card;
 use App\Proj\Hand;

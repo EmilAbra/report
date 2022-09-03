@@ -18,17 +18,20 @@ class Player
      */
     private array $cardHand = [];
     private int $cardScore = 0;
+    private int $saldo = 100;
 
     /**
      * @param array<object> $cardHand - Players start hand.
      * @param int $cardScore - start card score.
+     * @param int $saldo - Players money saldo.
      *
      * Constructor for the Player class.
      */
-    public function __construct(array $cardHand = [], int $cardScore = 0)
+    public function __construct(array $cardHand = [], int $cardScore = 0, int $saldo = 100)
     {
         $this->cardHand = $cardHand;
         $this->cardScore = $cardScore;
+        $this->saldo = $saldo;
     }
 
     /**

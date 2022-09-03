@@ -1,0 +1,110 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Texas Holdem{% endblock %}
+
+{% block content %}
+
+<div class="holdem-wrapper">
+    <div class="holdem-title">
+        <div class="texas-holdem">
+            <h1>Casino Hold’em</h1>
+        </div>
+        <div class="about-project">
+            <a href="{{ path('about_project') }}">Om projektet</a>
+        </div>
+    </div>
+    <div class="holdem-ai">
+        <div class="player-img">
+            <img src="{{ asset(aiPlayerInfo.imgPath) }}" alt="Bild på dator-spelaren">
+        </div>
+        <div class="player-name">
+            <h3>{{ aiPlayerInfo.firstName }} {{ aiPlayerInfo.lastName }}</h3>
+        </div>
+        <div class="player-saldo">
+            <h3>$ {{ aiPlayerInfo.saldo }}</h3>
+        </div>
+    </div>
+
+    <div class="holdem-table">
+        <div class="cards-wrapper">
+            <div class="ai-cards">
+                <div class="playingCards faceImages game21">
+                    <ul class="ai-table">
+                        {% for card in aiPlayerHand %}
+                        <li>
+                            <div class="card back">*</div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="table-cards">
+                <div class="playingCards faceImages game21">
+                    <ul class="table">
+                        {% for card in boardCards %}
+                        <li>
+                            <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                                <span class="rank">{{ card.rank }}</span>
+                                <span class="suit">&{{ card.suit }};</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="player-cards">
+                <div class="playingCards faceImages game21">
+                    <ul class="table">
+                        {% for card in playerHand %}
+                        <li>
+                            <div class="card rank-{{ card.rank }} {{ card.suit }}">
+                                <span class="rank">{{ card.rank }}</span>
+                                <span class="suit">&{{ card.suit }};</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="hand-odds">
+            <h2>Hand Odds</h2>
+            <table>
+                <tr>
+                    <th>Hand</th>
+                    <th>Odds</th>
+                </tr>
+                {% for holdem in payTable %}
+                    <tr>
+                        <th>{{ holdem.hand }}</th>
+                        <th>{{ holdem.odds }}</th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="holdem-player">
+        <div class="player-info">
+            <div class="player-img">
+                <img src="{{ asset(playerInfo.imgPath) }}" alt="Bild på spelaren">
+            </div>
+            <div class="player-name">
+                <h3>{{ playerInfo.firstName }} {{ playerInfo.lastName }}</h3>
+            </div>
+            <div class="player-saldo">
+                <h3>$ {{ playerInfo.saldo }}</h3>
+            </div>
+        </div>
+        <div class="holdem-buttons">
+            <h3>Syna eller lägg dig?</h3>
+            <form action="{{ path('deal_river') }}">
+                <input type="submit" value="Syna($200)" />
+            </form>
+            <form action="{{ path('fold') }}">
+                <input type="submit" value="Lägg dig(-$200)" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

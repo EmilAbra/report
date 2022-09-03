@@ -13,7 +13,6 @@ use App\Game\Player;
 use App\Game\Game21CardValues;
 use App\Game\DealerHand;
 
-
 class Game21
 {
     /**
@@ -35,9 +34,11 @@ class Game21
      * Constructor for the Game21 class.
      */
     public function __construct(
-        Dealer $dealer, Player $player, Game21CardValues $cardValues, DealerHand $dealerHand
-    )
-    {
+        Dealer $dealer,
+        Player $player,
+        Game21CardValues $cardValues,
+        DealerHand $dealerHand
+    ) {
         $this->dealer = $dealer;
         $this->player = $player;
         $this->cardValues = $cardValues;

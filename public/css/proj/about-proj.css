@@ -1,0 +1,20 @@
+
+.about-proj {
+    margin-bottom: 50px;
+}
+
+.about-proj a {
+    color: #444;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px;
+    width: 80px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.about-proj a:hover {
+    text-decoration: underline;
+}

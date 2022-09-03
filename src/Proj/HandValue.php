@@ -7,6 +7,7 @@
  */
 
 namespace App\Proj;
+
 use App\Proj\Card;
 use App\Proj\Hand;
 
@@ -23,7 +24,7 @@ class HandValue
      * Check if hand has a pair.
      *
      * @param array<int> $cardValues - card hand values.
-     * @return mixed - rank value of the pair or False if no pair.
+     * @return mixed - rank value of the pair or false if no pair.
      */
     public function handHasPair(array $cardValues): mixed
     {
@@ -33,7 +34,7 @@ class HandValue
                 return $value;
             }
         }
-        return False;
+        return false;
     }
 
     /**
@@ -41,7 +42,7 @@ class HandValue
      *
      * @param array<int> $cardValues - card hand values.
      * @return mixed - rank value array of the high and low pair.
-     * False if not two pair.
+     * false if not two pair.
      */
     public function handHasTwoPair(array $cardValues): mixed
     {
@@ -61,7 +62,7 @@ class HandValue
         if (count($rankArray) === 2) {
             return $rankArray;
         }
-        return False;
+        return false;
     }
 
     /**
@@ -69,7 +70,7 @@ class HandValue
      *
      * @param array<int> $cardValues - card hand values.
      * @return mixed - rank value of the Three cards
-     * or False if no three of a kind.
+     * or false if no three of a kind.
      */
     public function handHasThreeOfAKind(array $cardValues): mixed
     {
@@ -79,7 +80,7 @@ class HandValue
                 return $value;
             }
         }
-        return False;
+        return false;
     }
 
     /**
@@ -87,7 +88,7 @@ class HandValue
      *
      * @param array<object> $cardHand - Cards in hand.
      * @return mixed - highest value in the flush.
-     * False if no flush in hand.
+     * false if no flush in hand.
      */
     public function handHasFlush(array $cardHand): mixed
     {
@@ -103,7 +104,7 @@ class HandValue
                 return $flushValues;
             }
         }
-        return False;
+        return false;
     }
 
     /**
@@ -111,7 +112,7 @@ class HandValue
      * on array size. If so convert Ace from 14 to 1.
      *
      * @param array<int> $cardValues - card hand values.
-     * @return mixed - The highest card value in the straight or False if no
+     * @return mixed - The highest card value in the straight or false if no
      * straight in hand.
      */
     public function convertAceIflowStraight($cards): array
@@ -135,7 +136,7 @@ class HandValue
      * straight.
      *
      * @param array<int> $cardValues - card hand values.
-     * @return mixed - The highest card value in the straight or False if no
+     * @return mixed - The highest card value in the straight or false if no
      * straight in hand.
      */
     public function handHasStraight(array $cardValues): mixed
@@ -161,7 +162,7 @@ class HandValue
                 return $highestCard;
             }
         }
-        return False;
+        return false;
     }
 
     /**
@@ -169,7 +170,7 @@ class HandValue
      *
      * @param array<int> $cardValues - card hand values.
      * @return mixed - The rank of the Three of a kind in Full House.
-     * False if no Full House.
+     * false if no Full House.
      */
     public function handHasFullHouse(array $cardValues): mixed
     {
@@ -181,7 +182,7 @@ class HandValue
                 }
             }
         }
-        return False;
+        return false;
     }
 
     /**
@@ -189,7 +190,7 @@ class HandValue
      *
      * @param array<int> $cardValues - card hand values.
      * @return mixed - The rank of the four of a Kind.
-     * False if not Four Of a Kind found.
+     * false if not Four Of a Kind found.
      */
     public function handHasFourOfAKind(array $cardValues): mixed
     {
@@ -199,7 +200,7 @@ class HandValue
                 return $value;
             }
         }
-        return False;
+        return false;
     }
 
     /**
@@ -236,9 +237,9 @@ class HandValue
      * Main method to go through every possible hand.
      *
      * @param array<object> $cardHand - Cards in card hand.
-     * @return mixed - Hand name and hand score out of the card hand in array. If nothing in hand: return null.
+     * @return array - Hand name and hand score out of the card hand in array.
      */
-    public function findHandValue(array $cardHand): mixed
+    public function findHandValue(array $cardHand): array
     {
         $cardValues = $this->getAllValues($cardHand);
         $handArray = [];
@@ -292,7 +293,6 @@ class HandValue
         $twoPairValue = $this->handHasTwoPair($cardValues);
         if ($twoPairValue) {
             $handArray['Tvåpar'] = $twoPairValue;
-
             return $handArray;
         }
 
@@ -301,19 +301,7 @@ class HandValue
             $handArray['Par'] = $pairValue;
             return $handArray;
         }
-        return null;
+        $handArray['Inget'] = 0;
+        return $handArray;
     }
 }
-// $cardArray = [
-//     new Card("diams", "2", 2),
-//     new Card("diams", "3", 3),
-//     new Card("diams", "4", 4),
-//     new Card("diams", "5", 5),
-//     new Card("diams", "6", 6)
-// ];
-// $hand = new Hand();
-// foreach ($cardArray as $card) {
-//     $hand->setDeck($card);
-// }
-// $handValue = new HandValue();
-// echo $handValue->handHasFlush($hand);

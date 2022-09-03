@@ -7,6 +7,7 @@
  */
 
 namespace App\Proj;
+
 use App\Proj\Deck;
 use App\Proj\Card;
 
@@ -18,9 +19,9 @@ class Hand extends Deck
     public array $deck;
 
     /**
-     * @param array<object> $deck
-     *
      * Constructor for the Deck class.
+     *
+     * @param array<object> $deck
      */
     public function __construct(array $deck = [])
     {
@@ -30,7 +31,7 @@ class Hand extends Deck
     /**
      * Get all card ranks in hand.
      *
-     * @return array<string> RANKS.
+     * @return array<string> - RANKS.
      */
     public function getAllRanks(): array
     {
@@ -44,7 +45,7 @@ class Hand extends Deck
     /**
      * Get all card suits in hand.
      *
-     * @return array<string> SUITS
+     * @return array<string> - SUITS.
      */
     public function getAllSuits(): array
     {
@@ -58,7 +59,7 @@ class Hand extends Deck
     /**
      * Get all card values in hand.
      *
-     * @return array<int> VALUES
+     * @return array<int> - VALUES.
      */
     public function getAllValues(): array
     {

@@ -5,6 +5,7 @@
  */
 
 namespace App\Proj;
+
 use App\Proj\Card;
 
 class Deck
@@ -64,9 +65,9 @@ class Deck
     public array $deck;
 
     /**
-     * @param array<object> $deck
-     *
      * Constructor for the Deck class.
+     *
+     * @param array<object> $deck
      */
     public function __construct(array $deck = [])
     {
@@ -76,10 +77,10 @@ class Deck
     }
 
     /**
+     * Add Card object to $deck.
+     *
      * @param Card $card - Card object.
      * @return void
-     *
-     * Add Card object to $deck.
      */
     public function setDeck(Card $card): void
     {
@@ -87,9 +88,9 @@ class Deck
     }
 
     /**
-     * @return array<object> $deck
-     *
      * Get the $deck array.
+     *
+     * @return array<object> $deck
      */
     public function getDeck(): array
     {
@@ -97,18 +98,18 @@ class Deck
     }
 
     /**
-     * @return void
-     *
      * Setup deck with new Card object for RANKS and SUITS. 52 Cards.
      * Calls method setDeck with every inner iteration.
+     *
+     * @return void
      */
     private function setupDeck(): void
     {
         $suits = $this->getSuits();
         $ranks = $this->getRanks();
         $values = $this->getValues();
-        for ($i=0; $i < count($suits); $i++) {
-            for ($j=0; $j < count($ranks); $j++) {
+        for ($i = 0; $i < count($suits); $i++) {
+            for ($j = 0; $j < count($ranks); $j++) {
                 $card = new Card($suits[$i], $ranks[$j], $values[$j]);
                 $this->setDeck($card);
             }
@@ -150,9 +151,9 @@ class Deck
     }
 
     /**
-     * @return array<string> RANKS.
-     *
      * Return RANKS array.
+     *
+     * @return array<string> RANKS.
      */
     public function getRanks(): array
     {
@@ -160,9 +161,9 @@ class Deck
     }
 
     /**
-     * @return array<string> SUITS
-     *
      * Return SUITS array.
+     *
+     * @return array<string> SUITS
      */
     public function getSuits(): array
     {
@@ -170,9 +171,9 @@ class Deck
     }
 
     /**
-     * @return array<int> VALUES
-     *
      * Return VALUES array.
+     *
+     * @return array<int> VALUES
      */
     public function getValues(): array
     {
@@ -180,9 +181,9 @@ class Deck
     }
 
     /**
-     * @return int - number of cards.
-     *
      * Return number of cards in $deck array.
+     *
+     * @return int - number of cards.
      */
     public function getNumberOfCards(): int
     {

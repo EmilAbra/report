@@ -47,5 +47,4 @@ class BoardTest extends TestCase
         $this->assertInstanceOf("\App\Proj\Card", $cardHand[0]);
         $this->assertEquals(count($cardHand), 1);
     }
-
 }

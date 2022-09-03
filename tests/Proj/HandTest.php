@@ -68,6 +68,4 @@ class HandTest extends TestCase
         $this->assertIsArray($handRanks);
         $this->assertContains(2, $handRanks);
     }
-
-
 }
