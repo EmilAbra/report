@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\PayTableRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+* @SuppressWarnings(PHPMD)
+*/
 #[ORM\Entity(repositoryClass: PayTableRepository::class)]
 class PayTable
 {

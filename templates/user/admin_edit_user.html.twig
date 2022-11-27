@@ -1,0 +1,37 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Uppdatera användare{% endblock %}
+
+{% block content %}
+    <div class="user-form-container">
+        <h1>Uppdatera användare</h1>
+
+        <form method="post">
+            <fieldset>
+                <label for="acronym">Akronym</label>
+                <input id="acronym" required type="text" name="acronym" value="{{ user.acronym }}">
+
+                <label for="name">Namn</label>
+                <input id="name" type="text" name="name" value="{{ user.name }}">
+
+                <label for="email">E-post</label>
+                <input id="email" type="text" name="email" value="{{ user.email }}">
+
+                <label for="address">Adress</label>
+                <input id="address" type="text" name="address" value="{{ user.address }}">
+
+                <label for="phone">Telefon</label>
+                <input id="phone" type="text" name="phone" value="{{ user.phone }}">
+
+                <label for="work">Jobb</label>
+                <input id="work" type="text" name="work" value="{{ user.work }}">
+
+                <label for="imgpath">Bild(URL till bild)</label>
+                <input id="imgpath" type="text" name="imgpath" value="{{ user.imgpath }}">
+
+                <input type="submit" name="doit" value="Bekräfta">
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}

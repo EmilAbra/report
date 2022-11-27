@@ -1,0 +1,36 @@
+<div class="holdem-player-info">
+    {% if app.user %}
+        
+        {% if app.user.imgpath %}
+            <div class="player-img">
+                <img src="{{ app.user.imgpath }}" alt="Bild på spelaren">
+            </div>
+        {% else %}
+            <div class="player-img">
+                <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="Bild på spelaren">
+            </div>
+        {% endif %}
+
+        {% if app.user.name %}
+            <div class="player-name">
+                <h3>{{ app.user.name }}</h3>
+            </div>
+        {% else %}
+            <div class="player-name">
+                <h3>{{ app.user.acronym }}</h3>
+            </div>
+        {% endif %}
+
+    {% else %}
+        <div class="player-img">
+            <img src="{{ asset(playerInfo.imgPath) }}" alt="Bild på spelaren">
+        </div>
+        <div class="player-name">
+            <h3>{{ playerInfo.firstName }} {{ playerInfo.lastName }}</h3>
+        </div>
+    {% endif %}
+    
+    <div class="player-saldo">
+        <h3>$ {{ playerInfo.saldo }}</h3>
+    </div>
+</div>

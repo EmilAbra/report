@@ -16,7 +16,41 @@ use App\Game\Game21CardValues;
 use App\Game\DealerHand;
 
 class GameController extends AbstractController
-{
+{   
+    /**
+     * @var object $deck - The deck of cards.
+     * @var object $dealer - The dealer of the game.
+     * @var object $player - The player.
+     * @var object $game - The game logic.
+     */
+    private object $deck;
+    private object $dealer;
+    private object $player;
+    private object $game;
+
+    /**
+     * @param $deck - The deck of cards.
+     * @param $dealer - The dealer of the game.
+     * @param $player - The player.
+     * @param $game - The game logic.
+     *
+     * Constructor for the GameController class.
+     */
+    public function __construct(
+        Deck $deck,
+        Dealer $dealer,
+        Player $player,
+        Game21 $game
+    ) {
+
+        $this->deck = $deck;
+        $this->deck->setupDeck();
+        $this->deck->shuffle();
+        $this->dealer = $dealer;
+        $this->player = $player;
+        $this->game = $game;
+    }
+
     /**
      * @Route("/game", name="card_game")
      */
@@ -38,24 +72,15 @@ class GameController extends AbstractController
      */
     public function play(SessionInterface $session): Response
     {
-        $deck = new Deck();
-        $deck->setupDeck();
-        $deck->shuffle();
-        $dealer = new Dealer();
-        $player = new Player();
-        $cardValues = new Game21CardValues();
-        $dealerHand = new DealerHand($deck);
-        $game = new Game21($dealer, $player, $cardValues, $dealerHand);
-
-        $session->set("deck", $deck);
-        $session->set("dealer", $dealer);
-        $session->set("player", $player);
-        $session->set("game", $game);
+        $session->set("deck", $this->deck);
+        $session->set("dealer", $this->dealer);
+        $session->set("player", $this->player);
+        $session->set("game", $this->game);
 
         $data = [
-            'cardsLeft' => $deck->getNumberOfCards(),
-            'playerMoney' => $player->getSaldo(),
-            'dealerMoney' => $dealer->getSaldo()
+            'cardsLeft' => $this->deck->getNumberOfCards(),
+            'playerMoney' => $this->player->getSaldo(),
+            'dealerMoney' => $this->dealer->getSaldo()
         ];
         return $this->render('game/play.html.twig', $data);
     }

@@ -8,7 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<PlayerInfo>
- *
+ * @SuppressWarnings(PHPMD)
  * @method PlayerInfo|null find($id, $lockMode = null, $lockVersion = null)
  * @method PlayerInfo|null findOneBy(array $criteria, array $orderBy = null)
  * @method PlayerInfo[]    findAll()

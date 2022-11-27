@@ -24,6 +24,36 @@ input[type=submit]:hover {
     color: #fff;
 }
 
+button[type=submit] {
+    width: 100%;
+    background-color: #CC3333;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type=submit]:hover {
+    background-color: #2D7551;
+    color: #fff;
+}
+
+.registerButton {
+    width: 100%;
+    background-color: #2D7551;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.registerButton:hover {
+    background-color: #CC3333;
+    color: #fff;
+}
+
 .form {
     border-radius: 5px;
     background-color: #f2f2f2;
@@ -36,4 +66,32 @@ input[type=submit]:hover {
 .game-buttons {
     width: fit-content;
     margin: 0 auto 100px;
+}
+
+.login-form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    max-width: 20%;
+    margin: 100px auto;
+}
+
+#registration_form_acronym, #inputAkronym {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#registration_form_plainPassword, #inputPassword {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }

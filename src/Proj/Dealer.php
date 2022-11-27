@@ -20,7 +20,7 @@ class Dealer
     /**
      * Constructor for the Dealer class.
      *
-     * @param object $deck - Card Deck.
+     * @param $deck - Card Deck object.
      */
     public function __construct(Deck $deck)
     {

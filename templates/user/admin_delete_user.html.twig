@@ -1,0 +1,38 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Radera användare{% endblock %}
+
+{% block content %}
+    <div class="user-form-container">
+        <h1>Radera användare</h1>
+
+        <form method="post">
+            <fieldset>
+
+                <label for="acronym">Akronym</label>
+                <input id="acronym" readonly type="text" name="acronym" value="{{ user.acronym }}">
+
+                <label for="name">Namn</label>
+                <input id="name" readonly type="text" name="name" value="{{ user.name }}">
+
+                <label for="email">E-post</label>
+                <input id="email" readonly type="text" name="email" value="{{ user.email }}">
+
+                <label for="address">Adress</label>
+                <input id="address" readonly type="text" name="address" value="{{ user.address }}">
+
+                <label for="phone">Telefon</label>
+                <input id="phone" readonly type="text" name="phone" value="{{ user.phone }}">
+
+                <label for="work">Jobb</label>
+                <input id="work" readonly type="text" name="work" value="{{ user.work }}">
+
+                <label for="imgpath">Bild(URL till bild)</label>
+                <input id="imgpath" readonly type="text" name="imgpath" value="{{ user.imgpath }}">
+
+                <input type="submit" name="doit" value="Bekräfta">
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}

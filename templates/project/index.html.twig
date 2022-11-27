@@ -1,29 +1,12 @@
 {% extends 'base_proj.html.twig' %}
 
-{% block title %}Texas Holdem{% endblock %}
+{% block title %}Casino Hold’em{% endblock %}
 
 {% block content %}
 
 <div class="holdem-wrapper">
-    <div class="holdem-title">
-        <div class="texas-holdem">
-            <h1>Texas Hold’em</h1>
-        </div>
-        <div class="about-project">
-            <a href="{{ path('about_project') }}">Om projektet</a>
-        </div>
-    </div>
-    <div class="holdem-ai">
-        <div class="player-img">
-            <img src="{{ asset(aiPlayerInfo.imgPath) }}" alt="Bild på dator-spelaren">
-        </div>
-        <div class="player-name">
-            <h3>{{ aiPlayerInfo.firstName }} {{ aiPlayerInfo.lastName }}</h3>
-        </div>
-        <div class="player-saldo">
-            <h3>$ {{ aiPlayerInfo.saldo }}</h3>
-        </div>
-    </div>
+    {{ include('/project/_holdem_header.html.twig') }}
+    {{ include('/project/_ai_info.html.twig') }}
 
     <div class="holdem-table">
         <div class="ai-cards">
@@ -44,16 +27,6 @@
         </div>
     </div>
 
-    <div class="holdem-player-info">
-        <div class="player-img">
-            <img src="{{ asset(playerInfo.imgPath) }}" alt="Bild på spelaren">
-        </div>
-        <div class="player-name">
-            <h3>{{ playerInfo.firstName }} {{ playerInfo.lastName }}</h3>
-        </div>
-        <div class="player-saldo">
-            <h3>$ {{ playerInfo.saldo }}</h3>
-        </div>
-    </div>
+    {{ include('/project/_player_info.html.twig') }}
 </div>
 {% endblock %}

@@ -108,8 +108,11 @@ class Deck
         $suits = $this->getSuits();
         $ranks = $this->getRanks();
         $values = $this->getValues();
-        for ($i = 0; $i < count($suits); $i++) {
-            for ($j = 0; $j < count($ranks); $j++) {
+        $suitsLength = count($suits);
+        $ranksLength = count($ranks);
+
+        for ($i = 0; $i < $suitsLength; $i++) {
+            for ($j = 0; $j < $ranksLength; $j++) {
                 $card = new Card($suits[$i], $ranks[$j], $values[$j]);
                 $this->setDeck($card);
             }

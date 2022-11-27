@@ -4,20 +4,58 @@ Kmom10
 
 **Krav 1, 2, 3**
 Eftersom jag är en gammal poker-räv online kände jag det naturligt att välja att göra ett pokerspel á la Texas Hold'em.
-Jag tittade på specifikationen för projektet redan vid cirka kmom05 för att ha tid på att planera i huvudet hur jag skulle strukturera
-det. Det kändes mycket att göra ett fullkomligt Texas Hold'em med många omgångar med satsningar och "A.I."-kod. Jag luskade runt på Dbwebbs Discord och läste om Casino Hold'em som verkade lättare att åstadkomma. Jag tittade på Wikipedia om spelet och kände att det var bättre lämpat tidsmässigt att utföra. Jag valde att omkasta reglerna något eftersom två spelare möts i en "heads-up". Jag valde ändå att kopiera oddsen för händerna som fanns.
-
-I min utforskning över spelet poker på nätet och i kod-form
-
-Jag hade nu en plan och det började snurra i huvudet om vilka klasser jag behöver. Efter kmom05 och biblioteket hade jag lärt mig en hel del. Jag kände det viktigt att göra "test-cases" samtidigt som jag gjorde klasserna, något jag inte gjorde i de tidigare uppgifterna. Jag förstår nu att man vill se att klassen ska göra vad den är till för oavsett vilka andra klasser den är beroende utav.
+Jag tittade på specifikationen för projektet redan vid cirka kmom05 för att ha tid på mig att planera i huvudet hur jag skulle strukturera
+det. Det kändes mycket att göra ett fullkomligt Texas Hold'em med många omgångar med satsningar och "A.I."-kod. Jag luskade runt på Discord och läste om Casino Hold'em som verkade lättare att åstadkomma. Jag tittade på Wikipedia om spelet och kände att det var bättre lämpat tidsmässigt att utföra. Jag valde att omkasta reglerna något eftersom jag tänkte att två spelare möts i en "heads-up" - spelare mot dator.
 
 Jag visste att jag här kunde använda mig av de klasser jag haft i kortspelet 21 från kmom04. Således började jag med att bygga skalet för projektet genom att lägga till "controllern" och en "route" för sidan "proj". Jag la även till en ny sida i navbaren och kopierade in alla klasser från "Game" till en ny mapp "Proj".
 
-Nu hade jag något att börja med. Jag visste att det svåra med uppgiften var att få till en klass som räknar ut vad varje spelare har för värde på sin kort-hand. Vid sidan av att jag modifierade flera av de klasser jag redan hade var detta något jag började med ganska tidigt.
+Det är en grund att stå på och det som fattades var klasser för spelets funktionalitet för att hämtas i "ProjectController".
 
-För att åstadkomma en ORM-koppling med databasen kände jag att jag kunde spara detaljer om informationen om de två spelande, med namn, saldo, och länk till bild. Dessutom kom jag på senare att jag kunde lagra oddsen på varje poker-hand i databasen, för att hämta och skriva ut i en tabell jämte spelets kort. Samma tabell som jag använde i en konstant "array" för att räkna ut hur mycket spelaren som vann skulle få i klassen "CasinoHoldem".
+Jag kände att jag behövde dela upp klasserna liknande det jag redan hade i spelet 21. Men här handlade det om sju kort sammanlagt och det var en utmaning. 
+
+Jag tänkte att jag behövde klasser för spelaren 
+
+Etersom det är ett pokerspel med "heads up"(två spelare) med en a.i och en spelare, 
+
+
+
+
+
+
+Nu hade jag något att börja med. Jag tänkte att det svåra med uppgiften var att få till en klass som räknar ut vad varje spelare har för värde på sin kort-hand. Vid sidan av att jag modifierade flera av de klasser jag redan hade var detta något jag började med ganska tidigt.
+
+Klassen jag skapade(HandValue) för att kolla handens värde blev komplex med många funktioner för att kontrollera handen. Min plan var att skapa en "main"-funktion i klassen som går igenom varje möjlig hand med hjälp av klassens metoder och sedan returnerar resultatet i en array. Detta märktes av på testerna med "phpmd" och jag lät detta vara då jag känner att är nöjd med strukturen i klassen. Jag förstår att det är många if-satser i en och samma funktion med många rader kod, men jag känner detta är nödvändigt för att fungera som en motor för kontroll av korthanden.
+
+Utöver detta skapade jag en klass för "bordet" som lägger till korten till spelarens hand. Därför ärver klassen från spelarklassen.
+
+Själva logiken sker i klassen "CasinoHoldem" där rankingen av handen och oddsen finns. Det är även här vilken runda som bestäms, vem som vunnit, och hur mycket som delas ut till vinnaren.
+
+För att åstadkomma en ORM-koppling med databasen kände jag att jag kunde spara detaljer om informationen om de två spelande, med namn, saldo, och länk till bild. Dessutom kom jag på senare att jag kunde lagra oddsen på varje poker-hand i databasen, för att hämta och skriva ut i en tabell jämte korten på bordet. Samma tabell som jag använde i en konstant "array" för att räkna ut hur mycket spelaren som vann skulle få i klassen "CasinoHoldem". Informationen om oddsen hämtade jag på Wikipedias sida om Casino Hold'em. 
 
 När det gäller en ny stil luskade jag runt på nätet efter casino sidor och hittade färger som jag tycker passar med de ofta dunkla spel-miljöerna, svart, grönt, och rött. Jag gjorde en kopia av "base-templaten" och döpte om den till projektet. Därefter kunde jag använden den för mina "casino-templates" med ändrad källa för css-koden så att de endast påverkade dem. En ny mapp för css-koden skapades därmed för det. Jag valde att ta bort footern från den nya "basen" då den tog för mycket plats och inte behövdes då jag hade spelarens användar-information där. Jag ville inte att användaren skulle ha en scrollbar ner till en footer.
+
+
+
+**Krav 5: Inloggning**
+
+Jag valde att placera inloggningen i poker-spelets header då det var ont om plats i den övre navbaren och jag tycker den passar bra ihop med länken till "about"-sidan. Dessutom ville jag att den skulle höra ihop med projektet som är poker-spelet. 
+
+Här använder jag mig av Symfonys inbyggda funktionalitet för att skapa login. Jag hittade denna möjligheten genom att läsa Symfonys dokumentation och det är ett smidigt sätt att få en grundstruktur för att hantera en login. Det skapas genom att man använder kommandot "bin/console" ihop med "make:user" följt av ett argument för namnet på tabellen i databasen som skapas. Det ges flera valmöjligheter om hur man vill att login-strukturen ska se ut.
+
+Genom kommandot skapas flera filer som ger säkerhet till en inloggning när det gäller att hasha lösenord och lägger till kod i sidans "security.yaml"-fil för detta ändamål. Dessutom skapas en "entitets"-fil för kopplingen mellan webbsidans routes och databasen. Här skapas bland annat "getters" och "setters" för akronym, lösenord och vilken roll användaren har. Rollerna hade jag stor användning av när jag sedan skapade en "admin"-användare.
+
+För att skapa möjligheten för användaren att registrera sig finns även här kommandot "bin/console make:registration-form" som skapar en koppling till login-funktionaliteten. Filer med klasser för registrerings-formulär och en kontroller för att validera det postade formuläret skapas. Dessutom skapas en vy för registrerings-formuläret.
+
+För att lägga till login-formulär med tillhörande funktionalitet använde jag kommandot "bin/console make:auth". En route för både att logga in och att logga ut skapades därmed. 
+
+Jag skapade en "admin"-användare genom att göra en tillfällig route och använde Symfonys kommando för att hasha ett lösenord och sedan "sätta" det med den tillgängliga funktionen. Här satte jag rollen "ROLE_ADMIN" som blir unik. När en vanlig användare skapas läggs rollen "ROLE_USER" till automatiskt i "setter"-funktionen, vilket även admin då får. I .yaml-filen för säkerheten finns inställningar för vilka routes som ska vara tillgängliga för en viss route. Det gör att endast inloggade användare har tillgång till dem. Smart och smidigt.
+
+Utöver detta fick jag skapa en kontroller för användaren som sköter funktionaliteten för varje "route" som har med login, admin, och användarens profil att göra. Genom att göra en kontroll i routen för användarens profil om rollen för användaren är admin eller ej, använder jag två olika vyer för den vanliga användaren och admin. Om det är en admin "redirectas" användaren till dito route och en tabell visas över alla användare med "CRUD" inkorporerat i "UserController". Annars visas vyn för användarens profil och möjligheten att redigera den.
+
+
+
+
+
 
 
 
@@ -43,3 +81,18 @@ gjort att jag slipat på mycket av mina föregående kunskaper. Jag tycker jag h
 Handledningen har jag inte mycket att klaga på. Det kändes mycket att göra i kmom02 med kortleken och som borde spridits ut mer, kanske på kmom01 som var lättare. Föreläsningarna är bra och tydliga. Jag gillar Mikaels positiva lynne :)
 
 För att summera tycker jag att kursen är värd 9/10 "Entitys".
+
+
+
+
+
+Det skall finnas en route /proj/reset som återställer databasen till dess ursprungliga läge. Placera en länk till denna routen i din about-sida.
+
+Din about-sida skall innehålla en summering där du berättar om projektets kodkvalitet. Berätta vilka eventuella åtgärder du gjort för att kvalitetssäkra projektet och hur du jobbat med kodkvaliteten och vilka verktyg du använt. Har du fokuserat på några speciella saker, verktyg eller metrics, så kan du berätta om dem.
+
+
+
+
+
+
+Jag hade nu en plan och det började snurra i huvudet om vilka klasser jag behöver. Efter kmom05 och biblioteket hade jag lärt mig en hel del. Jag kände det viktigt att göra "test-cases" samtidigt som jag gjorde klasserna, något jag inte gjorde i de tidigare uppgifterna. Jag förstår nu att man vill se att klassen ska göra vad den är till för oavsett vilka andra klasser den är beroende utav.

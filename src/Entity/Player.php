@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+* @SuppressWarnings(PHPMD)
+*/
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
 {

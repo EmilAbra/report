@@ -111,18 +111,20 @@ class HandValue
      * Check if Ace(14) is at first value in array and 5 in indexposition depending
      * on array size. If so convert Ace from 14 to 1.
      *
-     * @param array<int> $cardValues - card hand values.
-     * @return mixed - The highest card value in the straight or false if no
+     * @param array<int> $cards - card hand values.
+     * @return array<int> - The highest card value in the straight or false if no
      * straight in hand.
      */
     public function convertAceIflowStraight($cards): array
     {
         rsort($cards);
-        if (count($cards) === 7 && $cards[0] === 14 && $cards[3] === 5) {
+        $cardsLength = count($cards);
+
+        if ($cardsLength === 7 && $cards[0] === 14 && $cards[3] === 5) {
             $cards[0] = 1;
-        } elseif (count($cards) === 6 && $cards[0] === 14 && $cards[2] === 5) {
+        } elseif ($cardsLength === 6 && $cards[0] === 14 && $cards[2] === 5) {
             $cards[0] = 1;
-        } elseif (count($cards) === 5 && $cards[0] === 14 && $cards[1] === 5) {
+        } elseif ($cardsLength === 5 && $cards[0] === 14 && $cards[1] === 5) {
             $cards[0] = 1;
         }
         sort($cards);
@@ -237,9 +239,9 @@ class HandValue
      * Main method to go through every possible hand.
      *
      * @param array<object> $cardHand - Cards in card hand.
-     * @return array - Hand name and hand score out of the card hand in array.
+     * @return mixed - Hand name and hand score out of the card hand in array.
      */
-    public function findHandValue(array $cardHand): array
+    public function findHandValue(array $cardHand): mixed
     {
         $cardValues = $this->getAllValues($cardHand);
         $handArray = [];

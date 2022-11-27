@@ -12,6 +12,11 @@ use App\Proj\Hand;
 class Player
 {
     /**
+     * @var object $cardHand - The card hand.
+     */
+    public object $cardHand;
+
+    /**
      * Constructor for the Player class.
      *
      */
@@ -31,7 +36,7 @@ class Player
     }
 
     /**
-     * @return object $cardHand - Array with Card objects.
+     * @return array $cardHand - Array with Card objects.
      */
     public function getCardHand(): array
     {

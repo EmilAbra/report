@@ -1,0 +1,49 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<div>
+    <div class="admin-table-container">
+        <h1>Admin</h1>
+        <div class="admin-nav-container">
+            <nav>
+                <a href="{{ path('admin_create_user') }}">Lägg till användare</a>
+            </nav>
+        </div>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Akronym</th>
+                <th>Roll</th>
+                <th>Namn</th>
+                <th>E-post</th>
+                <th>Telefon</th>
+                <th>Adress</th>
+                <th>Jobb</th>
+                <th>Bild-URL</th>
+                <th>Redigera</th>
+            </tr>
+            {% for user in users %}
+
+                <tr>
+                    <th>{{ user.id }}</th>
+                    <th>{{ user.acronym }}</th>
+                    <th>{{ user.roles|join(', ') }}</th>
+                    <th>{{ user.name }}</th>
+                    <th>{{ user.email }}</th>
+                    <th>{{ user.phone }}</th>
+                    <th>{{ user.address }}</th>
+                    <th>{{ user.work }}</th>
+                    <th>{{ user.imgpath }}</th>
+                    <th>
+                        <a href="{{ path('admin_edit_user', {userId: user.id}) }}"><i class="fa fa-pencil-square-o"></i></a>
+                        <a href="{{ path('admin_delete_user', {userId: user.id}) }}"><i class="fa fa-trash-o"></i></a>
+                    </th>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+{% endblock %}

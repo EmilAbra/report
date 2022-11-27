@@ -8,7 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<PayTable>
- *
+ * @SuppressWarnings(PHPMD) 
  * @method PayTable|null find($id, $lockMode = null, $lockVersion = null)
  * @method PayTable|null findOneBy(array $criteria, array $orderBy = null)
  * @method PayTable[]    findAll()

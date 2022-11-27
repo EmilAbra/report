@@ -1,0 +1,59 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Logga in!{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Du är inloggad som {{ app.user.acronym }}, <a href="{{ path('app_logout') }}">Logga ut</a>
+        </div>
+    {% endif %}
+
+    <div class="login-form">
+        <div>
+            <h1>
+                Logga in
+            </h1>
+    
+            <input 
+                type="text" 
+                value="{{ last_username }}" 
+                name="acronym" 
+                id="inputAkronym" 
+                placeholder="Akronym"
+                autocomplete="acronym" 
+                required 
+                autofocus
+            >
+
+            <input 
+                type="password" 
+                name="password" 
+                id="inputPassword" 
+                autocomplete="current-password" 
+                placeholder="Lösenord"
+                required
+            >
+
+            <input 
+                type="hidden" 
+                name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+
+            <button 
+                type="submit">
+                Logga in
+            </button>
+            
+        </form>
+        <input type="button" value="Registrera" class="registerButton" onclick="window.location.href='{{ path('app_register') }}';" />
+    </div>
+</div>
+
+{% endblock %}

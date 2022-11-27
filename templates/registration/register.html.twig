@@ -1,0 +1,25 @@
+{% extends 'base_proj.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="login-form">
+        <div>
+            <h1>
+                Registrera
+            </h1>
+
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.acronym) }}
+                {{ form_row(registrationForm.plainPassword) }}
+
+            <button 
+                type="submit">
+                Skapa användare
+            </button>
+            
+            {{ form_end(registrationForm) }}
+
+        </div>
+    </div>
+{% endblock %}

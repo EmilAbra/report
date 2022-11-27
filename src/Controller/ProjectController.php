@@ -123,7 +123,7 @@ class ProjectController extends AbstractController
         $player = $session->get("player");
         $aiPlayer = $session->get("aiPlayer");
         $board = $session->get("board");
-
+        $payTable = $session->get("payTable");
 
         $casinoHoldem->startSecondRound();
         $playerHand = $player->getCardHand();
@@ -139,7 +139,8 @@ class ProjectController extends AbstractController
             'playerHandValue' => $playerHandValue,
             'aiPlayerInfo' => $aiInfo,
             'aiPlayerHand' => $aiPlayer->getCardHand(),
-            'boardCards' => $board->getCardHand()
+            'boardCards' => $board->getCardHand(),
+            'payTable' => $payTable
         ];
         return $this->render('project/deal_river.html.twig', $data);
     }
@@ -161,12 +162,12 @@ class ProjectController extends AbstractController
         $board = $session->get("board");
         $playerHandValue = $session->get("playerHandValue");
         $handValue = $session->get("handValue");
+        $payTable = $session->get("payTable");
 
         $aiHand = $aiPlayer->getCardHand();
         $aiHandValue = $handValue->findHandValue($aiHand);
 
         $winnerMessage = $casinoHoldem->decideWinner($playerHandValue, $aiHandValue);
-        $callAmount = 200;
         $playerSaldo = $playerInfo->getSaldo();
         $aiSaldo = $aiInfo->getSaldo();
         $payouts = $casinoHoldem->calculateWinnings($winnerMessage, $playerHandValue, $aiHandValue);
@@ -184,9 +185,25 @@ class ProjectController extends AbstractController
             'aiPlayerHand' => $aiHand,
             'aiHandValue' => $aiHandValue,
             'boardCards' => $board->getCardHand(),
-            'message' => $message
+            'message' => $message,
+            'payTable' => $payTable
         ];
         return $this->render('project/show_ai_cards.html.twig', $data);
+    }
+
+    /**
+     * @Route("/proj/reset", name="reset_project")
+     */
+    public function reset(PlayerInfoRepository $playerInfoRepository): Response
+    {   
+        $playerInfo = $playerInfoRepository
+            ->find(1);
+        $aiPlayerInfo = $playerInfoRepository
+            ->find(2);
+        $playerInfo->setSaldo(10000);
+        $aiPlayerInfo->setSaldo(10000);
+
+        return $this->redirectToRoute('app_project');
     }
 
     /**

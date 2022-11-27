@@ -77,7 +77,23 @@
 
 .navMenu a:nth-child(6):hover ~ .dot {
   -webkit-transform: translateX(310px);
-  transform: translateX(560px);
+  transform: translateX(585px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(7):hover ~ .dot {
+  -webkit-transform: translateX(310px);
+  transform: translateX(690px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(8):hover ~ .dot {
+  -webkit-transform: translateX(310px);
+  transform: translateX(777px);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   opacity: 1;

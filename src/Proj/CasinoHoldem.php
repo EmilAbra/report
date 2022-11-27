@@ -46,7 +46,7 @@ class CasinoHoldem
     ];
 
     /**
-     * @var array $players - The players in the game.
+     * @var array<object> $players - The players in the game.
      * @var object $dealer - The dealer of the game.
      * @var object $board - The board holding cards.
      */
@@ -58,7 +58,8 @@ class CasinoHoldem
      * Constructor for the CasinoHoldem class.
      *
      * @param array<object> $players - The players in the game.
-     * @param object $dealer - The dealer of the game.
+     * @param $dealer - The dealer of the game.
+     * @param $board - The game board.
      */
     public function __construct(array $players, Dealer $dealer, Board $board)
     {
@@ -146,8 +147,8 @@ class CasinoHoldem
     /**
      * Compare Two pairs if both players has it.
      *
-     * @param array $playerHandValues - two pair array.
-     * @param array $aiCardValues - two pair array.
+     * @param array<int> $playerCardValues - two pair array.
+     * @param array<int> $aiCardValues - two pair array.
      * @return string - message of who won the round.
      */
     public function compareTwoPairs(array $playerCardValues, array $aiCardValues): string
@@ -204,10 +205,10 @@ class CasinoHoldem
     /**
      * Calculate the money to be payed and to whom.
      *
-     * @param array<mixed> $winnerMessage - winner message of who won.
+     * @param string $winnerMessage - winner message of who won.
      * @param array<mixed> $playerHandValues - The players hand value.
      * @param array<mixed> $aiHandValues - The a.i. hand value.
-     * @return array - message of who won the round.
+     * @return array<mixed> - message of who won the round.
      */
     public function calculateWinnings(
         string $winnerMessage,

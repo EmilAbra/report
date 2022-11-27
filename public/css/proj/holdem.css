@@ -28,7 +28,30 @@
 }
 
 .holdem-title {
+    display: flex;
+    justify-content: space-between;
     background: #CC3333;
+}
+
+.iteminvisible {
+    visibility: hidden;
+    margin-left: 20px;
+    width: 500px;
+}
+
+.about-project {
+    align-self: center;
+    padding: 5px;
+    margin-right: 20px;
+    width: 500px;
+}
+
+.about-project a {
+    margin-right: 20px;
+}
+
+.holdem-title .texas-holdem {
+    text-align: center;
 }
 
 .holdem-wrapper img {
@@ -47,16 +70,7 @@
 }
 
 .holdem-table .info {
-    padding-top: 10px;
-}
-
-.about-project {
-    text-align: right;
-    padding: 5px;
-}
-
-.holdem-title .texas-holdem {
-    text-align: center;
+    padding-top: 40px;
 }
 
 .holdem-buttons {
