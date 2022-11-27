@@ -16,15 +16,16 @@ class BoardTest extends TestCase
      */
     public function setUp(): void
     {
-        $this->hand1 = new Hand();
-        $this->player1 = new Player($this->hand1);
-        $this->hand2 = new Hand();
-        $this->player2 = new Player($this->hand2);
+        // $this->hand1 = new Hand();
+        $this->player1 = new Player();
+        // $this->hand2 = new Hand();
+        $this->player2 = new Player();
         $this->players = [$this->player1, $this->player2];
-        $this->hand3 = new Hand();
+        // $this->hand3 = new Hand();
         $card = new Card("spades", "A", 14);
-        $this->hand3->setDeck($card);
+        // $this->hand3->setDeck($card);
         $this->board = new Board();
+        $this->board->setCardHand($card);
     }
 
     /**
@@ -40,12 +41,11 @@ class BoardTest extends TestCase
      * Test method shareCardsWithPlayers adds board cards to
      * players card hands.
      */
-    // public function testShareCardsWithPlayersAddsCardsToPlayerHands(): void
-    // {
-    //     $this->board->shareCardsWithPlayers($this->players);
-    //     $cardHand = $this->player1->getCardHand();
-    //     echo $cardHand[0];
-    //     $this->assertInstanceOf("\App\Proj\Card", $cardHand[0]);
-    //     $this->assertEquals(count($cardHand), 1);
-    // }
+    public function testShareCardsWithPlayersAddsCardsToPlayerHands(): void
+    {
+        $this->board->shareCardsWithPlayers($this->players);
+        $cardHand = $this->player1->getCardHand();
+        $this->assertInstanceOf("\App\Proj\Card", $cardHand[0]);
+        $this->assertEquals(count($cardHand), 1);
+    }
 }
