@@ -111,11 +111,8 @@ class HandValueTest extends TestCase
             new Card("diams", "5", 5),
             new Card("diams", "6", 6)
         ];
-        $cardHand = new Hand();
-        foreach ($flushCards as $card) {
-            $cardHand->setDeck($card);
-        }
-        $flushArray = $this->handValue->handHasFlush($cardHand);
+
+        $flushArray = $this->handValue->handHasFlush($flushCards);
         $this->assertIsArray($flushArray);
         $this->assertTrue(in_array(2, $flushArray));
         $this->assertTrue(in_array(6, $flushArray));
@@ -133,11 +130,8 @@ class HandValueTest extends TestCase
             new Card("diams", "5", 5),
             new Card("diams", "6", 6)
         ];
-        $cardHand = new Hand();
-        foreach ($noFlushArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $this->assertFalse($this->handValue->handHasFlush($cardHand));
+
+        $this->assertFalse($this->handValue->handHasFlush($noFlushArray));
     }
 
     /**
@@ -273,11 +267,8 @@ class HandValueTest extends TestCase
             new Card("diams", "K", 13),
             new Card("diams", "A", 14)
         ];
-        $cardHand = new Hand();
-        foreach ($royalArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $royalValue = $this->handValue->findHandValue($cardHand);
+
+        $royalValue = $this->handValue->findHandValue($royalArray);
 
         $this->assertIsArray($royalValue);
         $this->assertEquals($royalValue['Royal Flush'], 14);
@@ -298,11 +289,8 @@ class HandValueTest extends TestCase
             new Card("daims", "K", 13),
             new Card("clubs", "A", 14)
         ];
-        $cardHand = new Hand();
-        foreach ($straightFlushArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $straightFlushValue = $this->handValue->findHandValue($cardHand);
+
+        $straightFlushValue = $this->handValue->findHandValue($straightFlushArray);
 
         $this->assertIsArray($straightFlushValue);
         $this->assertEquals($straightFlushValue['Färgstege'], 5);
@@ -321,11 +309,8 @@ class HandValueTest extends TestCase
             new Card("hearts", "2", 2),
             new Card("diams", "A", 14)
         ];
-        $cardHand = new Hand();
-        foreach ($fourArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $fourValue = $this->handValue->findHandValue($cardHand);
+
+        $fourValue = $this->handValue->findHandValue($fourArray);
 
         $this->assertIsArray($fourValue);
         $this->assertEquals($fourValue['Fyrtal'], 2);
@@ -344,11 +329,8 @@ class HandValueTest extends TestCase
             new Card("hearts", "A", 14),
             new Card("diams", "A", 14)
         ];
-        $cardHand = new Hand();
-        foreach ($fullHouseArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $fullHouseValue = $this->handValue->findHandValue($cardHand);
+
+        $fullHouseValue = $this->handValue->findHandValue($fullHouseArray);
 
         $this->assertIsArray($fullHouseValue);
         $this->assertEquals($fullHouseValue['Kåk'], 14);
@@ -366,11 +348,8 @@ class HandValueTest extends TestCase
             new Card("diams", "5", 5),
             new Card("diams", "K", 13)
         ];
-        $cardHand = new Hand();
-        foreach ($flushArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $flushValue = $this->handValue->findHandValue($cardHand);
+
+        $flushValue = $this->handValue->findHandValue($flushArray);
 
         $this->assertIsArray($flushValue);
         $this->assertEquals($flushValue['Färg'], 13);
@@ -391,11 +370,8 @@ class HandValueTest extends TestCase
             new Card("clubs", "7", 7),
             new Card("clubs", "A", 14)
         ];
-        $cardHand = new Hand();
-        foreach ($straightArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $straightValue = $this->handValue->findHandValue($cardHand);
+
+        $straightValue = $this->handValue->findHandValue($straightArray);
 
         $this->assertIsArray($straightValue);
         $this->assertEquals($straightValue['Stege'], 7);
@@ -415,11 +391,8 @@ class HandValueTest extends TestCase
             new Card("spades", "2", 2),
             new Card("clubs", "K", 13)
         ];
-        $cardHand = new Hand();
-        foreach ($threeArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $threeValue = $this->handValue->findHandValue($cardHand);
+
+        $threeValue = $this->handValue->findHandValue($threeArray);
 
         $this->assertIsArray($threeValue);
         $this->assertEquals($threeValue['Triss'], 2);
@@ -439,11 +412,8 @@ class HandValueTest extends TestCase
             new Card("spades", "3", 3),
             new Card("clubs", "K", 13)
         ];
-        $cardHand = new Hand();
-        foreach ($twoPairArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $twoPairValues = $this->handValue->findHandValue($cardHand);
+
+        $twoPairValues = $this->handValue->findHandValue($twoPairArray);
 
         $this->assertIsArray($twoPairValues);
         $this->assertEquals($twoPairValues['Tvåpar'], [2, 3]);
@@ -463,20 +433,17 @@ class HandValueTest extends TestCase
             new Card("spades", "K", 13),
             new Card("clubs", "K", 13)
         ];
-        $cardHand = new Hand();
-        foreach ($pairArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $pairValue = $this->handValue->findHandValue($cardHand);
+
+        $pairValue = $this->handValue->findHandValue($pairArray);
 
         $this->assertIsArray($pairValue);
         $this->assertEquals($pairValue['Par'], 13);
     }
 
     /**
-     * Test findHandValue returns null when no hand.
+     * Test findHandValue returns zero value when no hand.
      */
-    public function testFindHandValueReturnsNullWhenNoHand(): void
+    public function testFindHandValueReturnsZeroWhenNoHand(): void
     {
         $noHandArray = [
             new Card("diams", "8", 8),
@@ -487,12 +454,9 @@ class HandValueTest extends TestCase
             new Card("spades", "Q", 12),
             new Card("clubs", "K", 13)
         ];
-        $cardHand = new Hand();
-        foreach ($noHandArray as $card) {
-            $cardHand->setDeck($card);
-        }
-        $nullValue = $this->handValue->findHandValue($cardHand);
 
-        $this->assertNull($nullValue);
+        $zeroValue = $this->handValue->findHandValue($noHandArray);
+
+        $this->assertEquals($zeroValue['Inget'], 0);
     }
 }

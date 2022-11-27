@@ -93,6 +93,7 @@ class HandValue
     public function handHasFlush(array $cardHand): mixed
     {
         $countSuits = array_count_values($this->getAllSuits($cardHand));
+
         foreach ($countSuits as $suit => $amount) {
             if ($amount >= 5) {
                 $flushValues = [];
