@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2022-07-25 17:51:15        , with PHPMetrics v2.8.1 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2022-11-27 18:30:00        , with PHPMetrics v2.8.1 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -93,7 +93,7 @@
                             <path d="M0 0h24v24H0z" fill="none"/>
                             <path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z"/>
                         </svg>
-                        Violations (5)
+                        Violations (12)
                     </a>
                 </li>
                                     <li>
@@ -247,6 +247,46 @@
 
     var relations = [
     {
+        "name": "\\App\\Proj\\Card",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Proj\\Dealer",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Proj\\Deck",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Proj\\Player",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Proj\\Hand",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Proj\\HandValue",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Proj\\CasinoHoldem",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Proj\\Board",
+        "size": 3000,
+        "relations": []
+    },
+    {
         "name": "\\App\\Repository\\PlayerRepository",
         "size": 3000,
         "relations": [
@@ -281,12 +321,93 @@
         "relations": []
     },
     {
+        "name": "\\App\\Repository\\PlayerInfoRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Entity\\PlayerInfo",
+        "size": 3000,
+        "relations": []
+    },
+    {
         "name": "\\App\\Repository\\BooksRepository",
         "size": 3000,
         "relations": []
     },
     {
         "name": "\\App\\Entity\\Books",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Repository\\PayTableRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Entity\\PayTable",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Repository\\UserRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Core\\User\\PasswordUpgraderInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Entity\\User",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Core\\User\\PasswordAuthenticatedUserInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Core\\Exception\\UnsupportedUserException",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Form\\RegistrationFormType",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Component\\Form\\AbstractType",
+            "\\Symfony\\Component\\Form\\FormBuilderInterface",
+            "\\Symfony\\Component\\Validator\\Constraints\\NotBlank",
+            "\\Symfony\\Component\\Validator\\Constraints\\Length",
+            "\\Symfony\\Component\\OptionsResolver\\OptionsResolver"
+        ]
+    },
+    {
+        "name": "\\Symfony\\Component\\Form\\AbstractType",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Form\\FormBuilderInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Validator\\Constraints\\NotBlank",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Validator\\Constraints\\Length",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\OptionsResolver\\OptionsResolver",
         "size": 3000,
         "relations": []
     },
@@ -312,6 +433,71 @@
     },
     {
         "name": "\\App\\Card\\Player",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Security\\LoginFormAuthenticator",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Component\\Security\\Http\\Authenticator\\AbstractLoginFormAuthenticator",
+            "\\Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface",
+            "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Passport",
+            "\\Symfony\\Component\\HttpFoundation\\Request",
+            "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Badge\\UserBadge",
+            "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Credentials\\PasswordCredentials",
+            "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Badge\\CsrfTokenBadge",
+            "\\Symfony\\Component\\Security\\Core\\Authentication\\Token\\TokenInterface",
+            "\\Symfony\\Component\\HttpFoundation\\RedirectResponse"
+        ]
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Http\\Authenticator\\AbstractLoginFormAuthenticator",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Passport",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\HttpFoundation\\Request",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Badge\\UserBadge",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Credentials\\PasswordCredentials",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Http\\Authenticator\\Passport\\Badge\\CsrfTokenBadge",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Core\\Authentication\\Token\\TokenInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\HttpFoundation\\RedirectResponse",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Core\\User\\UserInterface",
         "size": 3000,
         "relations": []
     },
@@ -356,19 +542,17 @@
         "relations": []
     },
     {
-        "name": "\\App\\Controller\\CardController",
+        "name": "\\App\\Controller\\UserController",
         "size": 3000,
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
             "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\App\\Repository\\UserRepository",
             "\\Symfony\\Component\\Routing\\Annotation\\Route",
-            "\\App\\Card\\Deck",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\App\\Card\\Card",
+            "\\Doctrine\\Persistence\\ManagerRegistry",
             "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\App\\Card\\CardHand",
-            "\\App\\Card\\Player",
-            "\\App\\Card\\DeckWith2Jokers"
+            "\\Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface",
+            "\\App\\Entity\\User"
         ]
     },
     {
@@ -387,12 +571,48 @@
         "relations": []
     },
     {
-        "name": "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+        "name": "\\Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface",
         "size": 3000,
         "relations": []
     },
     {
-        "name": "\\Symfony\\Component\\HttpFoundation\\Request",
+        "name": "\\App\\Controller\\SecurityController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\Security\\Http\\Authentication\\AuthenticationUtils",
+            "\\LogicException"
+        ]
+    },
+    {
+        "name": "\\Symfony\\Component\\Security\\Http\\Authentication\\AuthenticationUtils",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\LogicException",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Controller\\CardController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\Routing\\Annotation\\Route",
+            "\\App\\Card\\Deck",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "\\App\\Card\\Card",
+            "\\Symfony\\Component\\HttpFoundation\\Request",
+            "\\App\\Card\\CardHand",
+            "\\App\\Card\\Player",
+            "\\App\\Card\\DeckWith2Jokers"
+        ]
+    },
+    {
+        "name": "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
         "size": 3000,
         "relations": []
     },
@@ -401,7 +621,18 @@
         "size": 3000,
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response"
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\App\\Repository\\PlayerInfoRepository",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "\\App\\Repository\\PayTableRepository",
+            "\\App\\Proj\\Player",
+            "\\App\\Proj\\Deck",
+            "\\App\\Proj\\Dealer",
+            "\\App\\Proj\\Board",
+            "\\App\\Proj\\CasinoHoldem",
+            "\\Symfony\\Component\\Routing\\Annotation\\Route",
+            "\\Doctrine\\Persistence\\ManagerRegistry",
+            "\\App\\Proj\\HandValue"
         ]
     },
     {
@@ -409,15 +640,13 @@
         "size": 3000,
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\Routing\\Annotation\\Route",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
             "\\App\\Game\\Deck",
             "\\App\\Game\\Dealer",
             "\\App\\Game\\Player",
-            "\\App\\Game\\Game21CardValues",
-            "\\App\\Game\\DealerHand",
             "\\App\\Game\\Game21",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\Routing\\Annotation\\Route",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
             "\\Symfony\\Component\\HttpFoundation\\Request"
         ]
     },
@@ -429,6 +658,23 @@
             "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\Symfony\\Component\\Routing\\Annotation\\Route"
         ]
+    },
+    {
+        "name": "\\App\\Controller\\RegistrationController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\HttpFoundation\\Request",
+            "\\Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface",
+            "\\Doctrine\\ORM\\EntityManagerInterface",
+            "\\App\\Entity\\User"
+        ]
+    },
+    {
+        "name": "\\Doctrine\\ORM\\EntityManagerInterface",
+        "size": 3000,
+        "relations": []
     },
     {
         "name": "\\App\\Controller\\BooksController",
